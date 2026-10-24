@@ -347,7 +347,7 @@ def hero(pg):
       </div>
       <figure class="sheet" style="margin:0">
         <div class="sheet-head"><span><b>{E(p['nombre'])}</b></span><span>{img['cap']}</span></div>
-        <img class="shot-hero" src="{img['src']}" width="{img['w']}" height="{img['h']}" alt="{E(img['alt'])}" fetchpriority="high">
+        {img['panel'] if img.get('panel') else '<img class="shot-hero" src="%s" width="%s" height="%s" alt="%s" fetchpriority="high">' % (img['src'], img['w'], img['h'], E(img['alt']))}
         {legend}
       </figure>
     </div>

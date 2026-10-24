@@ -1,5 +1,6 @@
 """Página de MetradosALF (ALF-01). Fuentes: Manual_MetradosALF_1.0.pdf, VENTA/10_MetradosALF/LEEME.txt,
-claude/ALF-01_MetradosALF_estado.md (edificio de prueba Edificio_prueba_metrados, comprobado a mano)."""
+claude/ALF-01_MetradosALF_estado.md.
+Sin capturas hasta estrenarlo con un modelo real (pedido del 24-oct-2026)."""
 import json
 
 
@@ -41,31 +42,6 @@ def pagina(g):
         ], cls="outs outs-3"),
         "funciones", first=True)
 
-    ejemplo = section(
-        sec_head("El resultado", "Así sale el edificio de prueba",
-                 "Un edificio de 2 pisos con zapatas, vigas de cimentación, columnas, una placa, vigas, aligerado y losa maciza, muros de soga, un tabique, "
-                 "puertas, ventanas, baño y sala con acabados, falso cielorraso y cobertura. Cada partida se comprobó a mano y los dos Excel se recalcularon "
-                 "sin una sola diferencia: muro de soga 48.25 m², piso cerámico 37.61 m², excavación de zapatas 21.60 m³, eliminación 14.63 m³.")
-        + shots([
-            (img + "xls_planilla_estructuras.jpg", 1434, 568,
-             "Planilla de metrados de estructuras: excavación de zanjas para zapatas y vigas de cimentación con ubicación por ejes, veces, largo, ancho, alto, parcial, total, regla de la Norma e Id de Revit; los descuentos en rojo.",
-             "Excel: planilla de estructuras con fórmulas, por ejes y con el Id de Revit", "wide"),
-        ], cls="shots shots-ui", style="margin-top:.5rem")
-        + shots([
-            (img + "revit_modelo_prueba.jpg", 1190, 580,
-             "Vista 3D en Revit del edificio de prueba de dos pisos: zapatas, columnas, vigas, losas, muros con puertas y ventanas.",
-             "Revit: el edificio de prueba"),
-            (img + "revit_resultado_arquitectura.jpg", 856, 869,
-             "Ventana de resultados de MetradosALF con el resumen de arquitectura: muros, tarrajeos, cielorrasos, pisos, zócalos, coberturas, carpintería, vidrios y pintura.",
-             "Revit: resumen de arquitectura antes de guardar el Excel"),
-        ])
-        + shots([
-            (img + "xls_planilla_arquitectura.jpg", 1383, 612,
-             "Planilla de metrados de arquitectura: muro de soga por tramos con el descuento de cada vano, tabique con su ajuste por forma del modelo y tarrajeo interior por cara y por ambiente.",
-             "Excel: muros por tramos con el vano real de cada puerta y ventana", "wide"),
-        ], cls="shots shots-ui"),
-        "ejemplo")
-
     norma = section(
         sec_head("Cómo mide", "Las reglas de la Norma, no el orden del modelo",
                  "MetradosALF lee la geometría sin las uniones de Revit y reparte cada cruce como lo pide la Norma Técnica de Metrados. "
@@ -93,12 +69,7 @@ def pagina(g):
             ("HOJA 4", "S10", "Ítem, descripción, unidad y metrado para copiar al presupuesto (ítem base 01 y 02)."),
             ("HOJA 5", "Criterios", "Reglas aplicadas, avisos y elementos omitidos con el motivo."),
             ("PRESUPUESTO", "Con PresupuestoALF", "Los metrados pasan al presupuesto con análisis de precios unitarios y de ahí al S10."),
-        ], cls="outs outs-3")
-        + shots([
-            (img + "xls_acero.jpg", 1409, 574,
-             "Hoja Acero: barras de 5/8 y 1/2 pulgada con forma, piezas, longitud y peso, y acero estimado por cuantía en los elementos sin barras.",
-             "Excel: hoja de acero por elemento y diámetro", "wide"),
-        ], cls="shots shots-ui", style="margin-top:1rem"),
+        ], cls="outs outs-3"),
         "excel")
 
     pasos = section(
@@ -109,14 +80,6 @@ def pagina(g):
             ("Elige el alcance y los criterios", "Todo el modelo, lo seleccionado o lo visible en una vista. Marca las partidas y ajusta los criterios: "
              "cota del terreno y tipo de suelo, f'c por defecto, NPT, pesos del acero y cuantías. Se guardan en el modelo."),
             ("Calcula y guarda el Excel", "La ventana muestra el resumen; «Guardar Excel» genera el libro con las cinco hojas y lo abre."),
-        ])
-        + shots([
-            (img + "revit_ventana_estructuras.jpg", 1091, 1022,
-             "Ventana de metrados de estructuras: alcance, partidas, criterios de metrado, f'c por defecto, ítem base S10 y movimiento de tierras con la cota del terreno y el tipo de suelo.",
-             "Revit: ventana de estructuras"),
-            (img + "revit_ventana_arquitectura.jpg", 968, 869,
-             "Ventana de metrados de arquitectura: alcance, partidas, cielorraso de losas, cota del piso terminado y contrazócalo por derrame de puerta.",
-             "Revit: ventana de arquitectura"),
         ]),
         "")
 
@@ -145,7 +108,7 @@ def pagina(g):
         "og_title": "MetradosALF · Planilla de metrados sustentada desde Revit",
         "desc": "Complemento de Revit 2023–2027: metrados de estructuras (movimiento de tierras, concreto, encofrado, acero) y de arquitectura "
                 "(muros, tarrajeos, pisos, zócalos, carpintería, pintura) con la Norma Técnica de Metrados, en Excel con sustento por ejes y hoja S10. Prueba gratis 14 días.",
-        "nav": [("#funciones", "Funciones"), ("#ejemplo", "Ejemplo"), ("#norma", "Cómo mide"), ("#excel", "Excel"),
+        "nav": [("#funciones", "Funciones"), ("#norma", "Cómo mide"), ("#excel", "Excel"),
                 ("#precios", "Precios"), ("#preguntas", "Preguntas")],
         "hero": {
             "crumb": "MetradosALF para Revit",
@@ -153,19 +116,23 @@ def pagina(g):
             "h1em": "desde Revit",
             "lede": "MetradosALF saca de tu modelo la planilla de metrados de estructuras y arquitectura con la Norma Técnica de Metrados: "
                     "cada partida con su sustento por ejes y por nivel, en un Excel con fórmulas, listo para el expediente y para el S10.",
-            "cta2": ("#ejemplo", "Ver el edificio de prueba"),
+            "cta2": ("#norma", "Ver cómo mide"),
             "trial": 'Prueba gratis 14 días con todas las funciones · <a href="%s" target="_blank" rel="noopener">Manual (PDF)</a>' % P["metradosalf"]["manual"],
             "meta": ["Revit 2023–2027", "Norma Técnica de Metrados", "Excel y S10"],
-            "img": {"src": img + "xls_resumen.jpg", "w": 966, "h": 690,
-                    "alt": "Hoja Resumen del Excel de MetradosALF para el edificio de prueba: movimiento de tierras, concreto simple y concreto armado con ítem, descripción, unidad, metrado y regla de la Norma.",
-                    "cap": "Resumen · edificio de prueba"},
+            "img": {"cap": "Lo que entrega · Excel de 5 hojas", "panel": '<ul class="hpanel">'
+                    '<li><span class="hc">HOJA 1</span><b>Resumen</b><span class="hu">índice S10</span><small>Totales por partida vinculados a la planilla, con m³/m² y kg/m³.</small></li>'
+                    '<li><span class="hc">HOJA 2</span><b>Planilla de metrados</b><span class="hu">por ejes</span><small>Veces × largo × ancho × alto, regla de la Norma e Id de Revit de cada fila.</small></li>'
+                    '<li><span class="hc">HOJA 3</span><b>Acero</b><span class="hu">kg</span><small>Barras por diámetro y elemento, en varillas de 9 m.</small></li>'
+                    '<li><span class="hc">HOJA 4</span><b>S10</b><span class="hu">ítem · und · metrado</span><small>Lista para copiar al presupuesto o importar en PresupuestoALF.</small></li>'
+                    '<li><span class="hc">HOJA 5</span><b>Criterios</b><span class="hu">avisos</span><small>Reglas aplicadas y elementos omitidos con su motivo.</small></li>'
+                    '</ul>'},
         },
         "tiles": [
             ("#descargar", "down", "Prueba gratis 14 días", "Instalador para Revit 2023–2027"),
-            ("#ejemplo", "table", "Planilla con fórmulas", "Por ejes, por nivel y con el Id"),
+            ("#excel", "table", "Planilla con fórmulas", "Por ejes, por nivel y con el Id"),
             ("#norma", "check", "Norma Técnica de Metrados", "Estructuras y arquitectura"),
         ],
-        "secciones": [funciones, ejemplo, norma, excel, pasos],
+        "secciones": [funciones, norma, excel, pasos],
         "faq": faq_items,
         "dl_titulo": "Descarga MetradosALF y pruébalo 14 días",
         "dl_texto": "Instalador para Revit 2023–2027 en Windows 10 y 11, con el manual. Al terminar, abre Revit y busca la pestaña MetradosALF.",

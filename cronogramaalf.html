@@ -733,6 +733,15 @@ a.ccard:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--ac
 
 .ccard p{font-family:var(--f-body)}
 
+/* panel del hero sin captura (lista de lo que entrega el programa) */
+.hpanel{list-style:none;margin:0;padding:.4rem 0;display:grid}
+.hpanel li{display:grid;grid-template-columns:auto 1fr auto;align-items:baseline;gap:.4rem 1rem;padding:.85rem 1.2rem;border-bottom:1px solid var(--line)}
+.hpanel li:last-child{border-bottom:0}
+.hpanel .hc{font:500 .72rem var(--f-mono);letter-spacing:.06em;color:var(--accent-ink);min-width:4.2rem}
+.hpanel b{font-size:.98rem;color:var(--ink);font-weight:700}
+.hpanel small{grid-column:2/-1;color:var(--muted);font-size:.86rem;line-height:1.45}
+.hpanel .hu{font:500 .74rem var(--f-mono);color:var(--muted)}
+
 </style>
 </head>
 <body>
@@ -927,7 +936,7 @@ const REDES = { tiktok: "https://www.tiktok.com/@alf.bim", facebook: "", youtube
 document.querySelectorAll("[data-social] a").forEach(a=>{const u=REDES[a.dataset.net];if(u){a.href=u}else{a.remove()}});
 if(NEGOCIO.ruc)document.getElementById("rucFoot").textContent=" · RUC "+NEGOCIO.ruc;
 // Si el instalador se aloja fuera (Google Drive), pega aquí su enlace; vacío = descargas/ de esta web.
-const INSTALADOR_URL = ""; // el enlace lo pone _src/build.py desde _src/config.json // el enlace lo pone _src/build.py desde _src/config.json // el enlace lo pone _src/build.py desde _src/config.json // el enlace lo pone _src/build.py desde _src/config.json // el enlace lo pone _src/build.py desde _src/config.json // el enlace lo pone _src/build.py desde _src/config.json // el enlace lo pone _src/build.py desde _src/config.json // el enlace lo pone _src/build.py desde _src/config.json // el enlace lo pone _src/build.py desde _src/config.json // el enlace lo pone _src/build.py desde _src/config.json // el enlace lo pone _src/build.py desde _src/config.json // el enlace lo pone _src/build.py desde _src/config.json // el enlace lo pone _src/build.py desde _src/config.json // el enlace lo pone _src/build.py desde _src/config.json // el enlace lo pone _src/build.py desde _src/config.json // el enlace lo pone _src/build.py desde _src/config.json // el enlace lo pone _src/build.py desde _src/config.json // el enlace lo pone _src/build.py desde _src/config.json
+const INSTALADOR_URL = ""; // el enlace lo pone _src/build.py desde _src/config.json // el enlace lo pone _src/build.py desde _src/config.json // el enlace lo pone _src/build.py desde _src/config.json // el enlace lo pone _src/build.py desde _src/config.json // el enlace lo pone _src/build.py desde _src/config.json // el enlace lo pone _src/build.py desde _src/config.json // el enlace lo pone _src/build.py desde _src/config.json // el enlace lo pone _src/build.py desde _src/config.json // el enlace lo pone _src/build.py desde _src/config.json // el enlace lo pone _src/build.py desde _src/config.json // el enlace lo pone _src/build.py desde _src/config.json // el enlace lo pone _src/build.py desde _src/config.json // el enlace lo pone _src/build.py desde _src/config.json // el enlace lo pone _src/build.py desde _src/config.json // el enlace lo pone _src/build.py desde _src/config.json // el enlace lo pone _src/build.py desde _src/config.json // el enlace lo pone _src/build.py desde _src/config.json // el enlace lo pone _src/build.py desde _src/config.json // el enlace lo pone _src/build.py desde _src/config.json // el enlace lo pone _src/build.py desde _src/config.json
 if(INSTALADOR_URL){const b=document.getElementById('dlBtn');b.href=INSTALADOR_URL;b.removeAttribute('download');b.target='_blank';b.rel='noopener'}
 const mb=document.getElementById('menuBtn'),ln=document.getElementById('links');
 mb.addEventListener('click',()=>{const o=ln.classList.toggle('open');mb.setAttribute('aria-expanded',o)});

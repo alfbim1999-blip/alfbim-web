@@ -736,6 +736,15 @@ a.ccard:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--ac
 
 .ccard p{font-family:var(--f-body)}
 
+/* panel del hero sin captura (lista de lo que entrega el programa) */
+.hpanel{list-style:none;margin:0;padding:.4rem 0;display:grid}
+.hpanel li{display:grid;grid-template-columns:auto 1fr auto;align-items:baseline;gap:.4rem 1rem;padding:.85rem 1.2rem;border-bottom:1px solid var(--line)}
+.hpanel li:last-child{border-bottom:0}
+.hpanel .hc{font:500 .72rem var(--f-mono);letter-spacing:.06em;color:var(--accent-ink);min-width:4.2rem}
+.hpanel b{font-size:.98rem;color:var(--ink);font-weight:700}
+.hpanel small{grid-column:2/-1;color:var(--muted);font-size:.86rem;line-height:1.45}
+.hpanel .hu{font:500 .74rem var(--f-mono);color:var(--muted)}
+
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Plantilla Excel IIEE ALF", "softwareVersion": "1.0.0", "operatingSystem": "Windows", "applicationCategory": "DesignApplication", "description": "Excel gratuito para instalaciones eléctricas: pozo a tierra por el método de Wenner, iluminación por el método de los lúmenes con la EM.010-2019 y caída de tensión y sección del conductor con el CNE-Utilización.", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "PEN"}, "url": "https://www.alfbim.com/plantilla-excel-iiee", "publisher": {"@type": "Organization", "name": "ALF_BIM"}}</script>
 </head>
