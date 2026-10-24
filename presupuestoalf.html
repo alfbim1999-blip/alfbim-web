@@ -1,0 +1,949 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="PresupuestoALF junta los metrados BIM de MetradosALF, SanitariasALF y ElectricasALF en un presupuesto de obra con análisis de precios unitarios, pie de presupuesto y fórmula polinómica. Exporta Excel y PDF del expediente, un archivo que se importa en el S10 y el costo 5D para Revit. Gratis para Windows.">
+<meta name="theme-color" content="#0A2457">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ALF_BIM">
+<meta property="og:title" content="PresupuestoALF · Del modelo BIM al presupuesto, al S10 y de vuelta a Revit">
+<meta property="og:description" content="Presupuesto de obra desde los metrados de Revit: análisis de precios unitarios, pie, fórmula polinómica con índices del INEI, archivo para el S10 y costos 5D en Revit. Excel y PDF.">
+<meta property="og:url" content="https://www.alfbim.com/presupuestoalf">
+<meta property="og:image" content="https://www.alfbim.com/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="PresupuestoALF: presupuesto 5D de obra.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://www.alfbim.com/presupuestoalf">
+<link rel="icon" type="image/png" href="data:image/png;base64,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">
+<title>PresupuestoALF</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..800&family=Geist+Mono:wght@400..600&display=swap">
+<style>
+/* Layout: a structural drawing sheet. Hero = blue ALF_BIM band with a live 3D rebar view; sections read like sheet zones; footer is the title block (rótulo). */
+:root{
+  --bg:#F2F4F7;          /* drawing paper, cool */
+  --surface:#FFFFFF;
+  --ink:#0E1116;         /* logo black */
+  --muted:#566070;
+  --line:#D5DBE4;
+  --grid:#E3E8EF;
+  --accent:#2F7DF6;      /* logo blue */
+  --accent-ink:#1A5FD0;
+  --accent-soft:#E3EDFE;
+  --ok:#1E8A5A;
+  --on-accent:#FFFFFF;
+  --f-display:"Archivo","Arial Narrow",system-ui,sans-serif;
+  --f-body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Consolas,monospace;
+  --s-1:.8125rem; --s0:1rem; --s1:1.1875rem; --s2:1.5rem; --s3:2.125rem; --s4:clamp(2.4rem,5.4vw,4.1rem);
+  --wrap:1180px; --r:10px;
+  --hero-a:#0A2457; --hero-b:#1F5FD6; --hero-c:#2F7DF6; --on-hero:#FFFFFF;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0C1016;--surface:#141A23;--ink:#EEF1F6;--muted:#9AA5B5;--line:#273141;--grid:#18202B;
+  --accent:#4C8FFA;--accent-ink:#7EADFB;--accent-soft:#16253F;--ok:#47C08A;--on-accent:#06101F;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0C1016;--surface:#141A23;--ink:#EEF1F6;--muted:#9AA5B5;--line:#273141;--grid:#18202B;
+  --accent:#4C8FFA;--accent-ink:#7EADFB;--accent-soft:#16253F;--ok:#47C08A;--on-accent:#06101F;color-scheme:dark}
+
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:var(--s0);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:clamp(16px,4vw,40px)}
+h1,h2,h3{font-family:var(--f-display);line-height:1.05;margin:0;text-wrap:balance;letter-spacing:-.01em}
+h2{font-size:var(--s3);font-weight:800;font-stretch:88%}
+h3{font-size:var(--s1);font-weight:700}
+p{margin:0}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.eyebrow{font-family:var(--f-mono);font-size:var(--s-1);letter-spacing:.08em;text-transform:uppercase;color:var(--accent-ink)}
+.lede{color:var(--muted);font-size:var(--s1);max-width:60ch}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+.logo-d{display:none}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .logo-l{display:none}:root:not([data-theme="light"]) .logo-d{display:block}}
+:root[data-theme="dark"] .logo-l{display:none}:root[data-theme="dark"] .logo-d{display:block}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:.5rem;font:600 var(--s0)/1 var(--f-body);padding:.85rem 1.25rem;border-radius:8px;text-decoration:none;border:1px solid transparent;cursor:pointer;transition:transform .15s,background .15s,border-color .15s}
+.btn-primary{background:var(--accent);color:var(--on-accent)}
+.btn-primary:hover{background:var(--accent-ink);transform:translateY(-1px)}
+.btn-ghost{border-color:var(--line);background:var(--surface);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--ink)}
+
+/* top info bar */
+.infobar{background:var(--hero-a);color:var(--on-hero);font-size:.85rem}
+.infobar .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:.4rem 1.5rem;min-height:40px;padding-block:.45rem}
+.infobar .ib{display:flex;flex-wrap:wrap;gap:.3rem 1.4rem}
+.infobar span,.infobar a{display:inline-flex;align-items:center;gap:.45rem;text-decoration:none;color:inherit;opacity:.92}
+.infobar a:hover{opacity:1;text-decoration:underline}
+.infobar svg{width:15px;height:15px;flex:none}
+@media (max-width:640px){.infobar .ib-r{display:none}}
+
+/* header */
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--surface) 94%,transparent);box-shadow:0 6px 18px -14px rgba(10,36,87,.35);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;gap:1.5rem;min-height:72px}
+.brand{display:flex;align-items:center;gap:.6rem;text-decoration:none}
+.brand img{height:30px;width:auto}
+.brand b{font:800 1.2rem/1 var(--f-display);font-stretch:90%;letter-spacing:.01em}
+.brand b span{color:var(--accent)}
+.links{display:flex;gap:1.4rem;margin-left:auto;align-items:center}
+.links a{text-decoration:none;font-size:.95rem;color:var(--muted)}
+.links a:hover{color:var(--accent-ink)}
+.links .btn{color:var(--on-accent);padding:.6rem 1rem;font-size:.9rem}
+.menu-btn{display:none;margin-left:auto;background:none;border:1px solid var(--line);border-radius:8px;padding:.5rem .7rem;color:var(--ink);font:500 .9rem var(--f-body);cursor:pointer}
+@media (max-width:860px){
+  .menu-btn{display:block}
+  .links{display:none;position:absolute;left:0;right:0;top:100%;flex-direction:column;align-items:stretch;gap:0;background:var(--surface);border-bottom:1px solid var(--line);padding:.5rem clamp(16px,4vw,40px) 1rem}
+  .links.open{display:flex}
+  .links a{padding:.75rem 0;border-bottom:1px solid var(--line)}
+  .links .btn{margin-top:.75rem;justify-content:center}
+}
+
+/* hero */
+.hero{position:relative;color:var(--on-hero);padding-block:clamp(2.5rem,6vw,4.5rem) clamp(5.5rem,9vw,7.5rem);background:linear-gradient(120deg,var(--hero-a) 0%,var(--hero-b) 58%,var(--hero-c) 100%);overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.07) 1px,transparent 1px);background-size:36px 36px;mask-image:linear-gradient(90deg,#000 0%,transparent 75%);-webkit-mask-image:linear-gradient(90deg,#000 0%,transparent 75%);pointer-events:none}
+.hero .wrap{position:relative}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(2rem,4vw,3.5rem);align-items:center}
+@media (max-width:960px){.hero-grid{grid-template-columns:minmax(0,1fr)}}
+.crumb{font-size:.95rem;color:color-mix(in srgb,var(--on-hero) 78%,transparent)}.crumb a{text-decoration:none}.crumb a:hover{color:var(--on-hero)}.crumb b{color:var(--on-hero);font-weight:600}
+.hero h1{font-size:var(--s4);font-weight:850;font-stretch:82%;text-transform:uppercase;letter-spacing:-.005em;margin-block:.9rem 1.2rem}
+.hero h1 em{font-style:normal;color:#BFD6FF}
+.hero .lede{margin-bottom:1.8rem;color:color-mix(in srgb,var(--on-hero) 86%,transparent)}
+.cta{display:flex;flex-wrap:wrap;gap:.75rem}
+.hero .btn-primary{background:var(--on-hero);color:var(--hero-a);border-radius:999px;padding-inline:1.5rem}
+.hero .btn-primary:hover{background:#E6EEFF}
+.hero .btn-ghost{background:transparent;color:var(--on-hero);border-color:color-mix(in srgb,var(--on-hero) 55%,transparent);border-radius:999px;padding-inline:1.5rem}
+.hero .btn-ghost:hover{border-color:var(--on-hero);background:rgba(255,255,255,.08)}
+.hero .trial{color:var(--on-hero)}
+.hero .trial::before{background:var(--on-hero);color:var(--hero-b)}
+.hero .cupos .ct b{color:var(--on-hero)}
+.hero .cupos .bar{background:rgba(255,255,255,.25)}
+.hero .cupos .bar i{background:var(--on-hero)}
+.hero-meta{display:flex;flex-wrap:wrap;gap:.5rem 1.4rem;margin-top:1.8rem;font-family:var(--f-mono);font-size:var(--s-1);color:color-mix(in srgb,var(--on-hero) 80%,transparent)}
+.hero-meta span::before{content:"";display:inline-block;width:7px;height:7px;background:var(--on-hero);margin-right:.5rem;vertical-align:1px}
+.hero .sheet{box-shadow:0 30px 60px -30px rgba(0,0,0,.55);border-color:transparent}
+
+/* quick tiles over hero */
+.tiles{position:relative;z-index:2;margin-top:clamp(-4.5rem,-7vw,-3.5rem)}
+.tiles .wrap{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}
+@media (max-width:720px){.tiles .wrap{grid-template-columns:minmax(0,1fr)}}
+.tile{display:flex;align-items:center;gap:1rem;padding:1.3rem 1.4rem;border-radius:var(--r);background:#1D5BD0;color:var(--on-hero);text-decoration:none;box-shadow:0 18px 36px -20px rgba(10,36,87,.6);transition:transform .15s,background .15s}
+.tile:nth-child(2){background:#1648A8}
+.tile:nth-child(3){background:var(--hero-a)}
+.tile:hover{transform:translateY(-3px)}
+.tile svg{width:38px;height:38px;flex:none;padding:7px;border-radius:10px;background:rgba(255,255,255,.16)}
+.tile b{display:block;font:800 1.1rem/1.15 var(--f-display);font-stretch:90%}
+.tile small{display:block;font-size:.85rem;opacity:.85;margin-top:.2rem}
+
+/* drawing sheet */
+.sheet{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:0 18px 40px -24px rgba(14,17,22,.35);overflow:hidden}
+.sheet-head{display:flex;justify-content:space-between;gap:1rem;padding:.65rem 1rem;border-bottom:1px solid var(--line);font-family:var(--f-mono);font-size:.75rem;color:var(--muted);flex-wrap:wrap}
+.sheet-head b{color:var(--ink);font-weight:500}
+.sheet svg{display:block;width:100%;height:auto}
+.dw{font-family:var(--f-mono)}
+.dw .conc{fill:var(--bg);stroke:var(--muted);stroke-width:1.2}
+.dw .col{fill:var(--grid);stroke:var(--muted);stroke-width:1.2}
+.dw .bar{stroke:var(--ink);stroke-width:2.6;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.dw .bast{stroke:var(--accent);stroke-width:2.6;fill:none;stroke-linecap:round}
+.dw .st line{stroke:var(--accent);stroke-width:1.6}
+.dw .dim{stroke:var(--muted);stroke-width:.9;fill:none}
+.dw .lead{stroke:var(--muted);stroke-width:.8;fill:none}
+.dw text{fill:var(--ink);font-size:12.5px}
+.dw .t-m{fill:var(--muted);font-size:11px}
+.dw .t-a{fill:var(--accent-ink)}
+.dw .t-h{font-family:var(--f-display);font-weight:800;font-size:17px;letter-spacing:.04em}
+.dw .scan{fill:var(--accent);opacity:.10}
+@keyframes scan{from{transform:translateX(0)}to{transform:translateX(470px)}}
+.dw .scan{animation:scan 6s ease-in-out infinite alternate}
+.dw .dot{fill:var(--ink)}
+.dw .sec{fill:var(--bg);stroke:var(--muted);stroke-width:1.2}
+.dw .sec-st{fill:none;stroke:var(--accent);stroke-width:1.6}
+
+.stage{position:relative;aspect-ratio:5/4;max-width:100%;background-image:radial-gradient(circle at 50% 60%,var(--accent-soft),transparent 70%)}
+.stage canvas{position:absolute;inset:0;width:100%;height:100%;display:block;cursor:grab;touch-action:pan-y}
+.stage canvas:active{cursor:grabbing}
+.hint{position:absolute;right:.8rem;bottom:.7rem;font:500 .72rem var(--f-mono);color:var(--muted);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:.45rem .8rem}
+.legend{display:flex;flex-wrap:wrap;gap:.4rem 1.2rem;padding:.7rem 1rem;border-top:1px solid var(--line);font-size:.82rem;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:.45rem}
+.sw{display:inline-block;width:18px;height:4px;border-radius:2px}
+.sw-l{background:var(--ink)}.sw-s{background:var(--accent)}.sw-c{height:10px;border:1px dashed var(--muted);background:color-mix(in srgb,var(--muted) 12%,transparent)}
+
+/* template */
+.tpl{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(1.5rem,4vw,3rem);align-items:center;background:var(--ink);color:var(--bg);border-radius:var(--r);padding:clamp(1.5rem,4vw,3rem)}
+@media (max-width:860px){.tpl{grid-template-columns:minmax(0,1fr)}}
+.tpl .eyebrow{color:color-mix(in srgb,var(--accent) 70%,var(--bg))}
+.tpl h2{margin-block:.8rem 1rem;overflow-wrap:break-word}
+.tpl>*{min-width:0}
+.tpl .lede{color:color-mix(in srgb,var(--bg) 72%,var(--ink))}
+.tpl-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.9rem 1.4rem}
+@media (max-width:520px){.tpl-list{grid-template-columns:minmax(0,1fr)}}
+.tpl-list li{border-top:1px solid color-mix(in srgb,var(--bg) 22%,var(--ink));padding-top:.7rem;display:grid;gap:.2rem}
+.tpl-list b{font-weight:600}
+.tpl-list span{font-size:.88rem;color:color-mix(in srgb,var(--bg) 66%,var(--ink))}
+.tpl-file{display:flex;flex-wrap:wrap;gap:.4rem 1.2rem;font:500 .8rem var(--f-mono);color:color-mix(in srgb,var(--bg) 66%,var(--ink));margin-top:1.2rem}
+.tpl .btn-primary{margin-top:1.4rem}
+
+.cupos{display:grid;gap:.45rem;max-width:420px}
+.cupos .ct{display:flex;justify-content:space-between;gap:1rem;font-size:.9rem}
+.cupos .ct b{color:var(--accent-ink)}
+.cupos .bar{height:8px;border-radius:999px;background:var(--line);overflow:hidden}
+.cupos .bar i{display:block;height:100%;background:var(--accent);border-radius:999px}
+.trial{display:inline-flex;align-items:center;gap:.5rem;font-size:.92rem;color:var(--ink);margin-top:1rem}
+.trial::before{content:"✓";display:grid;place-items:center;width:1.3rem;height:1.3rem;border-radius:50%;background:var(--accent);color:var(--on-accent);font-size:.75rem;font-weight:700}
+.ps{font-family:var(--f-mono);font-size:.88rem;color:var(--muted);margin-top:-.6rem}
+.endcta{background:var(--accent);color:var(--on-accent);border-radius:var(--r);padding:clamp(1.6rem,4vw,3rem);display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:1.5rem 3rem;align-items:center}
+@media (max-width:860px){.endcta{grid-template-columns:minmax(0,1fr)}}
+.endcta h2{font-size:var(--s3)}
+.endcta p{opacity:.9;margin-top:.6rem}
+.endcta .btn{background:var(--on-accent);color:var(--accent);justify-content:center}
+.endcta .btn:hover{transform:translateY(-1px)}
+.endcta .cupos .bar{background:color-mix(in srgb,var(--on-accent) 30%,transparent)}
+.endcta .cupos .bar i{background:var(--on-accent)}
+.endcta .cupos .ct b{color:inherit}
+.endcta-side{display:grid;gap:1rem}
+
+.consent{display:flex;gap:.6rem;align-items:flex-start;font-size:.88rem;color:var(--muted)}
+.consent input{margin-top:.25rem;width:auto}
+.err{color:#B42318;font-size:.88rem;margin:0}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .err{color:#FF9B8F}}
+:root[data-theme="dark"] .err{color:#FF9B8F}
+.ytnote{display:block;font-size:.8rem;color:var(--muted);margin-top:.2rem}
+.legal{display:flex;flex-wrap:wrap;gap:.5rem 1.4rem;font-size:.88rem;padding-bottom:.6rem}
+.legal a{color:var(--muted)}
+.legal a:hover{color:var(--accent-ink)}
+.legal .lr{font-weight:600;color:var(--ink)}
+.tm{font-size:.8rem;color:var(--muted);margin:0;padding-bottom:2rem}
+
+.social{display:flex;gap:.5rem;flex-wrap:wrap;padding-bottom:1rem}
+.social a{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;color:var(--muted);border:1px solid var(--line);transition:color .3s,border-color .3s,transform .4s cubic-bezier(.32,.72,0,1)}
+.social a:hover{color:var(--ink);border-color:var(--ink);transform:translateY(-2px)}
+.social svg{width:18px;height:18px}
+.social-lg{padding:0;margin:.4rem 0 .2rem}
+.soc-t{margin-top:1.4rem;color:var(--muted);font-size:.95rem}
+.soc-t b{color:var(--ink)}
+
+/* sections */
+section.block{padding-block:clamp(3.5rem,7vw,6rem)}
+.sec-head{display:flex;flex-direction:column;align-items:center;text-align:center;gap:.9rem;margin:0 auto 2.75rem;max-width:760px}
+.sec-head h2{color:var(--accent-ink)}
+.sec-head h2::after{content:"";display:block;width:56px;height:3px;border-radius:2px;background:var(--accent);margin:.9rem auto 0}
+.sec-head .lede{margin-inline:auto}
+
+/* products */
+.products{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:1.25rem}
+@media (max-width:820px){.products{grid-template-columns:minmax(0,1fr)}}
+.prod{border-radius:var(--r);padding:clamp(1.4rem,3vw,2.2rem);display:flex;flex-direction:column;gap:1rem}
+.prod-main{background:var(--ink);color:var(--bg)}
+.prod-main .lede{color:color-mix(in srgb,var(--bg) 72%,var(--ink))}
+.prod-main h3{font-size:var(--s3);font-weight:850;font-stretch:85%}
+.prod-main h3 span{color:var(--accent)}
+.tag{display:inline-flex;align-self:flex-start;align-items:center;gap:.45rem;font:500 .75rem/1 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;padding:.4rem .6rem;border-radius:999px}
+.tag-live{background:color-mix(in srgb,var(--ok) 22%,transparent);color:color-mix(in srgb,var(--ok) 60%,var(--bg))}
+.tag-live::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+.prod-main ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.4rem 1.2rem;font-size:.95rem}
+.prod-main li::before{content:"— ";color:var(--accent)}
+.prod-main .btn-primary{align-self:flex-start;margin-top:auto}
+.prod-next{border:1.5px dashed var(--line);color:var(--muted)}
+.prod-next h3{color:var(--ink)}
+.tag-soon{border:1px solid var(--line);color:var(--muted)}
+
+/* modules */
+.mod{display:grid;grid-template-columns:minmax(0,260px) minmax(0,1fr);gap:1.5rem;align-items:start}
+@media (max-width:820px){.mod{grid-template-columns:minmax(0,1fr)}}
+.mod-tabs{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:var(--r);background:var(--surface);overflow:hidden}
+@media (max-width:820px){.mod-tabs{flex-direction:row;overflow-x:auto}}
+.mod-tabs button{all:unset;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:.95rem 1.1rem;border-bottom:1px solid var(--line);font-weight:600;white-space:nowrap}
+.mod-tabs button:last-child{border-bottom:0}
+.mod-tabs button small{font:400 .72rem var(--f-mono);color:var(--muted)}
+.mod-tabs button[aria-selected="true"]{background:var(--accent);color:var(--on-accent)}
+.mod-tabs button[aria-selected="true"] small{color:inherit;opacity:.8}
+.mod-tabs button:focus-visible{outline-offset:-3px}
+.mod-panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:clamp(1.3rem,3vw,2rem);display:grid;grid-template-columns:minmax(0,1fr);gap:2rem;align-self:stretch;align-content:center}
+@media (max-width:980px){.mod-panel{grid-template-columns:minmax(0,1fr)}}
+.mod-panel h3{font-size:var(--s2);font-weight:800;font-stretch:88%;margin-bottom:.6rem}
+.mod-panel ul{margin:1rem 0 0;padding-left:1.1rem;display:grid;gap:.45rem}
+.mod-panel li::marker{color:var(--accent)}
+.mod-side{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:1.2rem;display:flex;flex-direction:column;gap:.8rem;align-self:start}
+.mod-side small{font:500 .75rem var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.mod-side p{color:var(--muted);font-size:.93rem}
+.mod-side .btn{align-self:flex-start}
+
+/* download */
+.dl{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:0;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--surface);margin-bottom:3rem}
+@media (max-width:860px){.dl{grid-template-columns:minmax(0,1fr)}}
+.dl-main{padding:clamp(1.4rem,3vw,2.2rem);display:flex;flex-direction:column;gap:1rem}
+.dl-main h3{font-size:var(--s2);font-weight:850;font-stretch:85%}
+.dl-specs{background:var(--bg);border-left:1px solid var(--line);padding:clamp(1.4rem,3vw,2.2rem)}
+@media (max-width:860px){.dl-specs{border-left:0;border-top:1px solid var(--line)}}
+.dl-specs dl{margin:0;display:grid;grid-template-columns:auto minmax(0,1fr);gap:.6rem 1.2rem;font-size:.92rem}
+.dl-specs dt{color:var(--muted)}
+.dl-specs dd{margin:0;font-family:var(--f-mono);font-size:.85rem;overflow-wrap:anywhere}
+.hash{font-size:.75rem!important;color:var(--muted)}
+.dl-note{color:var(--muted);font-size:.88rem}
+
+/* tutorials */
+.tfilter{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.5rem}
+.tfilter button{all:unset;cursor:pointer;padding:.5rem .95rem;border:1px solid var(--line);border-radius:999px;font-size:.9rem;font-weight:600;background:var(--surface);color:var(--muted)}
+.tfilter button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.tfilter button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.tgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.25rem}
+@media (max-width:980px){.tgrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.tgrid{grid-template-columns:minmax(0,1fr)}}
+.tcard{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column}
+.thumb{aspect-ratio:16/9;max-width:100%;position:relative;display:grid;place-items:center;background:linear-gradient(130deg,var(--hero-a),var(--hero-b) 60%,var(--hero-c))}
+.thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.thumb .tcode{font:850 clamp(1.15rem,2vw,1.45rem)/1.1 var(--f-display);font-stretch:85%;color:var(--on-hero);text-align:center;padding-inline:1.2rem;text-wrap:balance}
+.thumb .tnum{position:absolute;top:.8rem;left:.9rem;font:500 .72rem var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--on-hero);background:rgba(255,255,255,.16);padding:.3rem .55rem;border-radius:4px}
+.thumb .tbrand{position:absolute;bottom:.8rem;right:.9rem;font:500 .72rem var(--f-mono);color:color-mix(in srgb,var(--on-hero) 80%,transparent)}
+.temas{margin:.3rem 0 0;padding-left:1.1rem;display:grid;gap:.3rem;font-size:.92rem}
+.temas li::marker{color:var(--accent)}
+.tnote{background:var(--accent-soft);color:var(--accent-ink)!important;border-radius:6px;padding:.6rem .75rem;font-size:.86rem!important}
+.thumb .play{position:absolute;width:52px;height:52px;border-radius:50%;background:var(--accent);display:grid;place-items:center;box-shadow:0 6px 18px -6px rgba(0,0,0,.4)}
+.thumb .play::after{content:"";border-left:16px solid var(--on-accent);border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px}
+.tbody{padding:1.1rem 1.2rem 1.3rem;display:flex;flex-direction:column;gap:.5rem;flex:1}
+.tmeta{display:flex;justify-content:space-between;gap:.5rem;font:500 .75rem var(--f-mono);color:var(--muted);letter-spacing:.04em}
+.tbody p{color:var(--muted);font-size:.92rem}
+.tacts{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:auto;padding-top:.6rem}
+.tacts .btn{padding:.55rem .9rem;font-size:.88rem}
+.soon{font:500 .78rem var(--f-mono);color:var(--muted);border:1px dashed var(--line);border-radius:6px;padding:.45rem .7rem}
+.modal{position:fixed;inset:0;z-index:50;background:rgba(6,10,16,.78);display:grid;place-items:center;padding:16px}
+.modal-box{width:min(960px,100%);background:var(--surface);border-radius:var(--r);overflow:hidden}
+.modal-box .vid{aspect-ratio:16/9;max-width:100%;background:#000}
+.modal-box iframe,.modal-box video{width:100%;height:100%;border:0;display:block;background:#000}
+button.thumb{border:0;padding:0;width:100%;cursor:pointer;font:inherit;color:inherit}
+button.thumb .play{left:1rem;bottom:1rem;width:44px;height:44px}
+button.thumb .play::after{border-left-width:13px;border-top-width:8px;border-bottom-width:8px;margin-left:3px}
+button.thumb:focus-visible{outline:2px solid var(--accent);outline-offset:-4px}
+button.thumb img{transition:transform .8s var(--ease,ease),filter .4s}
+button.thumb:hover img{transform:scale(1.03);filter:brightness(.85)}
+.modal-bar{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:.8rem 1rem;flex-wrap:wrap}
+
+
+/* outputs */
+.outs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line);border-left:1px solid var(--line)}
+@media (max-width:980px){.outs{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.outs{grid-template-columns:minmax(0,1fr)}}
+.out{padding:1.4rem;border-right:1px solid var(--line);border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:.5rem;background:var(--surface)}
+.out .code{font:500 .72rem var(--f-mono);color:var(--accent-ink);letter-spacing:.06em}
+.out p{color:var(--muted);font-size:.93rem}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.25rem;counter-reset:s}
+@media (max-width:820px){.steps{grid-template-columns:minmax(0,1fr)}}
+.step{padding-top:1.2rem;border-top:2px solid var(--ink);display:flex;flex-direction:column;gap:.5rem}
+.step::before{counter-increment:s;content:"PASO " counter(s);font:500 .75rem var(--f-mono);letter-spacing:.08em;color:var(--accent-ink)}
+.step p{color:var(--muted)}
+
+/* international */
+.intl{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:2.5rem;align-items:start}
+@media (max-width:820px){.intl{grid-template-columns:minmax(0,1fr)}}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.2rem}
+.chip{font:500 .82rem var(--f-mono);padding:.4rem .7rem;border:1px solid var(--line);border-radius:6px;background:var(--surface)}
+.spec{width:100%;border-collapse:collapse;font-size:.93rem}
+.spec th,.spec td{text-align:left;padding:.7rem .2rem;border-bottom:1px solid var(--line);vertical-align:top}
+.spec th{font-weight:500;color:var(--muted);width:42%;padding-right:1rem}
+.spec td{font-family:var(--f-mono);font-size:.86rem}
+
+/* pricing */
+.pricing{background:var(--surface);border-block:1px solid var(--line)}
+.term{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:4px;background:var(--bg);gap:2px}
+.term button{all:unset;cursor:pointer;padding:.5rem 1rem;border-radius:999px;font-weight:600;font-size:.92rem;color:var(--muted)}
+.term button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.launch{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:1.8rem}
+.launch p{font-family:var(--f-mono);font-size:var(--s-1);color:var(--muted)}
+.launch p b{color:var(--accent-ink);font-weight:500}
+.plans{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.25rem;align-items:stretch}
+@media (max-width:980px){.plans{grid-template-columns:minmax(0,1fr)}}
+.plan{border:1px solid var(--line);border-radius:var(--r);padding:1.6rem;display:flex;flex-direction:column;gap:1rem;background:var(--bg)}
+.plan.feat{border:2px solid var(--accent);background:var(--surface);position:relative}
+.plan .pn{font:850 1.35rem/1 var(--f-display);font-stretch:85%;letter-spacing:.02em;text-transform:uppercase}
+.plan .who{color:var(--muted);font-size:.93rem;min-height:2.9em}
+.price{display:flex;align-items:baseline;gap:.35rem;flex-wrap:wrap}
+.price .amt{font:850 2.8rem/1 var(--f-display);font-stretch:85%;font-variant-numeric:tabular-nums}
+.price .per{color:var(--muted);font-size:.93rem}
+.promo{font-family:var(--f-mono);font-size:.82rem;padding:.55rem .7rem;border-radius:6px;background:var(--accent-soft);color:var(--accent-ink);min-height:2.5em}
+.plan ul{list-style:none;margin:0;padding:0;display:grid;gap:.55rem;font-size:.94rem}
+.plan li{display:grid;grid-template-columns:1.1rem minmax(0,1fr);gap:.4rem}
+.plan li::before{content:"✓";color:var(--accent);font-weight:700}
+.plan .btn{margin-top:auto;justify-content:center}
+.ribbon{position:absolute;top:-.75rem;left:1.4rem;background:var(--accent);color:var(--on-accent);font:500 .72rem/1 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;padding:.4rem .6rem;border-radius:4px}
+.fine{margin-top:1.4rem;color:var(--muted);font-size:.88rem;max-width:80ch}
+
+/* student */
+.student{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:2.5rem;align-items:center}
+@media (max-width:820px){.student{grid-template-columns:minmax(0,1fr)}}
+.wm{aspect-ratio:4/3;max-width:100%;border:1px solid var(--line);border-radius:var(--r);background:var(--surface);position:relative;overflow:hidden;display:grid;place-items:center}
+.wm svg{width:78%;height:auto}
+.wm .stamp{position:absolute;inset:0;display:grid;place-items:center;transform:rotate(-24deg);font:850 clamp(.9rem,2.4vw,1.35rem)/1.2 var(--f-display);font-stretch:85%;color:color-mix(in srgb,var(--accent) 34%,transparent);text-align:center;letter-spacing:.04em;pointer-events:none}
+.checks{margin:1.2rem 0 1.6rem;padding:0;list-style:none;display:grid;gap:.6rem}
+.checks li{display:grid;grid-template-columns:1.6rem minmax(0,1fr);gap:.3rem}
+.checks li span{font:500 .8rem var(--f-mono);color:var(--accent-ink)}
+
+/* faq */
+.faq{display:grid;gap:0;border-top:1px solid var(--line)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{cursor:pointer;list-style:none;padding:1.15rem 0;font-weight:600;font-size:1.05rem;display:flex;justify-content:space-between;gap:1rem}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font:400 1.4rem/1 var(--f-mono);color:var(--accent)}
+.faq details[open] summary::after{content:"−"}
+.faq details p{padding-bottom:1.2rem;color:var(--muted);max-width:72ch}
+
+/* contact */
+.contact{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:2.5rem;align-items:start}
+@media (max-width:820px){.contact{grid-template-columns:minmax(0,1fr)}}
+form.req{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:1.5rem;display:grid;gap:1rem}
+.field{display:grid;gap:.35rem}
+.field label{font-size:.85rem;font-weight:600}
+.field input,.field select,.field textarea{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:.7rem .8rem;width:100%}
+.field textarea{min-height:90px;resize:vertical}
+.row2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:1rem}
+@media (max-width:520px){.row2{grid-template-columns:minmax(0,1fr)}}
+.out-msg{background:var(--bg);border:1px dashed var(--accent);border-radius:8px;padding:1rem;font-family:var(--f-mono);font-size:.85rem;white-space:pre-wrap;overflow-wrap:anywhere}
+.chan{display:grid;gap:.8rem;margin-top:1.4rem}
+.chan div{display:flex;justify-content:space-between;gap:1rem;padding:.9rem 1rem;border:1px solid var(--line);border-radius:8px;background:var(--surface);flex-wrap:wrap}
+.chan span{color:var(--muted);font-size:.9rem}
+.chan b{font-family:var(--f-mono);font-weight:500;font-size:.9rem;user-select:all}
+
+/* title block footer */
+footer{border-top:2px solid var(--ink);margin-top:2rem}
+.rotulo{display:grid;grid-template-columns:minmax(0,1.6fr) repeat(4,minmax(0,1fr));border-left:1px solid var(--line)}
+@media (max-width:820px){.rotulo{grid-template-columns:repeat(2,minmax(0,1fr))}.rotulo .cell:first-child{grid-column:1/-1}}
+.cell{padding:1rem;border-right:1px solid var(--line);border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:.3rem;min-width:0}
+.cell small{font:500 .68rem var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.cell b{font-weight:600;font-size:.95rem;overflow-wrap:anywhere}
+.cell .brand img{height:38px}
+.copy{padding-block:1.2rem .6rem;color:var(--muted);font-size:.85rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+/* ===== Rediseño 2: Soft Structuralism + banda azul ALF_BIM =====
+   Tipos: Geist (titulares y texto), Geist Mono (etiquetas y datos).
+   Superficies con doble bisel, sombras teñidas de azul marino, curvas de movimiento con resorte. */
+:root{
+  --bg:#F3F5F8; --surface:#FFFFFF; --shell:rgba(10,36,87,.045); --hair:rgba(10,36,87,.09);
+  --ink:#0B1322; --muted:#566273; --line:rgba(10,36,87,.10); --grid:#E5EAF1;
+  --accent:#2F7DF6; --accent-ink:#1A5FD0; --accent-soft:#E6EEFD;
+  --f-display:"Geist",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-body:"Geist",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"Geist Mono",ui-monospace,"SFMono-Regular",Consolas,monospace;
+  --s3:clamp(2rem,3.6vw,3rem); --s4:clamp(2.7rem,6.2vw,5.1rem);
+  --r:22px; --r-in:16px;
+  --shadow:0 1px 1px rgba(10,36,87,.04),0 12px 32px -16px rgba(10,36,87,.22);
+  --shadow-lg:0 2px 2px rgba(10,36,87,.04),0 30px 70px -30px rgba(10,36,87,.38);
+  --ease:cubic-bezier(.32,.72,0,1);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0A0F17;--surface:#111925;--shell:rgba(255,255,255,.035);--hair:rgba(255,255,255,.08);
+  --ink:#EEF2F8;--muted:#9BA7B8;--line:rgba(255,255,255,.09);--grid:#141C28;
+  --accent:#5B98FA;--accent-ink:#8FB8FC;--accent-soft:#14223A;
+  --shadow:0 1px 1px rgba(0,0,0,.2),0 14px 34px -18px rgba(0,0,0,.7);
+  --shadow-lg:0 2px 2px rgba(0,0,0,.2),0 34px 80px -30px rgba(0,0,0,.8)}}
+:root[data-theme="dark"]{
+  --bg:#0A0F17;--surface:#111925;--shell:rgba(255,255,255,.035);--hair:rgba(255,255,255,.08);
+  --ink:#EEF2F8;--muted:#9BA7B8;--line:rgba(255,255,255,.09);--grid:#141C28;
+  --accent:#5B98FA;--accent-ink:#8FB8FC;--accent-soft:#14223A;
+  --shadow:0 1px 1px rgba(0,0,0,.2),0 14px 34px -18px rgba(0,0,0,.7);
+  --shadow-lg:0 2px 2px rgba(0,0,0,.2),0 34px 80px -30px rgba(0,0,0,.8)}
+
+body{font-size:1.02rem;line-height:1.65;letter-spacing:-.003em}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:60;opacity:.035;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+h1,h2,h3{font-family:var(--f-display);letter-spacing:-.035em}
+h2{font-weight:700;font-stretch:normal;line-height:1.04}
+h3{font-weight:650;letter-spacing:-.02em}
+.lede{font-size:1.12rem;line-height:1.6}
+.skip{position:absolute;left:16px;top:-60px;z-index:70;background:var(--ink);color:var(--bg);padding:.6rem 1rem;border-radius:10px;text-decoration:none}
+.skip:focus{top:16px}
+
+/* eyebrow como etiqueta pequeña */
+.eyebrow{display:inline-flex;align-self:center;align-items:center;gap:.5rem;font:500 .7rem/1 var(--f-mono);letter-spacing:.16em;padding:.5rem .8rem;border-radius:999px;background:var(--accent-soft);color:var(--accent-ink)}
+.eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent)}
+
+/* botones tipo píldora con icono anidado */
+.btn{border-radius:999px;padding:.8rem 1.3rem;font-weight:600;letter-spacing:-.01em;transition:transform .5s var(--ease),background-color .35s var(--ease),border-color .35s var(--ease),box-shadow .5s var(--ease),color .35s var(--ease)}
+.btn:active{transform:scale(.98)}
+.btn-primary{background:var(--ink);color:var(--bg);box-shadow:0 10px 24px -12px rgba(10,36,87,.55)}
+.btn-primary:hover{background:var(--accent-ink);color:#fff;transform:translateY(-1px)}
+.btn-ghost{background:transparent;border-color:var(--line);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--ink);background:var(--shell)}
+.btn .ic{width:28px;height:28px;margin:-.35rem -.75rem -.35rem .15rem;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.14);transition:transform .55s var(--ease),background-color .35s var(--ease);flex:none}
+.btn .ic svg{width:14px;height:14px}
+.btn:hover .ic{transform:translate(2px,-1px) scale(1.06)}
+.btn[download]:hover .ic,.btn .ic.down{transform:translateY(2px) scale(1.06)}
+
+/* menú flotante tipo isla */
+header.top{position:fixed;top:calc(env(safe-area-inset-top,0px) + 14px);left:0;right:0;z-index:40;background:transparent;box-shadow:none;border:0;backdrop-filter:none;pointer-events:none;padding-inline:16px}
+header.top .nav{pointer-events:auto;max-width:1160px;min-height:58px;padding:6px 6px 6px 20px;border-radius:999px;background:color-mix(in srgb,var(--surface) 74%,transparent);backdrop-filter:blur(18px) saturate(1.5);-webkit-backdrop-filter:blur(18px) saturate(1.5);border:1px solid var(--hair);box-shadow:0 1px 0 rgba(255,255,255,.5) inset,0 14px 36px -18px rgba(10,36,87,.45);transition:box-shadow .5s var(--ease),background-color .5s var(--ease)}
+header.top.scrolled .nav{background:color-mix(in srgb,var(--surface) 88%,transparent)}
+.links{gap:.3rem}
+.links a{padding:.55rem .8rem;border-radius:999px;color:var(--muted);transition:color .3s var(--ease),background-color .3s var(--ease)}
+.links a:hover{color:var(--ink);background:var(--shell)}
+.links a.on{color:var(--ink);background:var(--shell)}
+.links .btn{color:var(--bg);padding:.65rem 1.1rem;margin-left:.3rem}
+.links .btn:hover{color:#fff;background:var(--accent-ink)}
+.menu-btn{border-radius:999px;border-color:var(--hair);padding:.55rem 1rem}
+@media (max-width:860px){
+  header.top .nav{padding:6px 6px 6px 16px}
+  .links{top:calc(100% + 10px);left:0;right:0;border-radius:24px;border:1px solid var(--hair);background:color-mix(in srgb,var(--surface) 94%,transparent);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:var(--shadow-lg);padding:.6rem}
+  .links a{border-bottom:0;padding:.85rem 1rem}
+  .links.open a{animation:navin .6s var(--ease) both}
+  .links.open a:nth-child(2){animation-delay:.03s}.links.open a:nth-child(3){animation-delay:.06s}.links.open a:nth-child(4){animation-delay:.09s}.links.open a:nth-child(5){animation-delay:.12s}.links.open a:nth-child(6){animation-delay:.15s}.links.open a:nth-child(7){animation-delay:.18s}.links.open a:nth-child(8){animation-delay:.21s}
+}
+@keyframes navin{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* portada */
+.hero{padding-block:calc(env(safe-area-inset-top,0px) + 8.5rem) clamp(7rem,11vw,9.5rem);background:
+  radial-gradient(60% 70% at 85% 30%,rgba(91,152,250,.55),transparent 70%),
+  radial-gradient(50% 60% at 10% 100%,rgba(31,95,214,.6),transparent 70%),
+  linear-gradient(160deg,#081C46 0%,#0D2C6E 55%,#1648A8 100%)}
+.hero::before{-webkit-mask-image:radial-gradient(70% 80% at 30% 40%,#000,transparent 80%);mask-image:radial-gradient(70% 80% at 30% 40%,#000,transparent 80%);background-size:40px 40px}
+.hero h1{text-transform:none;font-weight:750;font-stretch:normal;font-size:var(--s4);letter-spacing:-.045em;line-height:.98;margin-block:1.1rem 1.4rem}
+.hero h1 em{color:#9CC2FF}
+.crumb{display:inline-flex;align-items:center;gap:.5rem;font-size:.85rem;padding:.4rem .8rem .4rem .45rem;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14)}
+.crumb a{padding:.15rem .55rem;border-radius:999px;background:rgba(255,255,255,.14);color:#fff}
+.hero .lede{font-size:1.15rem;max-width:52ch}
+.hero .btn-primary{background:#fff;color:#0A2457;box-shadow:0 14px 30px -12px rgba(0,0,0,.45)}
+.hero .btn-primary .ic{background:#0A2457;color:#fff}
+.hero .btn-primary:hover{background:#EAF1FF;color:#0A2457}
+.hero .btn-ghost{color:#fff;border-color:rgba(255,255,255,.35)}
+.hero .btn-ghost:hover{background:rgba(255,255,255,.08);border-color:#fff}
+.hero-meta{font-size:.78rem;letter-spacing:.02em}
+
+/* doble bisel: bandeja exterior + núcleo interior */
+.sheet,.prod-next,.mod-panel,.dl,.tcard,.plan,form.req,.mod-tabs,.out,.wm,.chan div{
+  border:1px solid var(--hair)!important;border-radius:var(--r-in)!important;
+  box-shadow:0 0 0 6px var(--shell),0 0 0 7px var(--hair),var(--shadow)!important}
+.hero .sheet{box-shadow:0 0 0 7px rgba(255,255,255,.08),0 0 0 8px rgba(255,255,255,.14),0 40px 80px -30px rgba(0,0,0,.6)!important;border-color:transparent!important}
+.prod-main,.tpl,.endcta{border-radius:var(--r)!important;box-shadow:0 0 0 6px var(--shell),0 0 0 7px var(--hair),var(--shadow-lg)}
+
+/* accesos rápidos */
+.tiles{margin-top:-4.2rem}
+.tile{border-radius:20px;padding:1.25rem 1.35rem;box-shadow:0 0 0 6px rgba(255,255,255,.55),0 24px 48px -22px rgba(10,36,87,.55);transition:transform .6s var(--ease),box-shadow .6s var(--ease)}
+.tile:hover{transform:translateY(-4px)}
+.tile b{font-family:var(--f-display);font-weight:650;letter-spacing:-.02em;font-stretch:normal}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .tile{box-shadow:0 0 0 6px rgba(255,255,255,.04),0 24px 48px -22px rgba(0,0,0,.7)}}
+
+/* ritmo de secciones */
+section.block{padding-block:clamp(5rem,9vw,8.5rem) clamp(5.5rem,10vw,9.5rem)}
+section.block[style*="padding-top:0"]{padding-top:clamp(1rem,3vw,2.5rem)!important}
+.sec-head{gap:1.1rem;margin-bottom:3.5rem}
+.sec-head h2{color:var(--ink);font-size:var(--s3)}
+.sec-head h2::after{display:none}
+
+/* productos */
+.prod-main{background:radial-gradient(80% 90% at 100% 0%,rgba(91,152,250,.35),transparent 60%),linear-gradient(160deg,#0A1B3C,#0B1322);color:#EEF2F8}
+.prod-main .lede{color:rgba(238,242,248,.75)}
+.prod-main .btn-primary{background:#fff;color:#0A2457}
+.prod-main .btn-primary .ic{background:#0A2457;color:#fff}
+.prod-main h3{font-weight:750;letter-spacing:-.04em}
+.prod-next{border-style:solid!important;background:var(--surface)}
+
+/* elementos */
+.mod-tabs{padding:6px;gap:2px;background:var(--surface)}
+.mod-tabs button{border-radius:12px;border-bottom:0!important;transition:background-color .35s var(--ease),color .35s var(--ease)}
+.mod-tabs button:hover{background:var(--shell)}
+.mod-tabs button[aria-selected="true"]{background:var(--ink);color:var(--bg)}
+.mod-panel h3{font-size:clamp(1.6rem,2.6vw,2.2rem);font-weight:700}
+.mod-panel .lede{font-size:1.08rem!important}
+
+/* bento de entregables */
+.outs{grid-template-columns:repeat(4,minmax(0,1fr));gap:1.25rem;border:0}
+.out{border-radius:var(--r-in);padding:1.5rem;background:var(--surface);transition:transform .6s var(--ease),box-shadow .6s var(--ease)}
+.out:hover{transform:translateY(-3px)}
+.out-xl{grid-column:span 2;grid-row:span 2;justify-content:flex-end;background:radial-gradient(90% 80% at 100% 0%,var(--accent-soft),transparent 70%),var(--surface);min-height:18rem}
+.out-xl h3{font-size:clamp(1.6rem,2.6vw,2.2rem)}
+.out-xl p{font-size:1.05rem;max-width:36ch}
+.out-wide{grid-column:span 2}
+.out .code{display:inline-flex;align-self:flex-start;padding:.3rem .55rem;border-radius:6px;background:var(--accent-soft);font-size:.68rem}
+@media (max-width:980px){.outs{grid-template-columns:repeat(2,minmax(0,1fr))}.out-xl{grid-row:auto}}
+@media (max-width:560px){.outs{grid-template-columns:minmax(0,1fr)}.out-xl,.out-wide{grid-column:auto}.out-xl{min-height:0}}
+
+/* pasos */
+.step{border-top:1px solid var(--line);padding-top:1.4rem}
+.step::before{display:inline-flex;align-self:flex-start;padding:.3rem .6rem;border-radius:6px;background:var(--accent-soft)}
+.step h3{font-size:1.3rem}
+
+/* plantilla */
+.tpl{background:radial-gradient(70% 90% at 0% 0%,rgba(91,152,250,.28),transparent 60%),linear-gradient(160deg,#0A1B3C,#0B1322);color:#EEF2F8}
+.tpl .btn-primary{background:#fff;color:#0A2457}
+.tpl .btn-primary .ic{background:#0A2457;color:#fff}
+
+/* descarga y tutoriales */
+.dl{overflow:hidden}
+.thumb{background:radial-gradient(70% 90% at 100% 0%,rgba(91,152,250,.5),transparent 60%),linear-gradient(160deg,#0A1B3C,#123B8C)}
+.tcard{transition:transform .6s var(--ease)}
+.tcard:hover{transform:translateY(-4px)}
+.tcard .tacts{align-items:center}
+
+/* precios */
+.pricing{background:transparent;border:0}
+.term{border-radius:999px;padding:5px;border-color:var(--hair)}
+.term button{transition:background-color .35s var(--ease),color .35s var(--ease)}
+.plans{gap:1.75rem;align-items:stretch}
+.plan{background:var(--surface);padding:1.9rem}
+.plan.feat{background:radial-gradient(90% 70% at 100% 0%,rgba(91,152,250,.35),transparent 60%),linear-gradient(170deg,#0A1B3C,#0B1322);color:#EEF2F8;border-color:transparent!important}
+.plan.feat .who,.plan.feat .per,.plan.feat .ps{color:rgba(238,242,248,.72)}
+.plan.feat .promo{background:rgba(91,152,250,.18);color:#BFD6FF}
+.plan.feat li::before{color:#9CC2FF}
+.plan.feat .btn-primary{background:#fff;color:#0A2457}
+.plan.feat .btn-primary .ic{background:#0A2457;color:#fff}
+.ribbon{border-radius:999px;top:-.85rem;padding:.45rem .75rem;background:var(--accent);color:#fff}
+.price .amt{font-family:var(--f-display);font-weight:700;letter-spacing:-.05em;font-size:3.1rem;font-stretch:normal}
+.plan .pn{font-family:var(--f-display);font-weight:650;letter-spacing:-.02em;text-transform:none;font-size:1.3rem;font-stretch:normal}
+
+/* estudiantes, preguntas, contacto */
+.faq{border-top:0;display:grid;gap:.7rem}
+.faq details{border:1px solid var(--hair);border-radius:14px;background:var(--surface);padding:0 1.2rem;transition:background-color .35s var(--ease)}
+.faq details[open]{box-shadow:var(--shadow)}
+.faq summary::after{transition:transform .5s var(--ease)}
+.field input,.field select,.field textarea{border-radius:12px;border-color:var(--hair);transition:border-color .3s var(--ease),box-shadow .3s var(--ease)}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 18%,transparent)}
+.chan div{background:var(--surface)}
+
+/* cierre */
+.endcta{background:radial-gradient(70% 90% at 100% 0%,rgba(156,194,255,.45),transparent 60%),linear-gradient(160deg,#0D2C6E,#1648A8);color:#fff}
+.endcta .btn{background:#fff;color:#0A2457}
+.endcta .btn .ic{background:#0A2457;color:#fff}
+
+/* pie */
+footer{border-top:1px solid var(--line);margin-top:0}
+.rotulo{border-left:0;gap:0}
+.cell{border-right:0;border-bottom:1px solid var(--line)}
+
+/* aparición al hacer scroll (solo si hay JS; visible por defecto) */
+.js .rv{opacity:0;transform:translateY(28px);filter:blur(6px);transition:opacity .9s var(--ease),transform .9s var(--ease),filter .9s var(--ease)}
+.js .rv.in{opacity:1;transform:none;filter:none}
+@media (prefers-reduced-motion:reduce){.js .rv{opacity:1;transform:none;filter:none}}
+
+
+/* salidas: tarjetas de texto compactas */
+.outs{grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}
+.out{padding:1.35rem 1.4rem 1.3rem;gap:.45rem;min-height:0}
+.out h3{font-size:1.12rem}
+.out p{font-size:.92rem;line-height:1.55}
+.out ul{list-style:none;margin:auto 0 0;padding:.75rem 0 0;border-top:1px solid var(--line);display:grid;gap:.35rem}
+.out li{position:relative;padding-left:1rem;font-size:.86rem;color:var(--ink);line-height:1.45}
+.out li::before{content:"";position:absolute;left:0;top:.62em;width:.45rem;height:2px;border-radius:2px;background:var(--accent)}
+.out-hl{background:radial-gradient(90% 90% at 100% 0%,var(--accent-soft),transparent 70%),var(--surface)}
+@media (max-width:980px){.outs{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.outs{grid-template-columns:minmax(0,1fr)}}
+.cupos .ct{flex-wrap:wrap;gap:.2rem .8rem}.cupos .c-r a{color:inherit;text-decoration:underline;text-underline-offset:2px}
+
+/* panel de elementos, más completo */
+.mod-panel{align-content:start;gap:1.1rem}
+.mp-top{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.mp-n{font:500 .78rem var(--f-mono);color:var(--muted);letter-spacing:.06em}
+.mp-top .code{font:500 .68rem var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--accent-ink);background:var(--accent-soft);padding:.3rem .55rem;border-radius:6px}
+.mod-panel h3{margin-bottom:.4rem}
+.mod-panel .lede{max-width:60ch}
+.mod-panel ul.mp-list{list-style:none;margin:0;padding:1.1rem 0 0;border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem 1.5rem}
+.mp-list li{position:relative;padding-left:1.6rem;font-size:.95rem;line-height:1.45}
+.mp-list li::before{content:"";position:absolute;left:0;top:.12em;width:1.05rem;height:1.05rem;border-radius:50%;background:var(--accent-soft) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%234C8FFA' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4.5 8.3 7 10.7l4.5-5'/%3E%3C/svg%3E") center/.8rem no-repeat}
+.mp-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.8rem 1.5rem;padding-top:1.1rem;border-top:1px solid var(--line)}
+.mp-chips{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem}
+.mp-chips span{font:500 .72rem var(--f-mono);color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-right:.2rem}
+.mp-chips b{font-weight:500;font-size:.82rem;padding:.28rem .6rem;border:1px solid var(--line);border-radius:999px;background:var(--bg)}
+.mp-link{font-weight:600;font-size:.92rem;color:var(--accent-ink);text-decoration:none;white-space:nowrap}
+.mp-link span{display:inline-block;transition:transform .4s var(--ease)}
+.mp-link:hover span{transform:translateX(3px)}
+@media (max-width:640px){.mod-panel ul.mp-list{grid-template-columns:minmax(0,1fr)}}
+.trial a{color:inherit;text-decoration:underline;text-underline-offset:2px}
+</style>
+<style>
+.shot-hero{display:block;width:100%;height:auto}
+.shots{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1.25rem;margin-top:.5rem}
+.shots-ui{grid-template-columns:repeat(2,minmax(0,1fr));margin-top:2.5rem}
+.shot{margin:0;display:flex;flex-direction:column;gap:.6rem}
+.shot img{display:block;width:100%;height:auto;border-radius:var(--r-in);background:#fff;
+  box-shadow:0 0 0 6px var(--shell),0 0 0 7px var(--hair),var(--shadow)}
+.shot figcaption{font:500 .78rem var(--f-mono);color:var(--muted);letter-spacing:.03em}
+.outs.outs-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.sha{font-size:.82rem;opacity:.8;margin-top:.8rem;overflow-wrap:anywhere}
+.sha code{font-family:var(--f-mono);font-size:.76rem}
+@media (max-width:900px){.shots{grid-template-columns:repeat(2,minmax(0,1fr))}.outs.outs-3{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:560px){.shots,.shots-ui{grid-template-columns:minmax(0,1fr)}}
+
+.shots-pdf{grid-template-columns:repeat(3,minmax(0,1fr));margin-top:2.5rem}
+@media (max-width:560px){.shots-pdf{grid-template-columns:minmax(0,1fr)}}
+.shot-wide{margin-top:.5rem}
+</style>
+<style>/*ALF:extra*/
+/* ALF_BIM · componentes comunes agregados por _src/build.py */
+.packs{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:1.25rem;margin-top:1.25rem}
+.pack{display:flex;flex-direction:column;justify-content:space-between;gap:1.1rem;padding:1.5rem;border-radius:var(--r);
+  border:1px solid var(--line);background:radial-gradient(90% 120% at 100% 0%,var(--accent-soft),transparent 70%),var(--surface)}
+.pack .code{font:500 .7rem var(--f-mono);letter-spacing:.08em;color:var(--accent-ink)}
+.pack h3{margin:.35rem 0 .2rem;font-size:1.3rem}
+.pack .pack-price{display:flex;align-items:baseline;gap:.35rem;margin:.1rem 0 .6rem}
+.pack .pack-price b{font:850 2.4rem/1 var(--f-display);font-stretch:85%;color:var(--accent-ink);font-variant-numeric:tabular-nums}
+.pack .pack-price small{color:var(--muted);font-size:.9rem}
+.pack h3 b{color:var(--accent-ink)}
+.pack h3 small{font-weight:500;color:var(--muted);font-size:.85rem}
+.pack p{color:var(--muted);font-size:.92rem;margin:0}
+.pack .pack-inc{font:500 .76rem/1.5 var(--f-mono);margin-top:.5rem;color:var(--ink);opacity:.8}
+.pack-side{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.6rem 1rem;padding-top:1rem;border-top:1px solid var(--line)}
+.pack-save{font:500 .78rem var(--f-mono);color:var(--muted);text-decoration:line-through;text-decoration-thickness:1px}
+
+
+/* catálogo de la portada */
+.cat-tabs{display:flex;flex-wrap:wrap;justify-content:center;gap:.5rem;margin:-1rem auto 2.25rem}
+.cat-tabs button{all:unset;cursor:pointer;font:600 .9rem var(--f-body);padding:.55rem 1rem;border-radius:999px;border:1px solid var(--line);
+  background:var(--surface);color:var(--muted);transition:background .2s,color .2s,border-color .2s}
+.cat-tabs button:hover{border-color:var(--ink);color:var(--ink)}
+.cat-tabs button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.cat-tabs button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.cat-line{margin-top:2.75rem}
+.cat-line:first-of-type{margin-top:0}
+.cat-line-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:.3rem 1.5rem;padding-bottom:.9rem;margin-bottom:1.25rem;border-bottom:1px solid var(--line)}
+.cat-line-head h3{font-size:1.35rem;margin:0}
+.cat-line-head p{color:var(--muted);font-size:.93rem;margin:0}
+.cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,270px),1fr));gap:1rem}
+.ccard{position:relative;display:flex;flex-direction:column;gap:.55rem;padding:1.25rem 1.25rem 1.1rem;border-radius:var(--r-in,14px);
+  border:1px solid var(--line);background:var(--surface);color:var(--ink);text-decoration:none;
+  transition:transform .5s var(--ease,ease),box-shadow .5s var(--ease,ease),border-color .3s}
+a.ccard:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--accent) 45%,var(--line));box-shadow:0 18px 36px -24px rgba(14,17,22,.35)}
+.ccard-top{display:flex;align-items:center;gap:.75rem}
+.ccard-top img{width:44px;height:44px;border-radius:10px;flex:none}
+.ccard-top .ph{width:44px;height:44px;border-radius:10px;flex:none;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent-ink)}
+.ccard-top .ph svg{width:22px;height:22px}
+.ccard h4{margin:0;font:700 1.12rem/1.15 var(--f-body);letter-spacing:-.01em}
+.ccard h4 em{font-style:normal;color:var(--accent-ink)}
+.ccard p{margin:0;color:var(--muted);font-size:.9rem;line-height:1.5}
+.ccard .cmeta{margin-top:auto;padding-top:.6rem;display:flex;flex-wrap:wrap;justify-content:space-between;gap:.3rem .8rem;font:500 .74rem var(--f-mono);color:var(--muted)}
+.ccard .cmeta b{color:var(--ink);font-weight:600}
+.ctag{align-self:flex-start;font:500 .66rem/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;padding:.32rem .55rem;border-radius:999px}
+.ctag.live{background:color-mix(in srgb,var(--ok) 18%,transparent);color:var(--ok)}
+.ctag.free{background:var(--accent-soft);color:var(--accent-ink)}
+.ctag.soon{background:color-mix(in srgb,var(--muted) 16%,transparent);color:var(--muted)}
+.ccard.ccard-soon{background:transparent;border-style:dashed}
+.ccard.ccard-soon .btn{align-self:flex-start;margin-top:.4rem;padding:.5rem .8rem;font-size:.85rem}
+[hidden].cat-line{display:none}
+
+/* resumen de la familia en el hero de la portada */
+.fam{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.8rem}
+.fam a{position:relative;display:grid;gap:.3rem;padding:1.1rem 1.2rem;border-radius:18px;background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.16);color:#fff;text-decoration:none;transition:background .4s,transform .5s var(--ease,ease)}
+.fam a:hover{background:rgba(255,255,255,.14);transform:translateY(-2px)}
+.fam .fn{font:500 .66rem var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:#A9C6FF}
+.fam b{font-size:1.08rem;line-height:1.2}
+.fam small{color:rgba(255,255,255,.72);font-size:.82rem;line-height:1.45}
+.fam .fc{font:600 .74rem var(--f-mono);color:#A6F0CB;margin-top:.2rem}
+.fam a.fam-wide{grid-column:1/-1;background:rgba(255,255,255,.14)}
+@media (max-width:480px){.fam{grid-template-columns:minmax(0,1fr)}}
+
+.ccard[hidden]{display:none}
+
+.ccard p{font-family:var(--f-body)}
+
+</style>
+</head>
+<body>
+<a class="skip" href="#inicio">Saltar al contenido</a>
+<header class="top">
+  <div class="wrap nav">
+    <a class="brand" href="index.html" aria-label="ALF_BIM, inicio">
+      <b>ALF<span>_</span>BIM</b>
+    </a>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="links">Menú</button>
+    <nav class="links" id="links">
+      <a href="index.html#productos">Productos</a>
+      <a href="#funciones">Funciones</a>
+      <a href="#ejemplo">Ejemplo</a>
+      <a href="#s10">S10</a>
+      <a href="#precios">Precios</a>
+      <a href="#preguntas">Preguntas</a>
+      <a class="btn btn-primary" href="#descargar">Descargar</a>
+    </nav>
+  </div>
+</header>
+
+<main id="inicio">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="crumb"><a href="index.html">ALF_BIM</a> / <b>PresupuestoALF para Windows</b></p>
+        <h1>Del modelo BIM al presupuesto <em>y al S10</em></h1>
+        <p class="lede">PresupuestoALF junta los metrados BIM de MetradosALF, SanitariasALF y ElectricasALF en un solo presupuesto de obra con análisis de precios unitarios. Lo lleva al S10 en un Excel que se importa con su numeración, y a Revit con el costo de cada elemento: el presupuesto 5D. Exporta el expediente en Excel y PDF.</p>
+        <div class="cta">
+          <a class="btn btn-primary" href="#descargar">Descargar gratis<span class="ic" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v9M4.5 8.5 8 12l3.5-3.5"/></svg></span></a>
+          <a class="btn btn-ghost" href="#ejemplo">Ver el presupuesto de ejemplo</a>
+        </div>
+        <p class="trial">Gratis con todas las funciones · <a href="tutoriales/Manual_PresupuestoALF_1.0.pdf" target="_blank" rel="noopener">Manual (PDF)</a></p>
+        <div class="hero-meta"><span>Windows 10 / 11</span><span>No necesita el S10 instalado</span><span>Fórmula polinómica D.S. N.° 011-79-VC</span></div>
+      </div>
+
+      <figure class="sheet" style="margin:0">
+        <div class="sheet-head"><span><b>PresupuestoALF</b></span><span>Tablero · Vivienda multifamiliar de prueba (ejemplo)</span></div>
+        <img class="shot-hero" src="img/presupuestoalf/ui_tablero.jpg" width="1500" height="823" alt="Tablero del presupuesto: costo directo S/ 109,973.00, total S/ 155,721.77, 121 partidas, 60 % del costo directo ligado a 175 elementos de Revit, mano de obra 42.2 %, fórmula polinómica de 6 monomios, costo por especialidad y lista de pendientes para presentar." fetchpriority="high">
+        <div class="legend"><span><i class="sw sw-l"></i>Costo por especialidad, de 01 a 05</span><span><i class="sw sw-s"></i>60 % del costo directo ligado a elementos de Revit</span></div>
+      </figure>
+    </div>
+  </section>
+
+  <div class="tiles">
+    <div class="wrap">
+      <a class="tile" href="#descargar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 19h14"/></svg><span><b>Descargar gratis</b><small>Instalador para Windows 10 y 11</small></span></a>
+      <a class="tile" href="#s10"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 9h16M4 14h16M9 9v11"/></svg><span><b>Se importa en el S10</b><small>Probado en S10 Presupuestos 2005</small></span></a>
+      <a class="tile" href="#revit5d"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 7.5v9L12 21l8-4.5v-9L12 3Z"/><path d="M4 7.5 12 12l8-4.5M12 12v9"/></svg><span><b>Costos 5D en Revit</b><small>Extensión de pyRevit incluida</small></span></a>
+    </div>
+  </div>
+
+  <section class="block" id="funciones" style="padding-top:clamp(3rem,6vw,5rem)">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Qué hace</p>
+        <h2>Un presupuesto de obra armado desde el modelo</h2>
+        <p class="lede">Importas los metrados que salen de Revit. Cada partida recibe su análisis de precios, el pie y la fórmula polinómica se calculan como en el S10, y todo se recalcula con cada cambio.</p>
+      </div>
+      <div class="outs">
+        <div class="out"><span class="code">METRADOS</span><h3>Junta los metrados BIM</h3><p>Lee los Excel de MetradosALF, SanitariasALF y ElectricasALF y reconoce qué programa hizo cada uno.</p><ul><li>Hoja «S10» y sustento con el Id de Revit</li><li>Numera por especialidad, de 01 a 05</li><li>Al reimportar, conserva los análisis ya trabajados</li></ul></div>
+        <div class="out"><span class="code">ANÁLISIS</span><h3>Análisis de precios automáticos</h3><p>41 reglas leen la descripción de cada partida y le asignan su análisis.</p><ul><li>f'c, espesor, diámetro, sección, medidas, litros</li><li>Unos 410 insumos con código tipo S10</li><li>También importa APU y precios de reportes del S10</li></ul></div>
+        <div class="out"><span class="code">CÁLCULO</span><h3>Calcula como el S10</h3><p>Cambia rendimiento, cuadrillas, cantidades y precios: todo se recalcula al instante.</p><ul><li>Cantidades a 4 decimales, parciales al céntimo</li><li>Herramientas como % de la mano de obra</li><li>Hora-hombre con los jornales 2026 de construcción civil</li></ul></div>
+        <div class="out"><span class="code">PIE</span><h3>Pie de presupuesto y monto en letras</h3><p>Gastos generales, utilidad e IGV debajo del costo directo.</p><ul><li>GG como % único o fijos + variables</li><li>Utilidad e IGV 18 %</li><li>Relación de insumos de toda la obra</li></ul></div>
+        <div class="out"><span class="code">FÓRMULA</span><h3>Fórmula polinómica</h3><p>Según el D.S. N.° 011-79-VC, con los Índices Unificados del INEI.</p><ul><li>Hasta 8 monomios, coeficiente ≥ 0.05, suma 1.000</li><li>Hasta 3 índices por monomio</li><li>Base diciembre 2025, 13 áreas geográficas</li></ul></div>
+        <div class="out"><span class="code">S10</span><h3>Archivo para el S10</h3><p>Un Excel 97-2003 que el S10 importa en la Hoja del presupuesto.</p><ul><li>Ítems, títulos, unidades, metrados y precios</li><li>Hojas «Recursos» y «APU» para armar los análisis</li><li>Probado en S10 Presupuestos 2005</li></ul></div>
+        <div class="out" id="revit5d"><span class="code">5D</span><h3>Costos 5D en Revit</h3><p>Una extensión de pyRevit escribe el costo en cada elemento del modelo.</p><ul><li>ALF_Costo, ALF_Partidas y ALF_Especialidad</li><li>Colorea la vista activa en 5 rangos de costo</li><li>Para tablas de planificación y filtros de vista</li></ul></div>
+        <div class="out"><span class="code">ENTREGABLES</span><h3>Listo para el expediente</h3><p>Excel y PDF en Times New Roman, con la firma del responsable.</p><ul><li>Presupuesto, resumen, insumos y fórmula</li><li>Análisis de precios y sustento 5D</li><li>Lo leen CronogramaALF y ValorizacionesALF</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="ejemplo" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">El resultado</p>
+        <h2>Así sale un presupuesto</h2>
+        <p class="lede">El ejemplo que viene con el programa: una vivienda multifamiliar de prueba, hecha con los modelos Revit de prueba de la línea, en Anguía, Chota, Cajamarca. Tiene 121 partidas, S/ 109,973.00 de costo directo y S/ 155,721.77 de total con IGV. El 60 % del costo directo está ligado a 175 elementos de Revit.</p>
+      </div>
+      <div class="shots shots-ui" style="margin-top:.5rem">
+        <figure class="shot"><img src="img/presupuestoalf/ui_presupuesto.jpg" width="1500" height="823" loading="lazy" alt="Página del presupuesto con ítem, descripción, unidad, metrado, precio, parcial, análisis asignado y número de elementos de Revit de cada partida."><figcaption>Presupuesto con el análisis y los elementos de cada partida</figcaption></figure>
+        <figure class="shot"><img src="img/presupuestoalf/ui_5d.jpg" width="1500" height="823" loading="lazy" alt="Página del presupuesto 5D: costo ligado al modelo, elementos con costo, costo por partida y lista de los elementos de Revit más costosos con su Id."><figcaption>Presupuesto 5D: el costo de cada elemento de Revit</figcaption></figure>
+        <figure class="shot" style="grid-column:1/-1"><img src="img/presupuestoalf/revit_5d.jpg" width="1500" height="771" loading="lazy" alt="Modelo de prueba en Revit 2027 después del botón Costos 5D: zapatas, columnas, vigas, losas y muros coloreados de verde a rojo según su costo."><figcaption>En Revit: «Costos 5D» colorea el modelo por costo</figcaption></figure>
+      </div>
+      <div class="shots shots-pdf">
+        <figure class="shot"><img src="img/presupuestoalf/pdf_presupuesto.jpg" width="1060" height="1499" loading="lazy" alt="Página A4 del PDF con el presupuesto de obra en Times New Roman."><figcaption>PDF: presupuesto</figcaption></figure>
+        <figure class="shot"><img src="img/presupuestoalf/pdf_apu.jpg" width="1060" height="1499" loading="lazy" alt="Página A4 del PDF con análisis de precios unitarios: rendimiento, mano de obra, materiales y equipos de cada partida."><figcaption>PDF: análisis de precios unitarios</figcaption></figure>
+        <figure class="shot"><img src="img/presupuestoalf/pdf_formula.jpg" width="1060" height="1499" loading="lazy" alt="Página A4 del PDF con la fórmula polinómica, sus monomios, coeficientes e índices unificados."><figcaption>PDF: fórmula polinómica</figcaption></figure>
+      </div>
+      <p class="fine" style="margin-top:1.2rem">Sin licencia, el Excel, el PDF y el archivo para el S10 llevan la marca «VERSIÓN DE EVALUACIÓN». El cálculo en pantalla es completo.</p>
+    </div>
+  </section>
+
+  <section class="block" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Cómo funciona</p>
+        <h2>Tres pasos, del modelo al presupuesto</h2>
+      </div>
+      <div class="steps">
+        <div class="step"><h3>Importa los metrados</h3><p>Elige los Excel que exportaron MetradosALF, SanitariasALF y ElectricasALF desde Revit. El presupuesto se numera solo por especialidad: obras provisionales, estructuras, arquitectura, sanitarias y eléctricas.</p></div>
+        <div class="step"><h3>Revisa los análisis</h3><p>Cada partida llega con un análisis asignado. Ajusta rendimientos, cuadrillas y precios de insumos con cotizaciones de tu zona: el presupuesto se recalcula al instante.</p></div>
+        <div class="step"><h3>Exporta</h3><p>Excel y PDF del expediente, el archivo para el S10 y el archivo 5D para Revit.</p></div>
+      </div>
+      <div class="shots shots-ui">
+        <figure class="shot"><img src="img/presupuestoalf/ui_apu.jpg" width="1500" height="823" loading="lazy" alt="Editor del análisis de precios unitarios con el rendimiento y los recursos de la partida: cuadrilla, cantidad y precio de mano de obra, materiales y equipos."><figcaption>Editor del análisis de precios unitarios</figcaption></figure>
+        <figure class="shot"><img src="img/presupuestoalf/ui_formula.jpg" width="1500" height="823" loading="lazy" alt="Página de la fórmula polinómica con los monomios, sus coeficientes y los índices unificados del INEI."><figcaption>Fórmula polinómica con índices del INEI</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="s10" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">S10</p>
+        <h2>Se importa en el S10 con su numeración</h2>
+        <p class="lede">Probado en S10 Presupuestos 2005 el 23/10/2026: los 172 ítems del ejemplo llegan con su numeración, títulos, unidades, metrados y precios, y el costo directo es el mismo, S/ 109,973.00.</p>
+      </div>
+      <figure class="shot shot-wide"><img src="img/presupuestoalf/s10_importado.jpg" width="1500" height="843" loading="lazy" alt="Hoja del Presupuesto del S10 Presupuestos 2005 después de importar el archivo de PresupuestoALF: 172 ítems con su numeración, títulos en rojo, unidades, metrados y precios, y costo directo de S/ 109,973.00."><figcaption>S10 Presupuestos 2005: Hoja del presupuesto después de importar</figcaption></figure>
+      <div class="outs outs-3" style="margin-top:2.5rem">
+        <div class="out out-hl"><span class="code">IMPORTAR</span><h3>Desde la Hoja del presupuesto</h3><p>Clic derecho → «Importar hoja Excel». Elige el archivo y escribe las filas «Del … Al …» que te indica PresupuestoALF.</p></div>
+        <div class="out"><span class="code">COLUMNAS</span><h3>Cinco columnas</h3><p>Item = A, Descripción = B, Unidad = C, Metrado = D y Precio(1) = E. Luego Importar y «Sumar títulos».</p></div>
+        <div class="out"><span class="code">ANÁLISIS</span><h3>Precios, sin análisis</h3><p>Las partidas llegan con su precio, pero sin análisis. Las hojas «Recursos» y «APU» del archivo te ayudan a armarlos en el S10.</p></div>
+      </div>
+      <p class="fine">El S10 lee el archivo a través de Excel, así que Excel debe estar instalado. Para usar PresupuestoALF no necesitas el S10.</p>
+    </div>
+  </section>
+
+  <!--ALF:precios--><section class="block pricing" id="precios" style="padding-top:0"><div class="wrap"><div class="sec-head"><p class="eyebrow">Precios de lanzamiento</p><h2>Todas las funciones en todos los planes</h2><p class="lede">Descárgalo gratis y usa todas las funciones. Con la licencia, la memoria, el PDF y el Excel salen sin marca de agua. Pagas con Mercado Pago, Izipay o PayPal.</p></div><div class="plans"><article class="plan"><span class="pn">Gratis</span><div class="price"><span class="amt mono">S/ 0</span><span class="per">para siempre</span></div><p class="ps">Todas las funciones</p><p class="promo">Las salidas llevan «VERSIÓN DE EVALUACIÓN»</p><ul><li>Cálculo completo en pantalla</li><li>Ejemplos incluidos</li><li>Sin fecha de vencimiento</li></ul><a class="btn btn-ghost" href="#descargar">Descargar gratis</a></article><article class="plan"><span class="pn">Mensual</span><div class="price"><span class="amt mono">S/ 29</span><span class="per">/ mes</span></div><p class="ps">≈ US$ 8.43 al mes</p><p class="promo">Primer mes a S/ 15</p><ul><li>Salidas sin marca de agua</li><li>1 PC</li><li>Soporte por correo en 48 h</li><li>Actualizaciones incluidas</li></ul><a class="btn btn-ghost" href="https://wa.me/51907417379?text=Hola%20ALF_BIM%2C%20quiero%20la%20licencia%20mensual%20de%20PresupuestoALF." target="_blank" rel="noopener">Comprar por WhatsApp</a></article><article class="plan feat"><span class="ribbon">Recomendado</span><span class="pn">Anual</span><div class="price"><span class="amt mono">S/ 199</span><span class="per">/ año</span></div><p class="ps">Equivale a S/ 16.58 al mes</p><p class="promo">Ahorras 43 % frente al mensual</p><ul><li>Salidas sin marca de agua</li><li>1 PC · 1 cambio de PC al año</li><li>Soporte por WhatsApp</li><li>Actualizaciones incluidas</li></ul><a class="btn btn-primary" href="https://wa.me/51907417379?text=Hola%20ALF_BIM%2C%20quiero%20la%20licencia%20anual%20de%20PresupuestoALF." target="_blank" rel="noopener">Comprar por WhatsApp<span class="ic" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11 11 5M6 5h5v5"/></svg></span></a></article></div><div class="packs"><div class="pack"><div><span class="code">PACK</span><h3>Pack Obra</h3><div class="pack-price"><b>S/ 399</b><small>/ año</small></div><p>Plazos, informe mensual, cronograma y presupuesto. ValorizacionesALF se suma sin costo cuando salga.</p><p class="pack-inc">PlazosALF · InformeMensualALF · CronogramaALF · PresupuestoALF</p></div><div class="pack-side"><span class="pack-save">Por separado: S/ 626 al año</span><a class="btn btn-primary" href="https://wa.me/51907417379?text=Hola%20ALF_BIM%2C%20quiero%20el%20Pack%20Obra%20%28S%2F%20399%20al%20a%C3%B1o%29." target="_blank" rel="noopener">Quiero el Pack Obra<span class="ic" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11 11 5M6 5h5v5"/></svg></span></a></div></div><div class="pack"><div><span class="code">PACK</span><h3>Pack ALF_BIM</h3><div class="pack-price"><b>S/ 699</b><small>/ año</small></div><p>Todos los programas de pago, incluidos los que salgan durante tu año de licencia.</p><p class="pack-inc">AceroALF · SanitariasALF · DotacionALF · SaneamientoRuralALF · PresupuestoALF · CronogramaALF · PlazosALF · InformeMensualALF</p></div><div class="pack-side"><span class="pack-save">Por separado: S/ 1496 al año</span><a class="btn btn-primary" href="https://wa.me/51907417379?text=Hola%20ALF_BIM%2C%20quiero%20el%20Pack%20ALF_BIM%20%28S%2F%20699%20al%20a%C3%B1o%29." target="_blank" rel="noopener">Quiero el Pack ALF_BIM<span class="ic" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11 11 5M6 5h5v5"/></svg></span></a></div></div></div><p class="fine">Precios en soles; los montos en dólares son referenciales (S/ 3.44 por dólar). La licencia es por computadora: para activarla nos envías el ID de equipo que muestra el programa y te mandamos la clave apenas se acredite el pago. Revisa la <a href="reembolsos.html">política de reembolso</a> y los <a href="terminos.html">términos y condiciones</a>.</p></div></section><!--/ALF:precios-->
+
+  <section class="block" id="preguntas" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Preguntas frecuentes</p>
+        <h2>Antes de instalar</h2>
+      </div>
+      <div class="faq">
+        <details><summary>¿Necesito tener el S10 instalado?</summary><p>No. PresupuestoALF calcula el presupuesto, los análisis de precios, el pie y la fórmula polinómica por su cuenta. El archivo para el S10 es para quien quiere seguir trabajando el presupuesto en el S10.</p></details>
+        <details><summary>¿De dónde salen los metrados?</summary><p>De los Excel que exportan, desde los modelos de Revit, MetradosALF (estructuras y arquitectura), SanitariasALF (instalaciones sanitarias) y ElectricasALF (instalaciones eléctricas). PresupuestoALF reconoce qué programa hizo cada archivo.</p></details>
+        <details><summary>¿Qué pasa si cambia el modelo?</summary><p>Vuelve a exportar los metrados de esa especialidad e impórtalos. Se reemplazan sus metrados y se conservan los análisis que ya trabajaste.</p></details>
+        <details><summary>¿Los precios de la base sirven para mi obra?</summary><p>Son referenciales y sin IGV, igual que los rendimientos. Actualiza los precios con cotizaciones de tu zona. El presupuesto lo revisa y firma el profesional responsable.</p></details>
+        <details><summary>¿Cómo llega el costo a Revit?</summary><p>Exporta el archivo 5D (.json) y, en Revit, usa el botón «Costos 5D» de la extensión de pyRevit que trae el programa. Escribe ALF_Costo, ALF_Partidas y ALF_Especialidad en cada elemento y colorea la vista activa en 5 rangos de costo; «Quitar colores» quita el color. Las instalaciones eléctricas quedan por partida, porque ElectricasALF no exporta el Id de cada elemento.</p></details>
+        <details><summary>¿Funciona con CronogramaALF y ValorizacionesALF?</summary><p>Sí. El Excel del expediente lo leen CronogramaALF, para el Gantt y los calendarios, y ValorizacionesALF, como presupuesto contractual.</p></details>
+        <details><summary>¿Qué incluye la versión gratuita?</summary><p>Todo el programa. Sin licencia, el Excel, el PDF y el archivo para el S10 salen marcados como «VERSIÓN DE EVALUACIÓN». Con la licencia, que es por computadora, salen limpios.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="descargar" style="padding-top:0">
+    <div class="wrap">
+      <div class="endcta">
+        <div>
+          <h2>Descarga PresupuestoALF gratis</h2>
+          <p>Instalador para Windows 10 y 11. Trae el presupuesto de ejemplo de la vivienda multifamiliar y la extensión de pyRevit para los costos 5D.</p>
+          <p class="sha">Versión <span class="ver">1.0.0</span> · <span class="tam">55 MB</span> · SHA-256 <code id="sha">315920A927AEB320BCB523507C98FF1CDD7849D39E6F91F0278FCFBEE6ACBDBE</code></p>
+        </div>
+        <div class="endcta-side">
+          <a class="btn" id="dlBtn" href="descargas/PresupuestoALF_Setup_1.0.0.exe" download>Descargar instalador<span class="ic" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v9M4.5 8.5 8 12l3.5-3.5"/></svg></span></a>
+          <a class="btn btn-ghost" href="tutoriales/Manual_PresupuestoALF_1.0.pdf" target="_blank" rel="noopener">Manual en PDF</a>
+          <a class="btn btn-ghost" href="https://wa.me/51907417379?text=Hola%20ALF_BIM%2C%20quiero%20la%20licencia%20de%20PresupuestoALF" target="_blank" rel="noopener">Pedir licencia por WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+
+
+<div class="modal" id="modal" hidden role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-box">
+    <div class="vid" id="vid"></div>
+    <div class="modal-bar"><span><b id="modalTitle"></b><small class="ytnote">Video de YouTube en modo de privacidad mejorada. <a href="privacidad.html#cookies">Más información</a></small></span><div class="cta"><a class="btn btn-ghost" id="ytLink" href="#" target="_blank" rel="noopener">Abrir en YouTube</a><button class="btn btn-primary" type="button" id="closeModal">Cerrar</button></div></div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="rotulo">
+      <div class="cell"><a class="brand" href="index.html"><img class="logo-l" src="data:image/png;base64,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" alt="" width="45" height="38"><img class="logo-d" src="data:image/png;base64,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" alt="" width="45" height="38"><b>ALF<span style="color:var(--accent)">_</span>BIM</b></a><small style="margin-top:.4rem">Software para ingeniería civil y gestión de obras</small></div>
+      <div class="cell"><small>Producto</small><b>PresupuestoALF</b></div>
+      <div class="cell"><small>Creador</small><b>Ing. Anderson Irigoín C.</b></div>
+      <div class="cell"><small>Plataforma</small><b>Windows 10 / 11</b></div>
+      <div class="cell"><small>Lámina</small><b class="mono">WEB-05</b></div>
+    </div>
+    <div class="copy">
+      <span>© 2026 ALF_BIM · Titular: Anderson Irigoín Colunche<span id="rucFoot"></span> · Chota, Cajamarca, Perú</span>
+      <span>WhatsApp +51 907 417 379 · alfbim1999@gmail.com</span>
+    </div>
+    <nav class="legal" aria-label="Información legal"><a href="privacidad.html">Privacidad y cookies</a><a href="terminos.html">Términos y condiciones</a><a href="reembolsos.html">Política de reembolso</a><a href="reclamaciones.html" class="lr">Libro de Reclamaciones</a></nav>
+    <div class="social" data-social><a data-net="tiktok" aria-label="TikTok de ALF_BIM" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 3c.3 2.2 1.6 3.6 3.9 3.8v3a7.4 7.4 0 0 1-3.8-1.1v6.1a5.8 5.8 0 1 1-5-5.7v3.1a2.8 2.8 0 1 0 2 2.6V3h2.9Z"/></svg></a><a data-net="facebook" aria-label="Facebook de ALF_BIM" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.2h2.4l.4-2.9h-2.8V9.1c0-.8.3-1.4 1.4-1.4h1.5V5.1a19 19 0 0 0-2.2-.1c-2.2 0-3.7 1.3-3.7 3.8v2.1H8v2.9h2.5V21h3Z"/></svg></a><a data-net="youtube" aria-label="YouTube de ALF_BIM" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.6 7.2a2.6 2.6 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.6 2.6 0 0 0 2.4 7.2 27 27 0 0 0 2 12a27 27 0 0 0 .4 4.8 2.6 2.6 0 0 0 1.8 1.8c1.6.4 7.8.4 7.8.4s6.2 0 7.8-.4a2.6 2.6 0 0 0 1.8-1.8A27 27 0 0 0 22 12a27 27 0 0 0-.4-4.8ZM10 15V9l5.2 3L10 15Z"/></svg></a><a data-net="instagram" aria-label="Instagram de ALF_BIM" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"/></svg></a></div>
+    <p class="tm">Revit es marca de Autodesk. Excel es marca de Microsoft. S10 es marca de S10 Software. PresupuestoALF es un desarrollo independiente de ALF_BIM y no está afiliado a ellas.</p>
+  </div>
+</footer>
+
+<script>
+const NEGOCIO = { ruc: "10716379944" };
+// Redes sociales: pega el enlace de cada red; las que estén vacías no se muestran (igual que en index.html).
+const REDES = { tiktok: "https://www.tiktok.com/@alf.bim", facebook: "", youtube: "https://www.youtube.com/@alf_bim", instagram: "https://www.instagram.com/alfbim1999/" };
+document.querySelectorAll("[data-social] a").forEach(a=>{const u=REDES[a.dataset.net];if(u){a.href=u}else{a.remove()}});
+if(NEGOCIO.ruc)document.getElementById("rucFoot").textContent=" · RUC "+NEGOCIO.ruc;
+// Si el instalador se aloja fuera (Google Drive), pega aquí su enlace; vacío = descargas/ de esta web.
+const INSTALADOR_URL = ""; // el enlace lo pone _src/build.py desde _src/config.json // el enlace lo pone _src/build.py desde _src/config.json // el enlace lo pone _src/build.py desde _src/config.json // el enlace lo pone _src/build.py desde _src/config.json // el enlace lo pone _src/build.py desde _src/config.json // el enlace lo pone _src/build.py desde _src/config.json // el enlace lo pone _src/build.py desde _src/config.json // el enlace lo pone _src/build.py desde _src/config.json // el enlace lo pone _src/build.py desde _src/config.json // el enlace lo pone _src/build.py desde _src/config.json // el enlace lo pone _src/build.py desde _src/config.json // el enlace lo pone _src/build.py desde _src/config.json // el enlace lo pone _src/build.py desde _src/config.json // el enlace lo pone _src/build.py desde _src/config.json
+if(INSTALADOR_URL){const b=document.getElementById('dlBtn');b.href=INSTALADOR_URL;b.removeAttribute('download');b.target='_blank';b.rel='noopener'}
+const mb=document.getElementById('menuBtn'),ln=document.getElementById('links');
+mb.addEventListener('click',()=>{const o=ln.classList.toggle('open');mb.setAttribute('aria-expanded',o)});
+ln.addEventListener('click',e=>{if(e.target.closest('a')){ln.classList.remove('open');mb.setAttribute('aria-expanded',false)}});
+</script>
+</body>
+</html>

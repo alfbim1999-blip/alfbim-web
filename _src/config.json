@@ -1,0 +1,414 @@
+{
+  "_leeme": "Configuración única de www.alfbim.com. Cambia aquí precios, contacto, redes e instaladores y vuelve a ejecutar _src/build.py.",
+  "negocio": {
+    "titular": "Anderson Irigoín Colunche",
+    "ruc": "10716379944",
+    "lugar": "Chota, Cajamarca, Perú"
+  },
+  "contacto": {
+    "whatsapp": "51907417379",
+    "whatsapp_txt": "+51 907 417 379",
+    "correo": "alfbim1999@gmail.com"
+  },
+  "redes": {
+    "tiktok": "https://www.tiktok.com/@alf.bim",
+    "facebook": "",
+    "youtube": "https://www.youtube.com/@alf_bim",
+    "instagram": "https://www.instagram.com/alfbim1999/"
+  },
+  "tipo_cambio": 3.44,
+  "descargas_base": "descargas/",
+  "pagos": "Mercado Pago, Izipay o PayPal",
+  "lineas": [
+    {
+      "id": "estructuras",
+      "nombre": "Estructuras y BIM",
+      "desc": "Acero, metrados, láminas y memoria de cálculo, directo desde Revit y ETABS.",
+      "corto": "Acero, metrados y láminas en Revit"
+    },
+    {
+      "id": "sanitarias",
+      "nombre": "Instalaciones sanitarias",
+      "desc": "Dotación, redes interiores, IISS en Revit y saneamiento rural.",
+      "corto": "Agua, desagüe y saneamiento rural"
+    },
+    {
+      "id": "electricas",
+      "nombre": "Instalaciones eléctricas",
+      "desc": "Máxima demanda, cuadro de cargas, unifilar y metrados por salidas.",
+      "corto": "Cargas, circuitos y pozo a tierra"
+    },
+    {
+      "id": "obra",
+      "nombre": "Costos y gestión de obra",
+      "desc": "Presupuesto, cronograma, valorizaciones, plazos e informe mensual.",
+      "corto": "Presupuesto, cronograma y plazos"
+    }
+  ],
+  "productos": {
+    "aceroalf": {
+      "nombre": "AceroALF",
+      "linea": "estructuras",
+      "estado": "disponible",
+      "tipo": "revit",
+      "lamina": "WEB-01",
+      "corto": "Acero de refuerzo automático para Revit",
+      "resumen": "Coloca el acero de refuerzo en tu modelo de Revit y genera vistas, láminas, planilla y metrados listos para entregar.",
+      "chips": [
+        "Zapatas y columnas",
+        "Vigas continuas",
+        "Placas y muros",
+        "Escaleras",
+        "Losas 1D y 2D",
+        "Planilla y láminas"
+      ],
+      "meta": "Revit 2023–2027 · prueba gratis 14 días",
+      "precio": {
+        "mensual": 29,
+        "m3": 79,
+        "m6": 143
+      },
+      "instalador": {
+        "archivo": "AceroALF_1.0.0_Setup.exe",
+        "version": "1.0.0",
+        "bytes": 3775282,
+        "sha": "FEB442177A1E36E42671E81C0E9F43698A99CB0704E9E8920C335C03BB8C2492"
+      },
+      "manual": "tutoriales/Guia_de_Instalacion_AceroALF.pdf"
+    },
+    "sanitariasalf": {
+      "nombre": "SanitariasALF",
+      "linea": "sanitarias",
+      "estado": "disponible",
+      "tipo": "revit",
+      "lamina": "WEB-18",
+      "corto": "Instalaciones sanitarias en Revit con la IS.010",
+      "resumen": "Metrados de IISS por salidas y por partida, verificación de pendientes y diámetros con la IS.010 e isométricos de agua, dentro de Revit.",
+      "chips": [
+        "Metrados por salidas",
+        "Pendientes IS.010",
+        "Isométricos",
+        "Plantilla IISS",
+        "Excel y S10"
+      ],
+      "meta": "Revit 2023–2027 · prueba gratis 14 días",
+      "precio": {
+        "mensual": 29,
+        "m3": 79,
+        "m6": 143
+      },
+      "instalador": {
+        "archivo": "SanitariasALF_1.0.0_Setup.exe",
+        "version": "1.0.0",
+        "bytes": 23368623,
+        "sha": "4E6783A03D250DB827F98B20E35EB04FCA20C7FA6CD495DD2605650CC8B601A9"
+      },
+      "manual": "tutoriales/Manual_SanitariasALF_1.0.pdf"
+    },
+    "dotacionalf": {
+      "nombre": "DotacionALF",
+      "linea": "sanitarias",
+      "estado": "disponible",
+      "tipo": "escritorio",
+      "lamina": "WEB-16",
+      "corto": "Dotación, cisterna, tanque y bombeo IS.010",
+      "resumen": "Dotación con la tabla por clima de 2025, cisterna y tanque elevado, reserva contra incendio y equipo de bombeo, con la memoria de cálculo en Word.",
+      "chips": [
+        "Dotación por clima 2025",
+        "Cisterna y tanque",
+        "Bombeo e hidroneumático",
+        "Memoria en Word"
+      ],
+      "meta": "Windows 10 / 11 · gratis con marca de agua",
+      "precio": {
+        "mensual": 15,
+        "anual": 99
+      },
+      "instalador": {
+        "archivo": "DotacionALF_Setup_1.0.0.exe",
+        "version": "1.0.0",
+        "bytes": 62333496,
+        "sha": "A52217BE5CE8C671E8728D2A09BCA3E33E0513A7726549119C7D78371067162F"
+      },
+      "manual": "tutoriales/Manual_DotacionALF_1.0.pdf"
+    },
+    "saneamientoruralalf": {
+      "nombre": "SaneamientoRuralALF",
+      "linea": "sanitarias",
+      "estado": "disponible",
+      "tipo": "escritorio",
+      "lamina": "WEB-19",
+      "corto": "Agua y saneamiento rural, sin Civil 3D",
+      "resumen": "Captación, conducción con CRP, reservorio, red y UBS con la R.M. 192-2018-VIVIENDA. Memoria en Word, Excel y red para EPANET.",
+      "chips": [
+        "Captación",
+        "Conducción y CRP",
+        "Reservorio",
+        "Red y EPANET",
+        "UBS"
+      ],
+      "meta": "Windows 10 / 11 · gratis con marca de agua",
+      "precio": {
+        "mensual": 29,
+        "anual": 199
+      },
+      "instalador": {
+        "archivo": "SaneamientoRuralALF_Setup_1.0.0.exe",
+        "version": "1.0.0",
+        "bytes": 70814353,
+        "sha": "35E87EBCE32E08F8BCEED2EEFFBE0F0CA859AC0FF1E13F5144D8D5AFC9473BB4"
+      },
+      "manual": "tutoriales/Manual_SaneamientoRuralALF_1.0.pdf"
+    },
+    "presupuestoalf": {
+      "nombre": "PresupuestoALF",
+      "linea": "obra",
+      "estado": "disponible",
+      "tipo": "escritorio",
+      "lamina": "WEB-05",
+      "corto": "Presupuesto 5D desde Revit, listo para el S10",
+      "resumen": "Junta los metrados de Revit en un presupuesto con análisis de precios unitarios, pie y fórmula polinómica. Lo lleva al S10 y de vuelta a Revit con el costo de cada elemento.",
+      "chips": [
+        "APU automáticos",
+        "Fórmula polinómica",
+        "Importa en el S10",
+        "Costos 5D en Revit"
+      ],
+      "meta": "Windows 10 / 11 · gratis con marca de agua",
+      "precio": {
+        "mensual": 29,
+        "anual": 199
+      },
+      "instalador": {
+        "archivo": "PresupuestoALF_Setup_1.0.0.exe",
+        "version": "1.0.0",
+        "bytes": 57832971,
+        "sha": "315920A927AEB320BCB523507C98FF1CDD7849D39E6F91F0278FCFBEE6ACBDBE"
+      },
+      "manual": "tutoriales/Manual_PresupuestoALF_1.0.pdf"
+    },
+    "cronogramaalf": {
+      "nombre": "CronogramaALF",
+      "linea": "obra",
+      "estado": "disponible",
+      "tipo": "escritorio",
+      "lamina": "WEB-11",
+      "corto": "Gantt, ruta crítica y calendario valorizado",
+      "resumen": "Del presupuesto y los análisis del S10 al cronograma: Gantt con ruta crítica, calendario valorizado, curva S y calendarios de materiales. Exporta a MS Project.",
+      "chips": [
+        "Gantt y ruta crítica",
+        "Calendario valorizado",
+        "Curva S",
+        "MS Project"
+      ],
+      "meta": "Windows 10 / 11 · gratis con marca de agua",
+      "precio": {
+        "mensual": 25,
+        "anual": 169
+      },
+      "instalador": {
+        "archivo": "CronogramaALF_Setup_1.0.0.exe",
+        "version": "1.0.0",
+        "bytes": 69955354,
+        "sha": "5AE4971E889F6B268816C90AE540257B822D8DDA971ABC7A4C722B191EA223CA"
+      },
+      "manual": "tutoriales/Manual_CronogramaALF_1.0.pdf"
+    },
+    "plazosalf": {
+      "nombre": "PlazosALF",
+      "linea": "obra",
+      "estado": "disponible",
+      "tipo": "escritorio",
+      "lamina": "WEB-09",
+      "corto": "Plazos de obra de la Ley 32069, con alertas",
+      "resumen": "Calcula los plazos de la Ley 32069 y su reglamento desde el cuaderno de obra, te avisa por correo y WhatsApp y prepara los borradores de asientos y cartas.",
+      "chips": [
+        "15 trámites",
+        "Cuaderno de obra",
+        "Alertas",
+        "Cartas y asientos"
+      ],
+      "meta": "Windows 10 / 11 · gratis con marca de agua",
+      "precio": {
+        "mensual": 19,
+        "anual": 129
+      },
+      "instalador": {
+        "archivo": "PlazosALF_Setup_1.0.0.exe",
+        "version": "1.0.0",
+        "bytes": 49378555,
+        "sha": "81A66AF5B56797D4FFF1EA9A529EA6B47B1AFA0C8C7A4F224BF5A28A95910F32"
+      },
+      "manual": "tutoriales/Manual_PlazosALF_1.0.pdf"
+    },
+    "informemensualalf": {
+      "nombre": "InformeMensualALF",
+      "linea": "obra",
+      "estado": "disponible",
+      "tipo": "escritorio",
+      "lamina": "WEB-10",
+      "corto": "Informe mensual de obra en Word o PDF",
+      "resumen": "Arma el informe mensual de obra con la valorización, los plazos, el cuaderno de obra y el panel fotográfico, del residente o del supervisor.",
+      "chips": [
+        "23 secciones",
+        "Panel fotográfico",
+        "Valorización y plazos",
+        "Word y PDF"
+      ],
+      "meta": "Windows 10 / 11 · gratis con marca de agua",
+      "precio": {
+        "mensual": 19,
+        "anual": 129
+      },
+      "instalador": {
+        "archivo": "InformeMensualALF_Setup_1.0.0.exe",
+        "version": "1.0.0",
+        "bytes": 68003930,
+        "sha": "46697E01BCABC4310508F88A76C6F9EB2B9CEF72042F2C25A41670F4CA092FE4"
+      },
+      "manual": "tutoriales/Manual_InformeMensualALF_1.0.pdf"
+    },
+    "planosalf": {
+      "nombre": "PlanosALF",
+      "linea": "estructuras",
+      "estado": "gratis",
+      "tipo": "revit",
+      "lamina": "WEB-04",
+      "corto": "Láminas en lote para Revit, gratis",
+      "resumen": "Crea láminas desde Excel, llena los rótulos, renumera por especialidad y exporta en lote a PDF y DWG con el índice de planos.",
+      "chips": [
+        "Láminas desde Excel",
+        "Renumerar",
+        "PDF y DWG en lote",
+        "Índice de planos"
+      ],
+      "meta": "Revit 2023–2027 · pyRevit · gratis",
+      "instalador": {
+        "archivo": "PlanosALF_1.0.0_Setup.exe",
+        "version": "1.0.0",
+        "bytes": 2776791,
+        "sha": "2882C130C281BB70EDABB4F2F3EBAD47E9198677AD88D4E4987328F24768EB99"
+      },
+      "manual": "tutoriales/Manual_PlanosALF_1.0.pdf"
+    },
+    "plantilla-excel-estructuras": {
+      "nombre": "Plantilla Excel Estructuras",
+      "marca": "ALF",
+      "linea": "estructuras",
+      "estado": "gratis",
+      "tipo": "excel",
+      "lamina": "WEB-07",
+      "corto": "Diseño en concreto armado con la E.060, en Excel",
+      "resumen": "15 hojas para diseñar vigas, columnas, placas, losas, aligerados, escaleras, zapatas y muros con la E.060, con reporte listo para imprimir.",
+      "chips": [
+        "Vigas y columnas",
+        "Zapatas",
+        "Aligerados",
+        "Escaleras",
+        "Muros"
+      ],
+      "meta": "Excel · sin macros · gratis",
+      "instalador": {
+        "archivo": "Plantilla_Excel_Estructuras_ALF.xlsx",
+        "version": "2.1.0",
+        "bytes": 146276,
+        "sha": "F18750FB699902506F1777F4B2D0270C5B16F06A2C24DA94F423EE5C7FA27687"
+      },
+      "manual": ""
+    },
+    "plantilla-excel-iiee": {
+      "nombre": "Plantilla Excel IIEE",
+      "marca": "ALF",
+      "linea": "electricas",
+      "estado": "gratis",
+      "tipo": "excel",
+      "lamina": "WEB-15",
+      "corto": "Pozo a tierra, iluminación y caída de tensión",
+      "resumen": "Pozo a tierra por el método Wenner, iluminación por lúmenes con la EM.010-2019 y caída de tensión con la sección del conductor.",
+      "chips": [
+        "Pozo a tierra Wenner",
+        "Iluminación EM.010",
+        "Caída de tensión",
+        "Cuadro de circuitos"
+      ],
+      "meta": "Excel · sin macros · gratis",
+      "instalador": {
+        "archivo": "Plantilla_Excel_IIEE_ALF.xlsx",
+        "version": "1.0.0",
+        "bytes": 109188,
+        "sha": "7F33BDDCEB9F6459CAA3B1CBFF92273A9AFDC52909BEAEB2D6A59A0D369B6BDD"
+      },
+      "manual": ""
+    },
+    "metradosalf": {
+      "nombre": "MetradosALF",
+      "linea": "estructuras",
+      "estado": "proximamente",
+      "tipo": "revit",
+      "corto": "Metrados de estructuras y arquitectura en Revit",
+      "resumen": "Planilla de metrados sustentada según la Norma Técnica de Metrados, con Excel de expediente y hoja para el S10."
+    },
+    "memoriaestructuralalf": {
+      "nombre": "MemoriaEstructuralALF",
+      "linea": "estructuras",
+      "estado": "proximamente",
+      "tipo": "escritorio",
+      "corto": "Memoria E.030 desde ETABS",
+      "resumen": "Se conecta a ETABS, verifica la E.030 (derivas, cortante mínimo, irregularidades) y genera la memoria en Word."
+    },
+    "redesinterioresalf": {
+      "nombre": "RedesInterioresALF",
+      "linea": "sanitarias",
+      "estado": "proximamente",
+      "tipo": "escritorio",
+      "corto": "Redes de agua y desagüe con la IS.010",
+      "resumen": "Hunter, Hazen-Williams, desagüe y ventilación tramo por tramo, con la memoria en Word y el Excel con fórmulas."
+    },
+    "maximademandaalf": {
+      "nombre": "MaximaDemandaALF",
+      "linea": "electricas",
+      "estado": "proximamente",
+      "tipo": "escritorio",
+      "corto": "Máxima demanda y cuadro de cargas CNE-U",
+      "resumen": "Cuadro de cargas, máxima demanda, alimentadores, interruptores y caída de tensión, con la memoria en Word."
+    },
+    "electricasalf": {
+      "nombre": "ElectricasALF",
+      "linea": "electricas",
+      "estado": "proximamente",
+      "tipo": "revit",
+      "corto": "Instalaciones eléctricas en Revit",
+      "resumen": "Circuitos al estilo peruano, cuadro de cargas por tablero, diagrama unifilar y metrados por salidas, dentro de Revit."
+    },
+    "valorizacionesalf": {
+      "nombre": "ValorizacionesALF",
+      "linea": "obra",
+      "estado": "proximamente",
+      "tipo": "escritorio",
+      "corto": "Valorizaciones de obra con reajuste K",
+      "resumen": "Valorización mensual, coeficiente K con índices INEI, adelantos, adicionales y deductivos, y curva S programada contra ejecutada."
+    }
+  },
+  "packs": {
+    "obra": {
+      "nombre": "Pack Obra",
+      "anual": 399,
+      "incluye": [
+        "plazosalf",
+        "informemensualalf",
+        "cronogramaalf",
+        "presupuestoalf",
+        "valorizacionesalf"
+      ],
+      "nota": "Plazos, informe mensual, cronograma y presupuesto. ValorizacionesALF se suma sin costo cuando salga."
+    },
+    "completo": {
+      "nombre": "Pack ALF_BIM",
+      "anual": 699,
+      "incluye": [
+        "*"
+      ],
+      "nota": "Todos los programas de pago, incluidos los que salgan durante tu año de licencia."
+    }
+  }
+}

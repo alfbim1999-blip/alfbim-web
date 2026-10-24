@@ -1,0 +1,19 @@
+{
+ "producto": "PlazosALF",
+ "version": "2026-10-20",
+ "descripcion": "Días no laborables del sector público y correcciones de feriados nacionales para el cómputo de plazos de PlazosALF.",
+ "no_laborables": {
+  "2025-05-02": "Día no laborable sector público (D.S. 042-2025-PCM)",
+  "2025-12-26": "Día no laborable sector público (D.S. 042-2025-PCM)",
+  "2026-01-02": "Día no laborable sector público (D.S. 042-2025-PCM)",
+  "2026-07-27": "Día no laborable sector público (D.S. 075-2026-PCM)"
+ },
+ "feriados_agregar": {},
+ "feriados_quitar": [],
+ "fuentes": [
+  "https://busquedas.elperuano.pe/dispositivo/NL/2387094-1",
+  "https://www.gob.pe/institucion/pcm/normas-legales/8180439-075-2026-pcm"
+ ],
+ "nota": "A la fecha de la versión no hay días no laborables del sector público declarados para 2027 ni cambios en los feriados nacionales.",
+ "firma": "e11c1a18c694350fe6adf7d889af39417f97b5242471ad6f2f340ea0bdbe9620403fbdde8001b80f5fd4d4ded22d7aba2bea293265bcf0e2553a38c2bed7330e"
+}
