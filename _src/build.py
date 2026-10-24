@@ -42,6 +42,8 @@ def nombre_html(pid):
 
 def url_descarga(pid):
     ins = P[pid]["instalador"]
+    if ins["archivo"].lower().endswith(".exe") and CFG.get("descargas_base_github"):
+        return CFG["descargas_base_github"] + ins["archivo"]
     return CFG["descargas_base"] + ins["archivo"]
 
 def pagina(pid):

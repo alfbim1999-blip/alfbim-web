@@ -71,8 +71,8 @@
       "instalador": {
         "archivo": "AceroALF_1.0.0_Setup.exe",
         "version": "1.0.0",
-        "bytes": 3775282,
-        "sha": "FEB442177A1E36E42671E81C0E9F43698A99CB0704E9E8920C335C03BB8C2492"
+        "bytes": 3772256,
+        "sha": "0523C3894B914AD962F7076442A54CE37E67B9138F66347D442EF137C2189107"
       },
       "manual": "tutoriales/Guia_de_Instalacion_AceroALF.pdf"
     },
@@ -410,5 +410,6 @@
       ],
       "nota": "Todos los programas de pago, incluidos los que salgan durante tu año de licencia."
     }
-  }
+  },
+  "descargas_base_github": "https://github.com/alfbim1999-blip/alfbim-web/releases/download/descargas/"
 }
