@@ -397,10 +397,32 @@
     "electricasalf": {
       "nombre": "ElectricasALF",
       "linea": "electricas",
-      "estado": "proximamente",
+      "estado": "disponible",
       "tipo": "revit",
-      "corto": "Instalaciones eléctricas en Revit",
-      "resumen": "Circuitos al estilo peruano, cuadro de cargas por tablero, diagrama unifilar y metrados por salidas, dentro de Revit."
+      "lamina": "WEB-14",
+      "corto": "Instalaciones eléctricas en Revit con el CNE-U",
+      "resumen": "Circuitos al estilo peruano, cuadro de cargas por tablero, diagrama unifilar y metrados por salidas, dentro de Revit.",
+      "chips": [
+        "Circuitos C-1, C-2…",
+        "Cuadro de cargas",
+        "Unifilar",
+        "Metrados por salidas",
+        "Plantilla 220/380 V",
+        "Excel, DWG y S10"
+      ],
+      "meta": "Revit 2023–2027 · prueba gratis 14 días",
+      "precio": {
+        "mensual": 29,
+        "m3": 79,
+        "m6": 143
+      },
+      "instalador": {
+        "archivo": "ElectricasALF_1.0.1_Setup.exe",
+        "version": "1.0.1",
+        "bytes": 2741931,
+        "sha": "496F9BB1B38C109FE30CE7C668FD3174F6DA0D95BBB1058DD9DBBCF612353EAF"
+      },
+      "manual": "tutoriales/Manual_ElectricasALF_1.0.pdf"
     },
     "valorizacionesalf": {
       "nombre": "ValorizacionesALF",
