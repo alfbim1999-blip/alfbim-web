@@ -96,8 +96,8 @@ def pagina(g):
         + outs([
             ("DE PAGO", '<a href="aceroalf.html">AceroALF</a>', "Coloca el acero de refuerzo en Revit y genera las vistas, la planilla y las láminas de acero que luego ordenas con PlanosALF.",
              ['<a href="aceroalf.html">Conocer AceroALF →</a>']),
-            ("PRÓXIMAMENTE", "MetradosALF", "Metrados de estructuras y arquitectura desde el mismo modelo, con la Norma Técnica de Metrados y hoja para el S10.",
-             ['<a href="%s" target="_blank" rel="noopener">Avísame cuando salga →</a>' % g["E"](g["wa"]("Hola ALF_BIM, quiero enterarme cuando salga MetradosALF."))]),
+            ("DE PAGO", '<a href="metradosalf.html">MetradosALF</a>', "Metrados de estructuras y arquitectura desde el mismo modelo, con la Norma Técnica de Metrados y hoja para el S10.",
+             ['<a href="metradosalf.html">Conocer MetradosALF →</a>']),
             ("GRATIS", '<a href="plantilla-excel-estructuras.html">Plantilla Excel Estructuras</a>', "Diseño en concreto armado con la E.060 en 15 hojas de Excel, sin macros.",
              ['<a href="plantilla-excel-estructuras.html">Ver la plantilla →</a>']),
         ], "outs outs-3"),

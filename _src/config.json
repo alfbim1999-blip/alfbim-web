@@ -343,10 +343,32 @@
     "metradosalf": {
       "nombre": "MetradosALF",
       "linea": "estructuras",
-      "estado": "proximamente",
+      "estado": "disponible",
       "tipo": "revit",
+      "lamina": "WEB-01",
       "corto": "Metrados de estructuras y arquitectura en Revit",
-      "resumen": "Planilla de metrados sustentada según la Norma Técnica de Metrados, con Excel de expediente y hoja para el S10."
+      "resumen": "Planilla de metrados sustentada con la Norma Técnica de Metrados: movimiento de tierras, concreto, encofrado, acero, muros, tarrajeos, pisos, carpintería y pintura, en Excel con hoja S10.",
+      "chips": [
+        "Movimiento de tierras",
+        "Concreto y encofrado",
+        "Acero",
+        "Muros y tarrajeos",
+        "Pisos y zócalos",
+        "Excel y S10"
+      ],
+      "meta": "Revit 2023–2027 · prueba gratis 14 días",
+      "precio": {
+        "mensual": 29,
+        "m3": 79,
+        "m6": 143
+      },
+      "instalador": {
+        "archivo": "MetradosALF_1.0.0_Setup.exe",
+        "version": "1.0.0",
+        "bytes": 3625754,
+        "sha": "0455FF6BB1D7D65C39C632E4685E2C743B6A77B0F56CBF5B3E2AB2850CA98447"
+      },
+      "manual": "tutoriales/Manual_MetradosALF_1.0.pdf"
     },
     "memoriaestructuralalf": {
       "nombre": "MemoriaEstructuralALF",
