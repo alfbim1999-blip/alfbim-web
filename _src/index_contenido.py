@@ -58,13 +58,19 @@ def construir(g):
         ids = [k for k, p in P.items() if p["linea"] == ln["id"] and p["estado"] != "proximamente"]
         n_prox = len([k for k, p in P.items() if p["linea"] == ln["id"] and p["estado"] == "proximamente"])
         nombres = " · ".join(P[k]["nombre"] + (" " + P[k]["marca"] if P[k].get("marca") else "") for k in ids)
-        cnt = "%d listos" % len(ids) if len(ids) != 1 else "1 listo"
+        cnt = ("%d listos" % len(ids) if len(ids) != 1 else "1 listo") if ids else ""
         if n_prox:
-            cnt += " · %d en camino" % n_prox
+            cnt += (" · " if cnt else "") + "%d en camino" % n_prox
+        if not ids:
+            nombres = " · ".join(P[k]["nombre"] for k, q in P.items() if q["linea"] == ln["id"])
         fam.append('<a href="#linea-%s" data-ir="%s"><span class="fn">%s</span><b>%s</b><small>%s</small><span class="fc">%s</span></a>' % (
             ln["id"], ln["id"], E(ln["nombre"]), E(ln["corto"]), E(nombres or "Primeros programas en camino"), cnt))
-    fam.append('<a class="fam-wide" href="#gratis"><span class="fn">Descargas gratuitas</span><b>%d herramientas gratis para empezar hoy</b>'
-               '<small>PlanosALF, la Plantilla Excel de Estructuras, la Plantilla Excel IIEE y la plantilla de Revit</small></a>' % (len(grat) + 1))
+    if grat:
+        fam.append('<a class="fam-wide" href="#gratis"><span class="fn">Descargas gratuitas</span><b>%d herramientas gratis para empezar hoy</b>'
+                   '<small>PlanosALF, la Plantilla Excel de Estructuras, la Plantilla Excel IIEE y la plantilla de Revit</small></a>' % (len(grat) + 1))
+    else:
+        fam.append('<a class="fam-wide" href="aceroalf.html"><span class="fn">Disponible hoy</span><b>AceroALF y la plantilla de Revit gratis</b>'
+                   '<small>Acero de refuerzo automático en Revit, con prueba gratis de 14 días. El resto de la línea sale en las próximas semanas.</small></a>')
 
     hero = f"""  <section class="hero">
     <div class="wrap hero-grid">
@@ -74,9 +80,9 @@ def construir(g):
         <p class="lede">Programas para Revit, para el expediente técnico y para la obra, hechos con la normativa peruana: estructuras, instalaciones sanitarias y eléctricas, presupuesto, cronograma y plazos. Menos trabajo repetitivo, más tiempo para la ingeniería.</p>
         <div class="cta">
           <a class="btn btn-primary" href="#productos">Ver los programas{ARROW_OUT}</a>
-          <a class="btn btn-ghost" href="#gratis">Descargas gratis</a>
+          <a class="btn btn-ghost" href="aceroalf.html">Conocer AceroALF</a>
         </div>
-        <div class="hero-meta"><span>{len(disp)} programas disponibles</span><span>{len(grat) + 1} descargas gratis</span><span>Soporte por WhatsApp</span></div>
+        <div class="hero-meta"><span>{(str(len(disp)) + " programas disponibles") if len(disp) != 1 else "AceroALF disponible"}</span><span>{len(prox)} programas en camino</span><span>Soporte por WhatsApp</span></div>
       </div>
       <div class="fam" aria-label="Líneas de programas de ALF_BIM">
         {''.join(fam)}
@@ -90,7 +96,8 @@ def construir(g):
     for ln in CFG["lineas"]:
         n = len([1 for p in P.values() if p["linea"] == ln["id"]])
         tabs.append('<button type="button" data-f="%s" aria-pressed="false">%s <small>%d</small></button>' % (ln["id"], E(ln["nombre"]), n))
-    tabs.append('<button type="button" data-f="gratis" aria-pressed="false">Gratis <small>%d</small></button>' % len(grat))
+    if grat:
+        tabs.append('<button type="button" data-f="gratis" aria-pressed="false">Gratis <small>%d</small></button>' % len(grat))
     orden = {"disponible": 0, "gratis": 1, "proximamente": 2}
     lineas = []
     for ln in CFG["lineas"]:
@@ -122,6 +129,10 @@ def construir(g):
   </section>
 """
 
+    pausa = CFG.get("pausa", {}).get("activa")
+    if pausa:  # en pausa: sin packs (incluyen programas que aún no salen)
+        i = catalogo.index('  <section class="block pricing" id="packs"')
+        catalogo = catalogo[:i]
     gratis = ['<section class="block" id="gratis" style="padding-top:0"><div class="wrap">',
               '<div class="sec-head"><p class="eyebrow">Descargas gratuitas</p><h2>Empieza sin pagar nada</h2>'
               '<p class="lede">Herramientas completas y gratuitas, sin registro ni fecha de vencimiento.</p></div>',
@@ -130,6 +141,8 @@ def construir(g):
               '<span class="ctag free">Gratis</span><h4>Plantilla Revit <em>ALF_BIM</em></h4></div></div><p>La plantilla estructural con la que trabajamos: 15 diámetros, '
               'filtros por diámetro, planilla de acero y lámina E-00.</p><div class="cmeta"><span>Revit 2027</span><span><b>Gratis</b></span></div></a>' % svg("cube") +
               "</div></div></section>"]
+    if not grat:
+        gratis = []
 
     # ---------- ensamblar sobre la base
     s = base
@@ -143,6 +156,15 @@ def construir(g):
       <a href="#nosotros">Nosotros</a>
       <a href="#contacto">Contacto</a>
       <a class="btn btn-primary" href="#productos">Ver programas</a>
+    </nav>"""
+    if pausa:
+        nav = """<nav class="links" id="links">
+      <a href="#productos">Programas</a>
+      <a href="aceroalf.html">AceroALF</a>
+      <a href="#plantilla">Plantilla gratis</a>
+      <a href="#nosotros">Nosotros</a>
+      <a href="#contacto">Contacto</a>
+      <a class="btn btn-primary" href="aceroalf.html#descargar">Descargar AceroALF</a>
     </nav>"""
     s = re.sub(r'<nav class="links" id="links">.*?</nav>', lambda m: nav, s, count=1, flags=re.S)
     i0 = s.index('  <section class="hero">')

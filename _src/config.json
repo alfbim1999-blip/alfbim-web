@@ -79,7 +79,7 @@
     "sanitariasalf": {
       "nombre": "SanitariasALF",
       "linea": "sanitarias",
-      "estado": "disponible",
+      "estado": "proximamente",
       "tipo": "revit",
       "lamina": "WEB-18",
       "corto": "Instalaciones sanitarias en Revit con la IS.010",
@@ -103,12 +103,13 @@
         "bytes": 23368623,
         "sha": "4E6783A03D250DB827F98B20E35EB04FCA20C7FA6CD495DD2605650CC8B601A9"
       },
-      "manual": "tutoriales/Manual_SanitariasALF_1.0.pdf"
+      "manual": "tutoriales/Manual_SanitariasALF_1.0.pdf",
+      "estado_al_lanzar": "disponible"
     },
     "dotacionalf": {
       "nombre": "DotacionALF",
       "linea": "sanitarias",
-      "estado": "disponible",
+      "estado": "proximamente",
       "tipo": "escritorio",
       "lamina": "WEB-16",
       "corto": "Dotación, cisterna, tanque y bombeo IS.010",
@@ -130,12 +131,13 @@
         "bytes": 62333496,
         "sha": "A52217BE5CE8C671E8728D2A09BCA3E33E0513A7726549119C7D78371067162F"
       },
-      "manual": "tutoriales/Manual_DotacionALF_1.0.pdf"
+      "manual": "tutoriales/Manual_DotacionALF_1.0.pdf",
+      "estado_al_lanzar": "disponible"
     },
     "saneamientoruralalf": {
       "nombre": "SaneamientoRuralALF",
       "linea": "sanitarias",
-      "estado": "disponible",
+      "estado": "proximamente",
       "tipo": "escritorio",
       "lamina": "WEB-19",
       "corto": "Agua y saneamiento rural, sin Civil 3D",
@@ -158,12 +160,13 @@
         "bytes": 70814353,
         "sha": "35E87EBCE32E08F8BCEED2EEFFBE0F0CA859AC0FF1E13F5144D8D5AFC9473BB4"
       },
-      "manual": "tutoriales/Manual_SaneamientoRuralALF_1.0.pdf"
+      "manual": "tutoriales/Manual_SaneamientoRuralALF_1.0.pdf",
+      "estado_al_lanzar": "disponible"
     },
     "presupuestoalf": {
       "nombre": "PresupuestoALF",
       "linea": "obra",
-      "estado": "disponible",
+      "estado": "proximamente",
       "tipo": "escritorio",
       "lamina": "WEB-05",
       "corto": "Presupuesto 5D desde Revit, listo para el S10",
@@ -185,12 +188,13 @@
         "bytes": 57832971,
         "sha": "315920A927AEB320BCB523507C98FF1CDD7849D39E6F91F0278FCFBEE6ACBDBE"
       },
-      "manual": "tutoriales/Manual_PresupuestoALF_1.0.pdf"
+      "manual": "tutoriales/Manual_PresupuestoALF_1.0.pdf",
+      "estado_al_lanzar": "disponible"
     },
     "cronogramaalf": {
       "nombre": "CronogramaALF",
       "linea": "obra",
-      "estado": "disponible",
+      "estado": "proximamente",
       "tipo": "escritorio",
       "lamina": "WEB-11",
       "corto": "Gantt, ruta crítica y calendario valorizado",
@@ -212,12 +216,13 @@
         "bytes": 69955354,
         "sha": "5AE4971E889F6B268816C90AE540257B822D8DDA971ABC7A4C722B191EA223CA"
       },
-      "manual": "tutoriales/Manual_CronogramaALF_1.0.pdf"
+      "manual": "tutoriales/Manual_CronogramaALF_1.0.pdf",
+      "estado_al_lanzar": "disponible"
     },
     "plazosalf": {
       "nombre": "PlazosALF",
       "linea": "obra",
-      "estado": "disponible",
+      "estado": "proximamente",
       "tipo": "escritorio",
       "lamina": "WEB-09",
       "corto": "Plazos de obra de la Ley 32069, con alertas",
@@ -239,12 +244,13 @@
         "bytes": 49378555,
         "sha": "81A66AF5B56797D4FFF1EA9A529EA6B47B1AFA0C8C7A4F224BF5A28A95910F32"
       },
-      "manual": "tutoriales/Manual_PlazosALF_1.0.pdf"
+      "manual": "tutoriales/Manual_PlazosALF_1.0.pdf",
+      "estado_al_lanzar": "disponible"
     },
     "informemensualalf": {
       "nombre": "InformeMensualALF",
       "linea": "obra",
-      "estado": "disponible",
+      "estado": "proximamente",
       "tipo": "escritorio",
       "lamina": "WEB-10",
       "corto": "Informe mensual de obra en Word o PDF",
@@ -266,12 +272,13 @@
         "bytes": 68003930,
         "sha": "46697E01BCABC4310508F88A76C6F9EB2B9CEF72042F2C25A41670F4CA092FE4"
       },
-      "manual": "tutoriales/Manual_InformeMensualALF_1.0.pdf"
+      "manual": "tutoriales/Manual_InformeMensualALF_1.0.pdf",
+      "estado_al_lanzar": "disponible"
     },
     "planosalf": {
       "nombre": "PlanosALF",
       "linea": "estructuras",
-      "estado": "gratis",
+      "estado": "proximamente",
       "tipo": "revit",
       "lamina": "WEB-04",
       "corto": "Láminas en lote para Revit, gratis",
@@ -289,13 +296,14 @@
         "bytes": 2776791,
         "sha": "2882C130C281BB70EDABB4F2F3EBAD47E9198677AD88D4E4987328F24768EB99"
       },
-      "manual": "tutoriales/Manual_PlanosALF_1.0.pdf"
+      "manual": "tutoriales/Manual_PlanosALF_1.0.pdf",
+      "estado_al_lanzar": "gratis"
     },
     "plantilla-excel-estructuras": {
       "nombre": "Plantilla Excel Estructuras",
       "marca": "ALF",
       "linea": "estructuras",
-      "estado": "gratis",
+      "estado": "proximamente",
       "tipo": "excel",
       "lamina": "WEB-07",
       "corto": "Diseño en concreto armado con la E.060, en Excel",
@@ -314,13 +322,14 @@
         "bytes": 146276,
         "sha": "F18750FB699902506F1777F4B2D0270C5B16F06A2C24DA94F423EE5C7FA27687"
       },
-      "manual": ""
+      "manual": "",
+      "estado_al_lanzar": "gratis"
     },
     "plantilla-excel-iiee": {
       "nombre": "Plantilla Excel IIEE",
       "marca": "ALF",
       "linea": "electricas",
-      "estado": "gratis",
+      "estado": "proximamente",
       "tipo": "excel",
       "lamina": "WEB-15",
       "corto": "Pozo a tierra, iluminación y caída de tensión",
@@ -338,12 +347,13 @@
         "bytes": 109188,
         "sha": "7F33BDDCEB9F6459CAA3B1CBFF92273A9AFDC52909BEAEB2D6A59A0D369B6BDD"
       },
-      "manual": ""
+      "manual": "",
+      "estado_al_lanzar": "gratis"
     },
     "metradosalf": {
       "nombre": "MetradosALF",
       "linea": "estructuras",
-      "estado": "disponible",
+      "estado": "proximamente",
       "tipo": "revit",
       "lamina": "WEB-01",
       "corto": "Metrados de estructuras y arquitectura en Revit",
@@ -368,7 +378,8 @@
         "bytes": 3625754,
         "sha": "0455FF6BB1D7D65C39C632E4685E2C743B6A77B0F56CBF5B3E2AB2850CA98447"
       },
-      "manual": "tutoriales/Manual_MetradosALF_1.0.pdf"
+      "manual": "tutoriales/Manual_MetradosALF_1.0.pdf",
+      "estado_al_lanzar": "disponible"
     },
     "memoriaestructuralalf": {
       "nombre": "MemoriaEstructuralALF",
@@ -397,7 +408,7 @@
     "electricasalf": {
       "nombre": "ElectricasALF",
       "linea": "electricas",
-      "estado": "disponible",
+      "estado": "proximamente",
       "tipo": "revit",
       "lamina": "WEB-14",
       "corto": "Instalaciones eléctricas en Revit con el CNE-U",
@@ -422,7 +433,8 @@
         "bytes": 2741931,
         "sha": "496F9BB1B38C109FE30CE7C668FD3174F6DA0D95BBB1058DD9DBBCF612353EAF"
       },
-      "manual": "tutoriales/Manual_ElectricasALF_1.0.pdf"
+      "manual": "tutoriales/Manual_ElectricasALF_1.0.pdf",
+      "estado_al_lanzar": "disponible"
     },
     "valorizacionesalf": {
       "nombre": "ValorizacionesALF",
@@ -455,5 +467,10 @@
       "nota": "Todos los programas de pago, incluidos los que salgan durante tu año de licencia."
     }
   },
-  "descargas_base_github": "https://github.com/alfbim1999-blip/alfbim-web/releases/download/descargas/"
+  "descargas_base_github": "https://github.com/alfbim1999-blip/alfbim-web/releases/download/descargas/",
+  "pausa": {
+    "activa": true,
+    "desde": "2026-10-24",
+    "nota": "Solo AceroALF disponible; el resto se valida con un proyecto real. Para reactivar un programa: estado = estado_al_lanzar y python3 _src/build.py."
+  }
 }
