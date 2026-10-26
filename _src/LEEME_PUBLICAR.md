@@ -34,6 +34,6 @@ Todo está en un solo archivo: `_src/config.json`. Después se ejecuta `python3 
 ## Archivos de la web
 
 - `index.html`: portada con el catálogo por especialidad, packs y descargas gratuitas (la arma `_src/index_contenido.py`).
-- Páginas de producto generadas: `sanitariasalf`, `dotacionalf`, `plazosalf`, `planosalf`, `plantilla-excel-estructuras`, `plantilla-excel-iiee` (fuente en `_src/paginas/`).
+- Páginas de producto generadas: `sanitariasalf`, `dotacionalf`, `plazosalf`, `planosalf`, `metradosalf`, `electricasalf`, `cadrevitalf`, `plantilla-excel-estructuras`, `plantilla-excel-iiee` (fuente en `_src/paginas/`).
 - Páginas hechas a mano (el generador solo actualiza sus precios y descargas): `aceroalf`, `presupuestoalf`, `cronogramaalf`, `informemensualalf`, `saneamientoruralalf`.
 - Legales: `terminos`, `reembolsos`, `privacidad`, `reclamaciones`, `reclamo-enviado`.
