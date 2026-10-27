@@ -248,18 +248,32 @@ ln.addEventListener('click',e=>{if(e.target.closest('a')){ln.classList.remove('o
 (function(){var top=document.querySelector('header.top');var f=function(){top&&top.classList.toggle('scrolled',window.scrollY>40)};window.addEventListener('scroll',f,{passive:true});f();})();
 </script>"""
 
+def _chrome():
+    spec = importlib.util.spec_from_file_location("chrome", SRC / "chrome.py")
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
+CHROME = _chrome()
+
 def shell(pg, main_html):
+    """Página completa con el diseño común (barra global, pie y assets/alf.css)."""
     pid = pg["id"]
-    p = P[pid]
-    nav = "".join('<a href="%s">%s</a>' % n for n in pg["nav"])
     url = "https://www.alfbim.com/" + pid
-    head = f"""<!doctype html>
+    sub = ""
+    if pg.get("nav"):
+        p = P[pid]
+        icon = ('<img src="img/iconos/%s.png" alt="" width="30" height="30">' % pid) if (RAIZ / "img" / "iconos" / (pid + ".png")).exists() else ""
+        sub = ('<div class="pbar" id="pbar"><div class="wrap"><a class="pname" href="#inicio">%s%s</a><nav aria-label="Secciones">%s</nav>'
+               '<div class="pend"><a class="btn btn-primary" href="#descargar">Descargar</a></div></div></div>\n') % (
+            icon, E(p["nombre"]), "".join('<a href="%s">%s</a>' % n for n in pg["nav"]))
+    return f"""<!doctype html>
 <html lang="es">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="description" content="{E(pg['desc'])}">
-<meta name="theme-color" content="#0A2457">
+<meta name="theme-color" content="#000000">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="ALF_BIM">
 <meta property="og:title" content="{E(pg['og_title'])}">
@@ -272,55 +286,19 @@ def shell(pg, main_html):
 <link rel="canonical" href="{url}">
 {FAVICON}
 <title>{E(pg['title'])}</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..800&family=Geist+Mono:wght@400..600&display=swap">
-{STYLES}
-<style>
-{EXTRA_CSS}
-</style>
+{CHROME.HEAD}
 {pg.get('jsonld','')}
 </head>
 <body>
 <a class="skip" href="#inicio">Saltar al contenido</a>
-<header class="top">
-  <div class="wrap nav">
-    <a class="brand" href="index.html" aria-label="ALF_BIM, inicio"><b>ALF<span>_</span>BIM</b></a>
-    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="links">Menú</button>
-    <nav class="links" id="links">
-      <a href="index.html#productos">Productos</a>{nav}
-      <a class="btn btn-primary" href="{pg.get('nav_btn', ('#descargar', 'Descargar'))[0]}">{pg.get('nav_btn', ('#descargar', 'Descargar'))[1]}</a>
-    </nav>
-  </div>
-</header>
-<main id="inicio">
+{CHROME.header(CFG, pg.get('activo', ''))}
+{sub}<main id="inicio">
 {main_html}
 </main>
-"""
-    neg, con = CFG["negocio"], CFG["contacto"]
-    foot = f"""<footer>
-  <div class="wrap">
-    <div class="rotulo">
-      {FOOT_BRAND}
-      <div class="cell"><small>Producto</small><b>{E(p['nombre'] + (' ' + p['marca'] if p.get('marca') else ''))}</b></div>
-      <div class="cell"><small>Creador</small><b>Ing. Anderson Irigoín C.</b></div>
-      <div class="cell"><small>Plataforma</small><b>{E(pg['plataforma'])}</b></div>
-      <div class="cell"><small>Lámina</small><b class="mono">{p.get('lamina','WEB')}</b></div>
-    </div>
-    <div class="copy">
-      <span>© 2026 ALF_BIM · Titular: {neg['titular']} · RUC {neg['ruc']} · {neg['lugar']}</span>
-      <span>WhatsApp {con['whatsapp_txt']} · {con['correo']}</span>
-    </div>
-    {FOOT_LEGAL}
-    {social_html()}
-    <p class="tm">{pg['tm']}</p>
-  </div>
-</footer>
-{SCRIPT}
+{CHROME.footer(CFG, social_html())}
 </body>
 </html>
 """
-    return head + foot
 
 def hero(pg):
     h = pg["hero"]
@@ -416,23 +394,24 @@ def pagina_proximamente(pid):
     plat = {"revit": "Revit 2023–2027", "escritorio": "Windows 10 / 11", "excel": "Excel"}[p["tipo"]]
     chips = p.get("chips") or []
     panel = '<ul class="hpanel">' + "".join(
-        '<li><span class="hc">%02d</span><b>%s</b><span class="hu"></span></li>' % (i + 1, E(c)) for i, c in enumerate(chips)) + "</ul>"
+        '<li><b>%s</b></li>' % E(c) for c in chips) + "</ul>"
     aviso = wa("Hola ALF_BIM, avísame cuando salga %s." % nom)
     main = f"""  <section class="hero">
     <div class="wrap hero-grid">
       <div>
-        <p class="crumb"><a href="index.html">ALF_BIM</a> / <b>{E(nom)}</b></p>
-        <h1>{nombre_html(pid)} <em>muy pronto</em></h1>
+        <p class="crumb"><a href="index.html">Inicio</a><span aria-hidden="true">/</span><a href="index.html#productos">Productos</a><span aria-hidden="true">/</span><b>{E(nom)}</b></p>
+        <p class="badge">{('<img src="img/iconos/%s.png" alt="" width="36" height="36">' % pid) if (RAIZ / "img" / "iconos" / (pid + ".png")).exists() else ''}Próximamente</p>
+        <h1 class="h-prod">{E(nom)}</h1>
         <p class="lede">{E(p['resumen'])}</p>
         <p class="lede">Lo estamos validando con un proyecto real antes de publicarlo. Escríbenos por WhatsApp y te avisamos el día que salga.</p>
         <div class="cta">
           <a class="btn btn-primary" href="{E(aviso)}" target="_blank" rel="noopener">Avísame cuando salga{ARROW_OUT}</a>
           <a class="btn btn-ghost" href="aceroalf.html">Conocer AceroALF</a>
         </div>
-        <div class="hero-meta"><span>Próximamente</span><span>{plat}</span><span>Normativa peruana</span></div>
+        <div class="hero-meta"><span>{plat}</span><span>Normativa peruana</span></div>
       </div>
-      <figure class="sheet" style="margin:0">
-        <div class="sheet-head"><span><b>{E(nom)}</b></span><span>Lo que hará</span></div>
+      <figure class="sheet">
+        <div class="sheet-head"><span><b>Lo que hará</b></span><span>{plat}</span></div>
         {panel}
       </figure>
     </div>
@@ -440,7 +419,7 @@ def pagina_proximamente(pid):
 """
     pg = {"id": pid, "title": nom + " · Próximamente | ALF_BIM",
           "desc": p["resumen"] + " Próximamente en ALF_BIM.",
-          "og_title": nom + " · Próximamente", "nav": [], "nav_btn": (aviso, "Avísame"),
+          "og_title": nom + " · Próximamente", "nav": [],
           "plataforma": plat,
           "tm": "Autodesk y Revit son marcas registradas de Autodesk, Inc. Excel es marca de Microsoft. Los programas ALF son desarrollos independientes de ALF_BIM."}
     return shell(pg, main)
@@ -478,6 +457,11 @@ def main():
             hechas.append(pid)
     if (SRC / "index_contenido.py").exists():
         (RAIZ / "index.html").write_text(construir_index(), encoding="utf-8")
+    activos = {"aceroalf.html": "aceroalf"}
+    for f in RAIZ.glob("*.html"):
+        s = f.read_text(encoding="utf-8")
+        if "<!--ALF:gh-->" in s:
+            f.write_text(CHROME.aplicar(s, CFG, social_html(), activos.get(f.name, "")), encoding="utf-8")
     print("Completas:", ", ".join(hechas) or "-")
     print("Próximamente:", ", ".join(pausa) or "-")
 

@@ -37,3 +37,10 @@ Todo está en un solo archivo: `_src/config.json`. Después se ejecuta `python3 
 - Páginas de producto generadas: `sanitariasalf`, `dotacionalf`, `plazosalf`, `planosalf`, `plantilla-excel-estructuras`, `plantilla-excel-iiee` (fuente en `_src/paginas/`).
 - Páginas hechas a mano (el generador solo actualiza sus precios y descargas): `aceroalf`, `presupuestoalf`, `cronogramaalf`, `informemensualalf`, `saneamientoruralalf`.
 - Legales: `terminos`, `reembolsos`, `privacidad`, `reclamaciones`, `reclamo-enviado`.
+
+## Diseño (desde el 27-oct-2026)
+
+- Estilo inspirado en autodesk.com (no copia): barra negra, portada negra, secciones blanco y piedra, un solo color de acción (azul ALF), tipografía Archivo alojada en `assets/fonts/` (licencia OFL).
+- Hoja única: `assets/alf.css`. Comportamiento común: `assets/alf.js`. Visor 3D del acero: `assets/rebar3d.js`.
+- Barra superior, pie y `<head>` comunes: `_src/chrome.py`; `build.py` los vuelve a poner en todas las páginas en cada ejecución (bloques `<!--ALF:gh-->`, `<!--ALF:gf-->`, `<!--ALF:head-->`).
+- Las páginas guardadas en `_src/pausadas/` todavía tienen el diseño anterior: al reactivarlas, pasarlas por `_src/migrar_diseno.py` (o rehacer su portada como la de AceroALF).
