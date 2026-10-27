@@ -381,6 +381,37 @@
       "manual": "tutoriales/Manual_MetradosALF_1.0.pdf",
       "estado_al_lanzar": "disponible"
     },
+    "cadrevitalf": {
+      "nombre": "CadRevitALF",
+      "linea": "estructuras",
+      "estado": "proximamente",
+      "tipo": "revit",
+      "lamina": "WEB-21",
+      "corto": "Del plano CAD al modelo BIM en Revit",
+      "resumen": "Lee tus planos DWG de arquitectura, estructuras e instalaciones y crea el modelo nativo de Revit con tus plantillas: muros, vanos, zapatas, vigas, aligerados, aparatos, tuberías y tubos de los circuitos, con vista previa y reporte Excel.",
+      "chips": [
+        "Muros y vanos",
+        "Zapatas y vigas",
+        "Aligerados",
+        "Aparatos",
+        "Tuberías",
+        "Reporte Excel"
+      ],
+      "meta": "Revit 2023–2027 · prueba gratis 14 días",
+      "precio": {
+        "mensual": 29,
+        "m3": 79,
+        "m6": 143
+      },
+      "instalador": {
+        "archivo": "CadRevitALF_1.0.0_Setup.exe",
+        "version": "1.0.0",
+        "bytes": 5377083,
+        "sha": "D81B0F55436674DBC38D6B6173B643FADCDB4B26E2FC042F30BC5E4A877DCA81"
+      },
+      "manual": "tutoriales/Manual_CadRevitALF_1.0.pdf",
+      "estado_al_lanzar": "disponible"
+    },
     "memoriaestructuralalf": {
       "nombre": "MemoriaEstructuralALF",
       "linea": "estructuras",
