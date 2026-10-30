@@ -473,7 +473,29 @@
       "estado": "proximamente",
       "tipo": "escritorio",
       "corto": "Valorizaciones de obra con reajuste K",
-      "resumen": "Valorización mensual, coeficiente K con índices INEI, adelantos, adicionales y deductivos, y curva S programada contra ejecutada."
+      "resumen": "Valorización mensual con la Ley 32069 o la Ley 30225: coeficiente K con los índices INEI, adelantos, tope por atraso, adicionales e informe PDF para firmar. Validado al céntimo con una liquidación de FONDEPES.",
+      "lamina": "WEB-08",
+      "chips": [
+        "Reajuste K",
+        "Índices INEI 2026",
+        "Adelantos",
+        "Tope 7-B",
+        "Adicionales",
+        "Informe PDF"
+      ],
+      "meta": "Windows 10 / 11 · gratis con marca de agua",
+      "precio": {
+        "mensual": 29,
+        "anual": 199
+      },
+      "instalador": {
+        "archivo": "ValorizacionesALF_Setup_1.0.2.exe",
+        "version": "1.0.2",
+        "bytes": 71330203,
+        "sha": "1135B70592D54188B3DE984D765D81C38CC8221128E6187619B3D7C313CA0BE0"
+      },
+      "manual": "tutoriales/Manual_ValorizacionesALF_1.0.pdf",
+      "estado_al_lanzar": "disponible"
     }
   },
   "packs": {
@@ -487,7 +509,7 @@
         "presupuestoalf",
         "valorizacionesalf"
       ],
-      "nota": "Plazos, informe mensual, cronograma y presupuesto. ValorizacionesALF se suma sin costo cuando salga."
+      "nota": "Plazos, informe mensual, cronograma, presupuesto y valorizaciones."
     },
     "completo": {
       "nombre": "Pack ALF_BIM",
