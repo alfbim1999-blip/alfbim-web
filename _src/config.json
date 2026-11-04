@@ -404,10 +404,10 @@
         "m6": 143
       },
       "instalador": {
-        "archivo": "CadRevitALF_1.0.2_Setup.exe",
-        "version": "1.0.2",
-        "bytes": 5386722,
-        "sha": "4E677677249AB45DC798C18A5492F7A5F74B26D96945A401A35A866481F42872"
+        "archivo": "CadRevitALF_1.0.3_Setup.exe",
+        "version": "1.0.3",
+        "bytes": 5413951,
+        "sha": "B025F7A2D739DF4AD63C7E9AAE1E65A3025179A046D7479478E71959E6C71113"
       },
       "manual": "tutoriales/Manual_CadRevitALF_1.0.pdf",
       "estado_al_lanzar": "disponible"
