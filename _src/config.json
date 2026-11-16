@@ -73,7 +73,7 @@
     "version": "1.0.4",
     "bytes": 3828255,
     "sha": "8DFEE0D97DB314F00EFBD64ECA377D13AE277E4A8CC638889A245786F2F4578A",
-    "en_release": false
+    "en_release": true
    },
    "manual": "tutoriales/Guia_de_Instalacion_AceroALF.pdf",
    "grupo_precio": "revit"
@@ -105,7 +105,7 @@
     "version": "1.0.4",
     "bytes": 3700698,
     "sha": "F3369EC7E874CFD5260CF9056E9045A64BE6F214150BC5559A3470C190710454",
-    "en_release": false
+    "en_release": true
    },
    "manual": "tutoriales/Manual_MetradosALF_1.0.pdf",
    "grupo_precio": "revit"
@@ -137,7 +137,7 @@
     "version": "1.0.11",
     "bytes": 6092446,
     "sha": "0172BF2D6282C984D0B6129B5038BB236818C54FA5DA1ED4C8C6A1BC37DD719C",
-    "en_release": false
+    "en_release": true
    },
    "manual": "tutoriales/Manual_CadRevitALF_1.0.pdf",
    "grupo_precio": "revit"
@@ -170,7 +170,7 @@
     "version": "1.2.3",
     "bytes": 34825065,
     "sha": "9B261CC7BAEDDA07CBFCE0A12A8A1C947622101BD224E222E3E83C69C95A3852",
-    "en_release": false
+    "en_release": true
    },
    "grupo_precio": "revit"
   },
@@ -186,7 +186,7 @@
     "version": "1.2.1",
     "bytes": 66498831,
     "sha": "9A09B60E27684DADDC88174920584387E4EB0E13ABB75748E27FA3DEB02290BF",
-    "en_release": false
+    "en_release": true
    },
    "precio": {
     "mensual": 25,
@@ -223,7 +223,7 @@
     "version": "1.0.5",
     "bytes": 106470969,
     "sha": "82CBC0D6AB02C14BE1670E4009B87D6D5568685E43E376585A715B7B8876492C",
-    "en_release": false
+    "en_release": true
    },
    "grupo_precio": "revit"
   },
@@ -247,7 +247,7 @@
     "version": "1.3.1",
     "bytes": 3030395,
     "sha": "0B7D3E95FA31C6F61C118E7CB35640E1A64C0B1E237ADDEFB563CB1614DB1663",
-    "en_release": false
+    "en_release": true
    },
    "manual": "tutoriales/Manual_PlanosALF_1.0.pdf",
    "instalador_manual": {
@@ -309,7 +309,7 @@
     "version": "1.0.5",
     "bytes": 12667576,
     "sha": "05C858F649FC4F0AC2E27C4AC732BA3DF479EC6B4BBFEA27F282D9F3FD2BBD82",
-    "en_release": false
+    "en_release": true
    },
    "manual": "tutoriales/Manual_SanitariasALF_1.0.pdf",
    "grupo_precio": "revit"
@@ -326,7 +326,7 @@
     "version": "1.0.4",
     "bytes": 67341527,
     "sha": "A0A619F761454B812FB8FE3E4CCB0DFF39282A8BABA1F4544677297A78014649",
-    "en_release": false
+    "en_release": true
    },
    "precio": {
     "mensual": 12,
@@ -359,7 +359,7 @@
     "version": "1.0.3",
     "bytes": 64732218,
     "sha": "941624B9AA62751581AACAB9FC9DDC8E92A3CCAD2828B02B763E655486AC8DD5",
-    "en_release": false
+    "en_release": true
    },
    "manual": "tutoriales/Manual_DotacionALF_1.0.pdf",
    "grupo_precio": "calculadora"
@@ -389,7 +389,7 @@
     "version": "1.0.2",
     "bytes": 73128982,
     "sha": "C8B71CBB7EE3F13195CBFEE6DC42CA62E82F94BED02315DE53FC473D1AE1BF65",
-    "en_release": false
+    "en_release": true
    },
    "manual": "tutoriales/Manual_SaneamientoRuralALF_1.0.pdf",
    "grupo_precio": "escritorio"
@@ -421,7 +421,7 @@
     "version": "1.0.6",
     "bytes": 2976650,
     "sha": "4C273DC95DA1AFCE89B63CF1B303F5DED25EEEB7CCF0DA080F82CF74330CF77F",
-    "en_release": false
+    "en_release": true
    },
    "manual": "tutoriales/Manual_ElectricasALF_1.0.pdf",
    "grupo_precio": "revit"
@@ -438,7 +438,7 @@
     "version": "1.0.5",
     "bytes": 64746817,
     "sha": "9461A39EA01E48D640DDA623E7D590390B8E9A4BD03EBF61E203E8933E5D5DB3",
-    "en_release": false
+    "en_release": true
    },
    "precio": {
     "mensual": 12,
@@ -496,7 +496,7 @@
     "version": "1.1.2",
     "bytes": 58629176,
     "sha": "A3D1A93DE1C30181C69F311E8D123459032B76CC5F6503FB76481B7CAAFAF0CD",
-    "en_release": false
+    "en_release": true
    },
    "manual": "tutoriales/Manual_PresupuestoALF_1.1.pdf",
    "grupo_precio": "escritorio"
@@ -525,7 +525,7 @@
     "version": "1.2.1",
     "bytes": 72298905,
     "sha": "EDEB2C893EAA1FC59E6829C898509BD53B8926C331CCC6B8F6D0AE656ACADF73",
-    "en_release": false
+    "en_release": true
    },
    "manual": "tutoriales/Manual_CronogramaALF_1.2.pdf",
    "grupo_precio": "escritorio"
@@ -556,7 +556,7 @@
     "version": "1.2.2",
     "bytes": 73716587,
     "sha": "9B43E09FB274844951CB8C5AC193426267E762576378078424B9C0356C7E4C62",
-    "en_release": false
+    "en_release": true
    },
    "manual": "tutoriales/Manual_ValorizacionesALF_1.2.pdf",
    "grupo_precio": "escritorio"
@@ -585,7 +585,7 @@
     "version": "1.2.0",
     "bytes": 50174218,
     "sha": "AC610610B313AE03CA2488C3DFDFE74ABA85263EDFC928002875658F4577CE9A",
-    "en_release": false
+    "en_release": true
    },
    "manual": "tutoriales/Manual_PlazosALF_1.2.pdf",
    "grupo_precio": "escritorio"
@@ -614,7 +614,7 @@
     "version": "1.1.1",
     "bytes": 68142875,
     "sha": "5EEBCA94814A036D7ADEB6ABCA7A8EE269F73ACA1E874E186221B05573638585",
-    "en_release": false
+    "en_release": true
    },
    "manual": "tutoriales/Manual_InformeMensualALF_1.1.pdf",
    "grupo_precio": "escritorio"
@@ -647,7 +647,7 @@
     "version": "1.1.1",
     "bytes": 37966472,
     "sha": "C0046C4B9646BACAAB352244FDBACF9E431C2F2834A0B5263DEB51D772D73CEA",
-    "en_release": false
+    "en_release": true
    },
    "grupo_precio": "revit"
   }
