@@ -31,9 +31,9 @@ def header(cfg, activo=""):
         return '<a href="%s"%s>%s</a>' % (href, cur, txt)
     nav = "".join([
         a("index.html#productos", "Productos", "productos"),
-        a("aceroalf.html", "AceroALF", "aceroalf"),
-        a("aceroalf.html#tutoriales", "Tutoriales", "tutoriales"),
-        a("index.html#plantilla", "Plantilla gratis", "plantilla"),
+        a("index.html#precios", "Precios y packs", "precios"),
+        a("index.html#gratis", "Descargas gratis", "gratis"),
+        a("instalacion.html", "Instalación", "instalacion"),
         a("index.html#contacto", "Contacto", "contacto"),
     ])
     con = cfg["contacto"]
@@ -42,7 +42,7 @@ def header(cfg, activo=""):
             '<button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="ghNav">Menú</button>'
             '<nav class="gh-nav" id="ghNav" aria-label="Principal">%s</nav>'
             '<div class="gh-end"><a class="gh-wa" href="%s" target="_blank" rel="noopener">%s<span>%s</span></a>'
-            '<a class="btn btn-primary" href="aceroalf.html#descargar">Prueba gratis</a></div>'
+            '<a class="btn btn-primary" href="index.html#productos">Prueba gratis</a></div>'
             '</div></header>\n<!--/ALF:gh-->') % (nav, E(wa(cfg, "Hola ALF_BIM, quiero hacer una consulta.")), ICON_WA, E(con["whatsapp_txt"]))
 
 
@@ -54,14 +54,14 @@ def footer(cfg, social_html):
             '<div class="gf-top">'
             '<div class="gf-about"><a class="brand" href="index.html"><img src="assets/logo-d.png" alt="" width="34" height="29"><b>ALF<span>_</span>BIM</b></a>'
             '<p>Software para la ingeniería civil peruana: Revit, expediente técnico y obra. Hecho por ingenieros en Chota, Cajamarca.</p>%s</div>'
-            '<div><h4>Productos</h4><ul><li><a href="aceroalf.html">AceroALF</a></li><li><a href="aceroalf.html#precios">Precios de AceroALF</a></li>'
-            '<li><a href="index.html#productos">Próximos programas</a></li><li><a href="index.html#plantilla">Plantilla de Revit gratis</a></li></ul></div>'
-            '<div><h4>Soporte</h4><ul><li><a href="aceroalf.html#tutoriales">Tutoriales en video</a></li><li><a href="instalacion.html">Guía de instalación</a></li>'
+            '<div><h4>Productos</h4><ul><li><a href="index.html#productos">Todos los programas</a></li><li><a href="index.html#precios">Precios y packs</a></li>'
+            '<li><a href="index.html#gratis">Descargas gratis</a></li><li><a href="index.html#plantilla">Plantilla de Revit gratis</a></li></ul></div>'
+            '<div><h4>Soporte</h4><ul><li><a href="aceroalf.html#tutoriales">Videos de AceroALF</a></li><li><a href="instalacion.html">Guía de instalación</a></li>'
             '<li><a href="%s" target="_blank" rel="noopener">WhatsApp %s</a></li><li><a href="mailto:%s">%s</a></li></ul></div>'
             '<div><h4>Legal</h4><ul>%s</ul></div>'
             '</div>'
             '<div class="gf-bottom"><span>© 2026 ALF_BIM. Titular: %s, RUC %s. %s.</span>'
-            '<p class="tm">Autodesk y Revit son marcas registradas de Autodesk, Inc. Excel es marca de Microsoft. AceroALF y los programas ALF son desarrollos '
+            '<p class="tm">Autodesk y Revit son marcas registradas de Autodesk, Inc. Excel es marca de Microsoft. Los programas ALF son desarrollos '
             'independientes de ALF_BIM y no están afiliados a esas empresas.</p></div>'
             '</div></footer>\n<!--/ALF:gf-->') % (
         social_html, E(wa(cfg, "Hola ALF_BIM, necesito soporte.")), E(con["whatsapp_txt"]), con["correo"], con["correo"],

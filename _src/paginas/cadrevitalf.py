@@ -1,5 +1,5 @@
 """Página de CadRevitALF (ALF-21). Fuentes: Manual_CadRevitALF_1.0.pdf, VENTA/16_CadRevitALF/LEEME.txt,
-claude/ALF-21_CadRevitALF_estado.md. Se publica como «Próximamente» mientras dure la pausa de la web (24-oct-2026)."""
+claude/ALF-21_CadRevitALF_estado.md."""
 import json
 
 

@@ -12,7 +12,7 @@ SOCIAL = build.social_html()
 PBAR = '''<div class="pbar" id="pbar"><div class="wrap">
   <a class="pname" href="#inicio"><img src="img/iconos/aceroalf.png" alt="" width="30" height="30">AceroALF</a>
   <nav aria-label="Secciones de AceroALF"><a href="#acero">Elementos</a><a href="#entregables">Entregables</a><a href="#tutoriales">Descarga</a><a href="#precios">Precios</a><a href="#preguntas">Preguntas</a></nav>
-  <div class="pend"><span class="pprice">Desde <b>S/ 29</b> al mes</span><a class="btn btn-ghost" href="#precios">Ver precios</a><a class="btn btn-primary" href="#descargar">Descargar</a></div>
+  <div class="pend"><span class="pprice">Desde <b>S/ 25</b> al mes</span><a class="btn btn-ghost" href="#precios">Ver precios</a><a class="btn btn-primary" href="#descargar">Descargar</a></div>
 </div></div>
 '''
 
@@ -23,7 +23,7 @@ HERO = '''  <section class="hero">
         <p class="badge"><img src="img/iconos/aceroalf.png" alt="" width="36" height="36">AceroALF para Revit</p>
         <h1>Del modelo al plano de acero, en minutos</h1>
         <p class="lede">AceroALF coloca el refuerzo de zapatas, columnas, vigas, placas, escaleras y losas directamente en tu modelo de Revit, y genera las vistas, la lámina y el metrado de acero, concreto y encofrado.</p>
-        <p class="price-line">Desde <b>S/ 29</b> al mes. El primer mes cuesta S/ 15.</p>
+        <p class="price-line">Desde <b>S/ 25</b> al mes. Prueba gratis 14 días.</p>
         <div class="cta">
           <a class="btn btn-primary" href="#descargar">Descargar y probar 14 días</a>
           <a class="btn btn-ghost" href="#precios">Ver precios</a>
@@ -81,6 +81,42 @@ def migrar_acero():
     return "aceroalf"
 
 
+def migrar_producto(pid):
+    """Página de producto hecha a mano (presupuesto, cronograma, informe mensual, saneamiento rural) al diseño nuevo."""
+    f = RAIZ / (pid + ".html")
+    s = f.read_text(encoding="utf-8")
+    if "<!--ALF:gh-->" in s:
+        f.write_text(chrome.aplicar(s, CFG, SOCIAL, ""), encoding="utf-8")
+        return pid + " (refrescada)"
+    p = CFG["productos"][pid]
+    hdr = re.search(r"<header\b.*?</header>", s, re.S).group(0)
+    nav = [(a, t) for a, t in re.findall(r'<a href="(#[^"]+)">([^<]+)</a>', hdr) if a != "#descargar"]
+    s = chrome.migrar(s, CFG, SOCIAL, "")
+    pend = ""
+    if p.get("precio"):
+        pend = '<span class="pprice">Desde <b>%s</b> al mes</span><a class="btn btn-ghost" href="#precios">Ver precios</a>' % build.soles(p["precio"]["mensual"])
+    pbar = ('<div class="pbar" id="pbar"><div class="wrap"><a class="pname" href="#inicio"><img src="img/iconos/%s.png" alt="" width="30" height="30">%s</a>'
+            '<nav aria-label="Secciones de %s">%s</nav><div class="pend">%s<a class="btn btn-primary" href="#descargar">Descargar</a></div></div></div>\n') % (
+        pid, p["nombre"], p["nombre"], "".join('<a href="%s">%s</a>' % n for n in nav), pend)
+    s = s.replace("<!--/ALF:gh-->", "<!--/ALF:gh-->\n" + pbar, 1)
+    # portada: miga, distintivo con ícono, título sin acento y línea de precio
+    m = re.search(r'<p class="crumb"><a href="index.html">ALF_BIM</a> / <b>(.*?)</b></p>', s)
+    s = s.replace(m.group(0), ('<p class="crumb"><a href="index.html">Inicio</a><span aria-hidden="true">/</span><a href="index.html#productos">Productos</a>'
+                               '<span aria-hidden="true">/</span><b>%s</b></p>\n        <p class="badge"><img src="img/iconos/%s.png" alt="" width="36" height="36">%s</p>')
+                  % (p["nombre"], pid, m.group(1)), 1)
+    s = re.sub(r"(<section class=\"hero\">.*?<h1>)(.*?)(</h1>)", lambda m: m.group(1) + re.sub(r"</?em>", "", m.group(2)) + m.group(3), s, count=1, flags=re.S)
+    s = re.sub(r'(<section class="hero">.*?<p class="lede">.*?</p>)', lambda m: m.group(1) + '\n        <p class="price-line">%s</p>' % build.linea_precio(pid), s, count=1, flags=re.S)
+    s = re.sub(r'(<a class="btn btn-primary" href="#descargar">[^<]*)<span class="ic".*?</span>(</a>)', r"\1\2", s, count=1, flags=re.S)
+    s = s.replace('<figure class="sheet" style="margin:0">', '<figure class="sheet">')
+    # secciones sin relleno en línea; preguntas en tono piedra
+    s = re.sub(r'(<section class="block[^"]*"[^>]*?)\s*style="padding-top:[^"]*"', r"\1", s)
+    pass  # preguntas en blanco: el bloque de precios ya va en tono piedra
+    # el script viejo (redes, RUC, menú) ya lo resuelven el pie y assets/alf.js
+    s = re.sub(r"<script>\s*const NEGOCIO.*?</script>\s*", "", s, flags=re.S)
+    f.write_text(s, encoding="utf-8")
+    return pid
+
+
 def migrar_legal(nombre):
     f = RAIZ / nombre
     s = f.read_text(encoding="utf-8")
@@ -94,6 +130,10 @@ def migrar_legal(nombre):
 
 
 if __name__ == "__main__":
+    import sys
+    if "--productos" in sys.argv:
+        print("Migradas:", ", ".join(migrar_producto(p) for p in ["presupuestoalf", "cronogramaalf", "informemensualalf", "saneamientoruralalf"]))
+        raise SystemExit
     hechas = [migrar_acero()]
     for n in ["terminos.html", "privacidad.html", "reembolsos.html", "reclamaciones.html", "reclamo-enviado.html", "instalacion.html"]:
         hechas.append(migrar_legal(n))

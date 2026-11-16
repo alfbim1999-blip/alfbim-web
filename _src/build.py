@@ -21,7 +21,7 @@ def wa(msg):
     return "https://wa.me/%s?text=%s" % (CFG["contacto"]["whatsapp"], urllib.parse.quote(msg, safe=""))
 
 def soles(x):
-    return ("S/ %d" % x) if float(x).is_integer() else ("S/ %.2f" % x)
+    return ("S/ {:,.0f}".format(x)) if float(x).is_integer() else ("S/ {:,.2f}".format(x))
 
 def usd(x):
     return "≈ US$ %.2f" % (x / CFG["tipo_cambio"])
@@ -104,48 +104,50 @@ def steps(items):
 def faq(items):
     return '<div class="faq">' + "".join("<details><summary>%s</summary><p>%s</p></details>" % q for q in items) + "</div>"
 
-def section(inner, id_="", first=False):
-    st = 'padding-top:clamp(3rem,6vw,5rem)' if first else 'padding-top:0'
-    return '<section class="block"%s style="%s"><div class="wrap">%s</div></section>' % (
-        (' id="%s"' % id_) if id_ else "", st, inner)
+def section(inner, id_="", first=False, tono=""):
+    return '<section class="block%s"%s><div class="wrap">%s</div></section>' % (
+        (" " + tono) if tono else "", (' id="%s"' % id_) if id_ else "", inner)
 
 # ---------------------------------------------------------------- precios
+def precio_desde(pid):
+    pr = P[pid].get("precio")
+    return pr["mensual"] if pr else None
+
 def precios_html(pid):
     p = P[pid]
     pr = p.get("precio")
     if not pr:
         return ""
     nom = p["nombre"]
-    lic = "licencia por PC"
     planes = []
+    m, a = pr["mensual"], pr["anual"]
     if p["tipo"] == "revit":
-        m = pr["mensual"]
+        m6 = pr["m6"]
         planes.append(dict(n="Mensual", amt=soles(m), per="/ mes", ps=usd(m) + " al mes",
-                           promo="Primer mes a %s" % soles(-(-m // 2)), feat=False,
+                           promo="Antes, prueba gratis 14 días", feat=False,
                            li=["Todas las funciones de " + nom, "1 PC", "Soporte por correo en 48 h", "Actualizaciones incluidas"],
                            msg="la licencia mensual"))
-        planes.append(dict(n="3 meses", amt=soles(pr["m3"]), per="por 3 meses", ps="Equivale a %s al mes" % soles(round(pr["m3"] / 3, 2)),
-                           promo="Ahorras %d %%" % round(100 - pr["m3"] / (3 * m) * 100), feat=False,
-                           li=["Todas las funciones de " + nom, "1 PC", "1 cambio de PC al año", "Actualizaciones incluidas"],
-                           msg="la licencia de 3 meses"))
-        planes.append(dict(n="6 meses", amt=soles(pr["m6"]), per="por 6 meses", ps="Equivale a %s al mes" % soles(round(pr["m6"] / 6, 2)),
-                           promo="Ahorras %d %%" % round(100 - pr["m6"] / (6 * m) * 100), feat=True,
-                           li=["Todas las funciones de " + nom, "1 PC", "1 cambio de PC al año", "Soporte por WhatsApp"],
+        planes.append(dict(n="6 meses", amt=soles(m6), per="por 6 meses", ps="Equivale a %s al mes" % soles(round(m6 / 6, 2)),
+                           promo="Ahorras %d %% frente al mensual" % round(100 - m6 / (6 * m) * 100), feat=False,
+                           li=["Todas las funciones de " + nom, "1 PC", "1 cambio de PC", "Soporte por WhatsApp"],
                            msg="la licencia de 6 meses"))
+        planes.append(dict(n="Anual", amt=soles(a), per="/ año", ps="Equivale a %s al mes" % soles(round(a / 12, 2)),
+                           promo="Ahorras %d %% frente al mensual" % round(100 - a / (12 * m) * 100), feat=True,
+                           li=["Todas las funciones de " + nom, "1 PC · 1 cambio de PC al año", "Soporte por WhatsApp", "Actualizaciones incluidas"],
+                           msg="la licencia anual"))
         intro = "Prueba gratis 14 días con todas las funciones. Luego eliges el periodo; todos los planes tienen el programa completo."
     else:
-        m, a = pr["mensual"], pr["anual"]
         planes.append(dict(n="Gratis", amt="S/ 0", per="para siempre", ps="Todas las funciones", promo="Las salidas llevan «VERSIÓN DE EVALUACIÓN»",
                            feat=False, li=["Cálculo completo en pantalla", "Ejemplos incluidos", "Sin fecha de vencimiento"], msg=None))
-        planes.append(dict(n="Mensual", amt=soles(m), per="/ mes", ps=usd(m) + " al mes", promo="Primer mes a %s" % soles(-(-m // 2)),
+        planes.append(dict(n="Mensual", amt=soles(m), per="/ mes", ps=usd(m) + " al mes", promo="Precio de lanzamiento",
                            feat=False, li=["Salidas sin marca de agua", "1 PC", "Soporte por correo en 48 h", "Actualizaciones incluidas"],
                            msg="la licencia mensual"))
         planes.append(dict(n="Anual", amt=soles(a), per="/ año", ps="Equivale a %s al mes" % soles(round(a / 12, 2)),
                            promo="Ahorras %d %% frente al mensual" % round(100 - a / (12 * m) * 100), feat=True,
                            li=["Salidas sin marca de agua", "1 PC · 1 cambio de PC al año", "Soporte por WhatsApp", "Actualizaciones incluidas"],
                            msg="la licencia anual"))
-        intro = "Descárgalo gratis y usa todas las funciones. Con la licencia, la memoria, el PDF y el Excel salen sin marca de agua."
-    h = ['<section class="block pricing" id="precios" style="padding-top:0"><div class="wrap">',
+        intro = "Descárgalo gratis y usa todas las funciones. Con la licencia, las memorias, los PDF y los Excel salen sin marca de agua."
+    h = ['<section class="block pricing" id="precios"><div class="wrap">',
          sec_head("Precios de lanzamiento", "Todas las funciones en todos los planes", intro + " Pagas con " + CFG["pagos"] + "."),
          '<div class="plans">']
     for pl in planes:
@@ -165,9 +167,10 @@ def precios_html(pid):
         h.append("</article>")
     h.append("</div>")
     h.append(packs_html(pid))
-    h.append('<p class="fine">Precios en soles; los montos en dólares son referenciales (S/ %.2f por dólar). La licencia es por computadora: '
-             'para activarla nos envías el ID de equipo que muestra el programa y te mandamos la clave apenas se acredite el pago. '
-             'Revisa la <a href="reembolsos.html">política de reembolso</a> y los <a href="terminos.html">términos y condiciones</a>.</p>' % CFG["tipo_cambio"])
+    h.append('<p class="fine">Precios de lanzamiento en soles; se mantienen mientras renueves sin interrupción. Los montos en dólares son referenciales '
+             '(S/ %.2f por dólar). La licencia es por computadora: para activarla nos envías el ID de equipo que muestra el programa y te mandamos '
+             'la clave apenas se acredite el pago. Revisa la <a href="reembolsos.html">política de reembolso</a> y los '
+             '<a href="terminos.html">términos y condiciones</a>.</p>' % CFG["tipo_cambio"])
     h.append("</div></section>")
     return "".join(h)
 
@@ -178,10 +181,10 @@ def packs_html(pid=None):
         if pid and inc != ["*"] and pid not in inc:
             continue
         if inc == ["*"]:
-            ids = [i for i, x in P.items() if x.get("precio") or (x["estado"] == "proximamente")]
+            ids = [i for i, x in P.items() if x.get("precio")]
         else:
             ids = inc
-        separado = sum(P[i]["precio"].get("anual") or round(P[i]["precio"]["m6"] * 2) for i in ids if P[i].get("precio"))
+        separado = sum(P[i]["precio"].get("anual") or P[i]["precio"]["mensual"] * 12 for i in ids if P[i].get("precio"))
         nombres = " · ".join(P[i]["nombre"] for i in ids if P[i].get("precio"))
         items.append(
             '<div class="pack"><div><span class="code">%s</span><h3>%s</h3><div class="pack-price"><b>%s</b><small>/ año</small></div>'
@@ -211,9 +214,13 @@ def descarga_html(pid, titulo, texto, extra_btns=""):
     else:
         btns.append('<a class="btn btn-ghost" href="%s" target="_blank" rel="noopener">Consultas por WhatsApp</a>' % E(
             wa("Hola ALF_BIM, tengo una consulta sobre %s." % p["nombre"])))
-    return ('<section class="block" id="descargar" style="padding-top:0"><div class="wrap"><div class="endcta"><div>'
-            '<h2>%s</h2><p>%s</p>%s</div><div class="endcta-side">%s</div></div></div></section>') % (
-        titulo, texto, sha, "".join(b for b in btns if b))
+    nota = ""
+    if p["tipo"] == "revit":
+        nota = ('<p class="dl-note">Al abrir Revit puede aparecer el aviso «Complemento sin firma»: es normal, elige «Cargar siempre». '
+                '<a href="instalacion.html#revit">Guía de instalación</a>.</p>')
+    return ('<section class="block" id="descargar"><div class="wrap"><div class="endcta"><div>'
+            '<h2>%s</h2><p>%s</p>%s%s</div><div class="endcta-side">%s</div></div></div></section>') % (
+        titulo, texto, sha, nota, "".join(b for b in btns if b))
 
 # ---------------------------------------------------------------- base de página
 BASE = (SRC / "base_producto.html").read_text(encoding="utf-8")
@@ -264,9 +271,13 @@ def shell(pg, main_html):
     if pg.get("nav"):
         p = P[pid]
         icon = ('<img src="img/iconos/%s.png" alt="" width="30" height="30">' % pid) if (RAIZ / "img" / "iconos" / (pid + ".png")).exists() else ""
-        sub = ('<div class="pbar" id="pbar"><div class="wrap"><a class="pname" href="#inicio">%s%s</a><nav aria-label="Secciones">%s</nav>'
-               '<div class="pend"><a class="btn btn-primary" href="#descargar">Descargar</a></div></div></div>\n') % (
-            icon, E(p["nombre"]), "".join('<a href="%s">%s</a>' % n for n in pg["nav"]))
+        pend = ""
+        if p.get("precio"):
+            pend = ('<span class="pprice">Desde <b>%s</b> al mes</span><a class="btn btn-ghost" href="#precios">Ver precios</a>'
+                    % soles(p["precio"]["mensual"]))
+        sub = ('<div class="pbar" id="pbar"><div class="wrap"><a class="pname" href="#inicio">%s%s</a><nav aria-label="Secciones de %s">%s</nav>'
+               '<div class="pend">%s<a class="btn btn-primary" href="#descargar">Descargar</a></div></div></div>\n') % (
+            icon, E(p["nombre"]), E(p["nombre"]), "".join('<a href="%s">%s</a>' % n for n in pg["nav"]), pend)
     return f"""<!doctype html>
 <html lang="es">
 <head>
@@ -300,6 +311,20 @@ def shell(pg, main_html):
 </html>
 """
 
+def icono_html(pid, size=36):
+    f = RAIZ / "img" / "iconos" / (pid + ".png")
+    return ('<img src="img/iconos/%s.png" alt="" width="%d" height="%d">' % (pid, size, size)) if f.exists() else ""
+
+def linea_precio(pid):
+    """«Desde S/ 25 al mes.» + prueba o versión gratuita, para la portada de cada producto."""
+    p = P[pid]
+    if not p.get("precio"):
+        return "Gratis, sin licencia."
+    m = soles(p["precio"]["mensual"])
+    if p["tipo"] == "revit":
+        return "Desde <b>%s</b> al mes. Prueba gratis 14 días." % m
+    return "Desde <b>%s</b> al mes. Versión gratuita con marca de agua." % m
+
 def hero(pg):
     h = pg["hero"]
     meta = "".join("<span>%s</span>" % m for m in h["meta"])
@@ -308,24 +333,30 @@ def hero(pg):
     if img.get("legend"):
         legend = '<div class="legend">' + "".join(
             '<span><i class="sw %s"></i>%s</span>' % (("sw-l", "sw-s")[i % 2], t) for i, t in enumerate(img["legend"])) + "</div>"
-    p = P[pg["id"]]
+    pid = pg["id"]
+    p = P[pid]
     cta1 = h.get("cta1") or ("Descargar y probar 14 días" if p["tipo"] == "revit" and p["estado"] == "disponible" else "Descargar gratis")
+    titulo = h["h1"] + ((" " + h["h1em"]) if h.get("h1em") else "")
+    media = img['panel'] if img.get('panel') else '<img class="shot-hero" src="%s" width="%s" height="%s" alt="%s" fetchpriority="high">' % (
+        img['src'], img['w'], img['h'], E(img['alt']))
     return f"""  <section class="hero">
     <div class="wrap hero-grid">
       <div>
-        <p class="crumb"><a href="index.html">ALF_BIM</a> / <b>{h['crumb']}</b></p>
-        <h1>{h['h1']} <em>{h['h1em']}</em></h1>
+        <p class="crumb"><a href="index.html">Inicio</a><span aria-hidden="true">/</span><a href="index.html#productos">Productos</a><span aria-hidden="true">/</span><b>{E(p['nombre'])}</b></p>
+        <p class="badge">{icono_html(pid)}{h['crumb']}</p>
+        <h1>{titulo}</h1>
         <p class="lede">{h['lede']}</p>
+        <p class="price-line">{linea_precio(pid)}</p>
         <div class="cta">
-          <a class="btn btn-primary" href="#descargar">{cta1}{ARROW_DOWN}</a>
+          <a class="btn btn-primary" href="#descargar">{cta1}</a>
           <a class="btn btn-ghost" href="{h['cta2'][0]}">{h['cta2'][1]}</a>
         </div>
         <p class="trial">{h['trial']}</p>
         <div class="hero-meta">{meta}</div>
       </div>
-      <figure class="sheet" style="margin:0">
+      <figure class="sheet">
         <div class="sheet-head"><span><b>{E(p['nombre'])}</b></span><span>{img['cap']}</span></div>
-        {img['panel'] if img.get('panel') else '<img class="shot-hero" src="%s" width="%s" height="%s" alt="%s" fetchpriority="high">' % (img['src'], img['w'], img['h'], E(img['alt']))}
+        {media}
         {legend}
       </figure>
     </div>
@@ -363,7 +394,9 @@ def actualizar_existente(fname, pid):
             i = s.index('<section class="block" id="preguntas"')
             s = s[:i] + bloque + "\n\n  " + s[i:]
             s = s.replace('<a href="#preguntas">Preguntas</a>', '<a href="#precios">Precios</a>\n      <a href="#preguntas">Preguntas</a>', 1)
-        if "<style>/*ALF:extra*/" not in s:
+        if "<!--ALF:head-->" in s:
+            s = re.sub(r"<style>/\*ALF:extra\*/.*?</style>\s*", "", s, flags=re.S)
+        elif "<style>/*ALF:extra*/" not in s:
             s = s.replace("</head>", "<style>/*ALF:extra*/\n" + EXTRA_CSS + "\n</style>\n</head>", 1)
         else:
             s = re.sub(r"<style>/\*ALF:extra\*/.*?</style>", lambda m: "<style>/*ALF:extra*/\n" + EXTRA_CSS + "\n</style>", s, flags=re.S)
@@ -374,8 +407,20 @@ def actualizar_existente(fname, pid):
     s = re.sub(r'(<code id="sha">)[^<]*(</code>)', lambda m: m.group(1) + ins["sha"] + m.group(2), s)
     s = re.sub(r'(<span class="tam">)[^<]*(</span>)', lambda m: m.group(1) + mb(ins["bytes"]) + m.group(2), s)
     s = re.sub(r'(<dd class="hash">)[^<]*(</dd>)', lambda m: m.group(1) + ins["sha"].lower() + m.group(2), s)
+    # cualquier enlace a una versión anterior del instalador, nombre, tamaño y versión visibles
+    nombre = re.escape(ins["archivo"].split("_")[0])
+    s = re.sub(r'https://github\.com/[^"]*/releases/download/descargas/' + nombre + r'_[^"]*?\.exe', url_descarga(pid), s)
+    s = re.sub(r'(<dt>Archivo</dt><dd>)[^<]*(</dd>)', lambda m: m.group(1) + ins["archivo"] + m.group(2), s)
+    s = re.sub(r'(<dt>Tamaño</dt><dd>)[^<]*(</dd>)', lambda m: m.group(1) + mb(ins["bytes"]) + m.group(2), s)
+    s = re.sub(r'Descargar instalador \([0-9.]+ [KM]B\)', "Descargar instalador (%s)" % mb(ins["bytes"]), s)
+    s = re.sub(r'(<span class="tag tag-live"[^>]*>Versión )[0-9.]+(</span>)', lambda m: m.group(1) + ins["version"] + m.group(2), s)
+    s = re.sub(r'(<span class="ver">)[^<]*(</span>)', lambda m: m.group(1) + ins["version"] + m.group(2), s)
     # 3) el instalador ya no se toma de INSTALADOR_URL (lo resuelve config.json)
-    s = s.replace('const INSTALADOR_URL = "";', 'const INSTALADOR_URL = ""; // el enlace lo pone _src/build.py desde _src/config.json')
+    s = re.sub(r'const INSTALADOR_URL = "";.*', 'const INSTALADOR_URL = ""; // el enlace lo pone _src/build.py desde _src/config.json', s)
+    # 4) manual vigente (config.json)
+    if p.get("manual"):
+        base = re.escape(p["manual"].rsplit("_", 1)[0])
+        s = re.sub(base + r'_[0-9.]+\.pdf', p["manual"], s)
     f.write_text(s, encoding="utf-8")
 
 # ---------------------------------------------------------------- portada
@@ -393,7 +438,7 @@ def pagina_proximamente(pid):
     nom = p["nombre"] + (" " + p["marca"] if p.get("marca") else "")
     plat = {"revit": "Revit 2023–2027", "escritorio": "Windows 10 / 11", "excel": "Excel"}[p["tipo"]]
     chips = p.get("chips") or []
-    panel = '<ul class="hpanel">' + "".join(
+    panel = '<ul class="hpanel hp-check">' + "".join(
         '<li><b>%s</b></li>' % E(c) for c in chips) + "</ul>"
     aviso = wa("Hola ALF_BIM, avísame cuando salga %s." % nom)
     main = f"""  <section class="hero">
@@ -423,6 +468,31 @@ def pagina_proximamente(pid):
           "plataforma": plat,
           "tm": "Autodesk y Revit son marcas registradas de Autodesk, Inc. Excel es marca de Microsoft. Los programas ALF son desarrollos independientes de ALF_BIM."}
     return shell(pg, main)
+
+def actualizar_instalacion():
+    f = RAIZ / "instalacion.html"
+    s = f.read_text(encoding="utf-8")
+    filas = []
+    for pid, p in P.items():
+        ins = p.get("instalador") or {}
+        if not ins.get("archivo", "").endswith(".exe"):
+            continue
+        tipo = {"revit": "Revit", "escritorio": "Windows"}.get(p["tipo"], "")
+        filas.append('<tr><td><a href="%s.html">%s</a></td><td>%s</td><td><a href="%s" download>%s</a></td><td>%s</td><td>%s</td><td class="mono hash">%s</td></tr>' % (
+            pid, E(p["nombre"]), tipo, url_descarga(pid), E(ins["archivo"]), ins["version"], mb(ins["bytes"]), ins["sha"]))
+    tabla = ('<!--ALF:instaladores--><div class="tw"><table class="tinst"><tr><th>Programa</th><th>Para</th><th>Archivo</th><th>Versión</th>'
+             '<th>Tamaño</th><th>SHA-256</th></tr>%s</table></div><!--/ALF:instaladores-->') % "".join(filas)
+    s = re.sub(r"<!--ALF:instaladores-->.*?<!--/ALF:instaladores-->", lambda m: tabla, s, flags=re.S)
+    f.write_text(s, encoding="utf-8")
+
+def actualizar_terminos():
+    f = RAIZ / "terminos.html"
+    s = f.read_text(encoding="utf-8")
+    rv = ", ".join(p["nombre"] for p in P.values() if p["tipo"] == "revit" and p.get("precio"))
+    es = ", ".join(p["nombre"] for p in P.values() if p["tipo"] == "escritorio" and p.get("precio"))
+    s = re.sub(r"(<strong>Complementos para Revit</strong> \()[^)]*(\))", lambda m: m.group(1) + rv + m.group(2), s, count=1)
+    s = re.sub(r"(<strong>Programas de escritorio</strong> \()[^)]*(\))", lambda m: m.group(1) + es + m.group(2), s, count=1)
+    f.write_text(s, encoding="utf-8")
 
 HECHAS_A_MANO = ["aceroalf", "presupuestoalf", "cronogramaalf", "informemensualalf", "saneamientoruralalf"]
 PAUSADAS = SRC / "pausadas"
@@ -455,6 +525,8 @@ def main():
                 guardada.unlink()
             actualizar_existente(pid + ".html", pid)
             hechas.append(pid)
+    actualizar_instalacion()
+    actualizar_terminos()
     if (SRC / "index_contenido.py").exists():
         (RAIZ / "index.html").write_text(construir_index(), encoding="utf-8")
     activos = {"aceroalf.html": "aceroalf"}

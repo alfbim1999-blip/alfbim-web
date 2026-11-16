@@ -529,8 +529,8 @@ a.ccard:hover{border-color:var(--ink)}
 .legal-page .hp{position:absolute;left:-9999px}
 .legal-page .btn{align-self:flex-start;background:var(--accent);color:#fff}
 .legal-page .card{background:transparent;border:0;padding:0}
-.hpanel li{grid-template-columns:auto minmax(0,1fr)}
-.hpanel li::before{content:"";width:.8rem;height:.6rem;background:var(--accent);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 9'%3E%3Cpath d='M1 4.5 4.5 8 11 1' fill='none' stroke='%23000' stroke-width='2'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 9'%3E%3Cpath d='M1 4.5 4.5 8 11 1' fill='none' stroke='%23000' stroke-width='2'/%3E%3C/svg%3E") center/contain no-repeat}
+.hp-check li{grid-template-columns:auto minmax(0,1fr)}
+.hp-check li::before{content:"";width:.8rem;height:.6rem;background:var(--accent);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 9'%3E%3Cpath d='M1 4.5 4.5 8 11 1' fill='none' stroke='%23000' stroke-width='2'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 9'%3E%3Cpath d='M1 4.5 4.5 8 11 1' fill='none' stroke='%23000' stroke-width='2'/%3E%3C/svg%3E") center/contain no-repeat}
 .legal-page .tw{overflow-x:auto}
 .legal-page .radios{display:flex;flex-wrap:wrap;gap:.5rem 1.5rem}
 .legal-page .dlbox{background:var(--stone);border-radius:var(--r);padding:1.2rem 1.4rem;margin:1rem 0 1.5rem}
@@ -553,3 +553,12 @@ a.ccard:hover{border-color:var(--ink)}
 .featured .f-media img{object-fit:cover;object-position:left top}
 .hero h1.h-prod{font-size:clamp(2.4rem,4.6vw,3.9rem);overflow-wrap:anywhere}
 @media (max-width:520px){.line-card{min-height:0;gap:1.2rem}.line-card svg{width:48px;height:48px}}
+/* lanzamiento 15-nov-2026 */
+.endcta .dl-note{color:var(--on-dark-muted);margin-top:.6rem}
+.endcta .dl-note a{color:#fff}
+.tinst td,.tinst th{font-size:.88rem}
+.tinst .hash{word-break:break-all;font-size:.72rem;min-width:18ch}
+.plan .who{font-size:.93rem;color:var(--muted)}
+.plan ul a{color:inherit}
+h1,h2,h3,h4{overflow-wrap:break-word}
+.plans .plan ul{align-content:start}

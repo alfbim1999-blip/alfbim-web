@@ -103,7 +103,7 @@ def pagina(g):
         ], "outs outs-3"),
         "requisitos")
 
-    zip_sha = "03EF3C82FAD7CCE9C75EC33A068021EB0784C388DD6F2A52BFFCB47F9C7E16E0"
+    zip_sha = P["planosalf"]["instalador_manual"]["sha"]
     return {
         "id": "planosalf",
         "title": "PlanosALF · Láminas en lote para Revit, gratis",
@@ -135,7 +135,7 @@ def pagina(g):
             ("¿Es gratis de verdad?", "Sí. PlanosALF es gratuito para uso personal, académico y comercial. No tiene licencia, servidor ni registro."),
             ("No aparece la pestaña PlanosALF", "Verifica que pyRevit cargue (pestaña «pyRevit») y pulsa pyRevit → Recargar. La extensión debe estar en %APPDATA%\\pyRevit\\Extensions\\PlanosALF.extension."),
             ("¿Funciona con el rótulo de mi Entidad?", "Sí. Cargas tu rótulo en el modelo y cada columna verde del Excel se escribe en el parámetro del mismo nombre. Si el dato es un parámetro de tipo en la familia del rótulo, cámbialo a parámetro de ejemplar."),
-            ("¿Puedo deshacer lo que hizo?", "Sí. Cada comando es un solo paso de Deshacer (Ctrl+Z). Si cancelas «Crear desde Excel» a mitad de camino, el modelo no cambia. La exportación no modifica el modelo."),
+            ("¿Puedo deshacer lo que hizo?", "Sí. Cada comando es un solo paso de Deshacer (Ctrl+Z). Si cancelas «Crear desde Excel» antes de terminar, el modelo no cambia. La exportación no modifica el modelo."),
             ("¿Coloca cuadros de carga y tablas?", "Sí. Las tablas de planificación, los cuadros de carga de tableros eléctricos y las leyendas se colocan igual que las vistas y pueden repetirse en varias láminas."),
             ("¿Envía mis datos a internet?", "No. PlanosALF trabaja solo en tu PC."),
         ],
@@ -143,8 +143,8 @@ def pagina(g):
         "dl_texto": "Instalador por usuario para Revit 2023–2027: no pide permisos de administrador y detecta pyRevit. "
                     "También puedes bajar el ZIP para instalarlo a mano (SHA-256 <code style='overflow-wrap:anywhere;word-break:break-all'>%s</code>) y el Excel de ejemplo "
                     "con el expediente de una institución educativa." % zip_sha,
-        "dl_extra": '<a class="btn btn-ghost" href="descargas/PlanosALF_1.0.0_instalacion_manual.zip" download>ZIP sin instalador</a>'
-                    '<a class="btn btn-ghost" href="descargas/Ejemplo_Laminas_PlanosALF.xlsx" download>Excel de ejemplo</a>',
+        "dl_extra": ('<a class="btn btn-ghost" href="descargas/%s" download>ZIP sin instalador</a>' % P["planosalf"]["instalador_manual"]["archivo"]
+                     + '<a class="btn btn-ghost" href="descargas/Ejemplo_Laminas_PlanosALF.xlsx" download>Excel de ejemplo</a>'),
         "plataforma": "Revit 2023–2027 · pyRevit",
         "tm": "Autodesk y Revit son marcas registradas de Autodesk, Inc. pyRevit es de pyRevitLabs. Excel es marca de Microsoft. "
               "PlanosALF es un desarrollo independiente de ALF_BIM y no está afiliado a ellas.",

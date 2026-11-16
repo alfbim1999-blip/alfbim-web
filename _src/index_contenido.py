@@ -1,8 +1,7 @@
-"""Portada de www.alfbim.com (diseño de oct-2026, inspirado en autodesk.com).
+"""Portada de www.alfbim.com (diseño de oct-2026, inspirado en autodesk.com; lanzamiento del 15-nov-2026).
 
-Portada negra con AceroALF y su visor 3D, «Explora por especialidad», producto destacado,
-catálogo de los próximos programas, plantilla gratis, confianza y contacto.
-Los datos salen de _src/config.json: un programa con estado «disponible» aparece como destacado.
+Portada negra con AceroALF y su visor 3D, «Explora por especialidad», producto destacado y catálogo completo por especialidad,
+precios de lanzamiento y packs, descargas gratis, plantilla de Revit gratis, confianza y contacto. Los datos salen de _src/config.json.
 """
 import re, html
 
@@ -21,7 +20,7 @@ MOTIVOS = {
 
 CONFIANZA = [
     ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4M9 15l2 2 4-4"/></svg>',
-     "Pruébalo antes de pagar", "AceroALF trae 14 días de prueba con todas las funciones, sin tarjeta."),
+     "Pruébalo antes de pagar", "Los complementos de Revit traen 14 días de prueba con todas las funciones; los de escritorio, una versión gratuita."),
     ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 19V5h16v14l-4-3H4"/><path d="M8 9h8M8 12h5"/></svg>',
      "Hablas con quien lo programa", "El soporte lo da el ingeniero que desarrolla cada programa, por WhatsApp o correo."),
     ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 3 4 6v6c0 4.5 3.4 8 8 9 4.6-1 8-4.5 8-9V6l-8-3Z"/><path d="m9 12 2 2 4-4"/></svg>',
@@ -38,9 +37,10 @@ def construir(g):
     base = (g["SRC"] / "base_index.html").read_text(encoding="utf-8")
     favicon = re.search(r'<link rel="icon"[^>]+>', base).group(0)
 
-    disp = [k for k, p in P.items() if p["estado"] == "disponible"]
-    prox = [k for k, p in P.items() if p["estado"] == "proximamente"]
     acero = P["aceroalf"]
+    pagos = [k for k, p in P.items() if p.get("precio")]
+    gratis = [k for k, p in P.items() if not p.get("precio")]
+    total = len(P)
 
     def icono(pid, size=44):
         f = RAIZ / "img" / "iconos" / (pid + ".png")
@@ -52,17 +52,23 @@ def construir(g):
         return '<span class="ph">%s</span>' % svg(ic)
 
     def plataforma(p):
-        return {"revit": "Revit", "escritorio": "Windows", "excel": "Excel"}[p["tipo"]]
+        return {"revit": "Complemento de Revit", "escritorio": "Windows", "excel": "Excel"}[p["tipo"]]
+
+    def precio_corto(p):
+        if not p.get("precio"):
+            return "<b>Gratis</b>"
+        return "Desde <b>%s</b> al mes" % soles(p["precio"]["mensual"])
 
     # ---------- portada
     hero = f"""<section class="home-hero">
   <div class="wrap home-grid">
     <div>
       <h1>Software para la ingeniería civil peruana</h1>
-      <p class="lede">Programas para Revit, el expediente técnico y la obra, hechos con la norma peruana. Empezamos con AceroALF: el acero de refuerzo de tu modelo con sus vistas, láminas y metrados.</p>
+      <p class="lede">{total} programas para Revit, el expediente técnico y la obra, hechos con la norma peruana: estructuras, instalaciones sanitarias y eléctricas, costos y gestión de obra.</p>
+      <p class="price-line">Desde <b>{soles(min(P[k]['precio']['mensual'] for k in pagos))}</b> al mes. Pruébalos gratis antes de pagar.</p>
       <div class="cta">
-        <a class="btn btn-primary" href="aceroalf.html">Conocer AceroALF</a>
-        <a class="btn btn-ghost" href="#productos">Ver todos los programas</a>
+        <a class="btn btn-primary" href="#productos">Ver los programas</a>
+        <a class="btn btn-ghost" href="#precios">Precios y packs</a>
       </div>
     </div>
     <figure class="feature-card" style="margin:0">
@@ -80,15 +86,9 @@ def construir(g):
     tarjetas = []
     for ln in CFG["lineas"]:
         ids = [k for k, p in P.items() if p["linea"] == ln["id"]]
-        live = [k for k in ids if P[k]["estado"] == "disponible"]
-        if live:
-            st, cls, sub = "Disponible", "st live", " y ".join(P[k]["nombre"] for k in live) + " ya está disponible"
-            href = "aceroalf.html" if "aceroalf" in live else "#linea-" + ln["id"]
-        else:
-            st, cls, sub = "Próximamente", "st", "%d programas en camino" % len(ids)
-            href = "#linea-" + ln["id"]
-        tarjetas.append('<a class="line-card" href="%s" data-ir="%s"><span class="%s">%s</span>%s<span><b>%s</b><small>%s</small></span></a>' % (
-            href, ln["id"], cls, st, MOTIVOS[ln["id"]], E(ln["nombre"]), E(sub)))
+        sub = "%d programas · %s" % (len(ids), ln["corto"])
+        tarjetas.append('<a class="line-card" href="#linea-%s" data-ir="%s">%s<span><b>%s</b><small>%s</small></span></a>' % (
+            ln["id"], ln["id"], MOTIVOS[ln["id"]], E(ln["nombre"]), E(sub)))
     lineas = """<section class="lines" aria-labelledby="t-esp">
   <div class="wrap">
     <h2 id="t-esp">Explora por especialidad</h2>
@@ -109,46 +109,92 @@ def construir(g):
           <h3>El acero de tu modelo de Revit, listo para el plano</h3>
           <p>Seleccionas el elemento, revisas el armado en su ventana y aplicas. Las barras quedan como armadura nativa de Revit, con sus vistas, la lámina y la planilla de metrados.</p>
           <ul><li>Zapatas y columnas</li><li>Vigas continuas</li><li>Placas y muros</li><li>Escaleras</li><li>Losas en una y dos direcciones</li><li>Planilla y láminas</li></ul>
-          <p class="price-line">Desde <b>{soles(acero['precio']['mensual'])}</b> al mes. Primer mes a {soles(-(-acero['precio']['mensual'] // 2))}.</p>
+          <p class="price-line">Desde <b>{soles(acero['precio']['mensual'])}</b> al mes. Prueba gratis de 14 días.</p>
           <div class="cta"><a class="btn btn-primary" href="aceroalf.html#descargar">Probar 14 días gratis</a><a class="btn btn-ghost" href="aceroalf.html">Ver AceroALF</a></div>
         </div>
       </article>"""
 
-    # ---------- próximos programas
-    tabs = ['<button type="button" data-f="todos" aria-pressed="true">Todos <small>%d</small></button>' % len(prox)]
+    # ---------- catálogo completo por especialidad
+    tabs = ['<button type="button" data-f="todos" aria-pressed="true">Todos <small>%d</small></button>' % total]
     grupos = []
     for ln in CFG["lineas"]:
-        ids = [k for k in prox if P[k]["linea"] == ln["id"]]
+        ids = [k for k, p in P.items() if p["linea"] == ln["id"]]
         if not ids:
             continue
         tabs.append('<button type="button" data-f="%s" aria-pressed="false">%s <small>%d</small></button>' % (ln["id"], E(ln["nombre"]), len(ids)))
         cards = "".join(
-            '<div class="ccard ccard-soon" data-linea="%s"><div class="ccard-top">%s<div><span class="ctag soon">Próximamente</span><h4>%s</h4></div></div>'
-            '<p>%s</p><a class="btn btn-ghost" href="%s" target="_blank" rel="noopener">Avísame cuando salga</a></div>' % (
-                ln["id"], icono(k), E(P[k]["nombre"] + (" " + P[k]["marca"] if P[k].get("marca") else "")), E(P[k]["resumen"]),
-                E(wa("Hola ALF_BIM, avísame cuando salga %s." % P[k]["nombre"])))
+            '<a class="ccard" href="%s.html" data-linea="%s"><div class="ccard-top">%s<div><span class="ctag %s">%s</span><h4>%s</h4></div></div>'
+            '<p>%s</p><div class="cmeta"><span>%s</span><span>%s</span></div></a>' % (
+                k, ln["id"], icono(k), "live" if P[k].get("precio") else "free", "Prueba 14 días" if P[k]["tipo"] == "revit" and P[k].get("precio")
+                else ("Gratis" if not P[k].get("precio") else "Versión gratuita"),
+                E(P[k]["nombre"] + (" " + P[k]["marca"] if P[k].get("marca") else "")), E(P[k]["resumen"]),
+                plataforma(P[k]), precio_corto(P[k]))
             for k in ids)
         grupos.append('<div class="cat-line" id="linea-%s" data-linea="%s"><div class="cat-line-head"><h3>%s</h3><p>%s</p></div><div class="cgrid">%s</div></div>' % (
             ln["id"], ln["id"], E(ln["nombre"]), E(ln["desc"]), cards))
+
+    # ---------- precios de lanzamiento por grupo
+    PL = CFG["precios_lanzamiento"]["grupos"]
+    def lista(g):
+        return [k for k in pagos if P[k].get("grupo_precio") == g]
+    def plan(nombre, g, quien, promo, otros, feat=False):
+        pr = PL[g]
+        return ('<article class="plan%s">%s<span class="pn">%s</span><p class="who">%s</p>'
+                '<div class="price"><span class="amt mono">%s</span><span class="per">/ mes</span></div><p class="ps">%s</p><p class="promo">%s</p>'
+                '<ul>%s</ul></article>') % (
+            " feat" if feat else "", '<span class="ribbon">Más programas</span>' if feat else "", nombre, quien, soles(pr["mensual"]), otros, promo,
+            "".join('<li><a href="%s.html">%s</a></li>' % (k, E(P[k]["nombre"])) for k in lista(g)))
+    rv, es, ca = PL["revit"], PL["escritorio"], PL["calculadora"]
+    tarifas = "".join([
+        plan("Complementos de Revit", "revit", "Trabajan dentro de tu modelo de Revit 2023 a 2027.", "Prueba gratis 14 días con todas las funciones",
+             "%s por 6 meses · %s al año" % (soles(rv["m6"]), soles(rv["anual"]))),
+        plan("Programas de escritorio", "escritorio", "Para el expediente y la obra, en Windows 10 y 11.", "Versión gratuita con marca de agua",
+             "%s al año" % soles(es["anual"])),
+        plan("Calculadoras", "calculadora", "Cálculo de instalaciones con su memoria.", "Versión gratuita con marca de agua",
+             "%s al año" % soles(ca["anual"])),
+    ])
+    precios = f"""<section class="block pricing" id="precios">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Precios de lanzamiento</p>
+      <h2>Un precio por programa, o todos en un pack</h2>
+      <p class="lede">Cada licencia es por computadora y tiene todas las funciones. Pagas con {E(CFG['pagos'])}; te mandamos la clave apenas se acredite el pago.</p>
+    </div>
+    <div class="plans">{tarifas}</div>
+    <div id="packs">{g['packs_html']()}</div>
+    <p class="fine">Precios de lanzamiento en soles; se mantienen mientras renueves sin interrupción. PlanosALF y las plantillas de Excel son gratis.
+      Revisa la <a href="reembolsos.html">política de reembolso</a> y los <a href="terminos.html">términos y condiciones</a>.</p>
+  </div>
+</section>
+"""
+
+    # ---------- descargas gratis
+    gcards = "".join(
+        '<a class="ccard" href="%s.html"><div class="ccard-top">%s<div><span class="ctag free">Gratis</span><h4>%s</h4></div></div><p>%s</p>'
+        '<div class="cmeta"><span>%s</span><span><b>Descargar</b></span></div></a>' % (
+            k, icono(k), E(P[k]["nombre"]), E(P[k]["resumen"]), plataforma(P[k]))
+        for k in gratis)
 
     productos = f"""<section class="block" id="productos">
   <div class="wrap">
     <div class="sec-head">
       <h2>Productos</h2>
-      <p class="lede">Cada programa resuelve una parte del expediente o de la obra. AceroALF ya está disponible; los demás los estamos validando con proyectos reales antes de publicarlos.</p>
+      <p class="lede">Cada programa resuelve una parte del expediente o de la obra. Los complementos de Revit traen 14 días de prueba; los programas de escritorio, una versión gratuita con marca de agua.</p>
     </div>
     {destacado}
+    <div class="cat-tabs" role="group" aria-label="Filtrar por especialidad" style="margin-top:clamp(2.5rem,5vw,4rem)">{''.join(tabs)}</div>
+    {''.join(grupos)}
   </div>
 </section>
 
-<section class="block tone-stone" id="proximos" aria-labelledby="t-prox">
+{precios}
+<section class="block tone-stone" id="gratis" aria-labelledby="t-gratis">
   <div class="wrap">
     <div class="sec-head">
-      <h2 id="t-prox">Lo que viene</h2>
-      <p class="lede">{len(prox)} programas para estructuras, instalaciones y gestión de obra. Escríbenos por WhatsApp y te avisamos cuando salga el que necesitas.</p>
+      <h2 id="t-gratis">Descargas gratis</h2>
+      <p class="lede">Sin licencia y sin fecha de vencimiento.</p>
     </div>
-    <div class="cat-tabs" role="group" aria-label="Filtrar por especialidad">{''.join(tabs)}</div>
-    {''.join(grupos)}
+    <div class="cgrid">{gcards}</div>
   </div>
 </section>
 """
@@ -186,7 +232,7 @@ def construir(g):
     script = """<script>
 (function(){
   var bs=[].slice.call(document.querySelectorAll('.cat-tabs button'));
-  var lines=[].slice.call(document.querySelectorAll('#proximos .cat-line'));
+  var lines=[].slice.call(document.querySelectorAll('#productos .cat-line'));
   function aplicar(f){
     bs.forEach(function(b){b.setAttribute('aria-pressed',b.dataset.f===f)});
     lines.forEach(function(l){l.hidden=!(f==='todos'||l.dataset.linea===f)});
@@ -198,8 +244,8 @@ def construir(g):
 })();
 </script>"""
 
-    desc = ("ALF_BIM: software para la ingeniería civil peruana. AceroALF arma el acero de refuerzo en Revit con sus vistas, láminas y metrados. "
-            "Pronto: metrados, instalaciones sanitarias y eléctricas, presupuesto 5D, cronograma y plazos de obra.")
+    desc = ("ALF_BIM: software para la ingeniería civil peruana. Programas para Revit, el expediente técnico y la obra: acero, metrados, ETABS, "
+            "memoria E.030, instalaciones sanitarias y eléctricas, presupuesto 5D, cronograma, valorizaciones y plazos. Desde S/ 25 al mes.")
     return f"""<!doctype html>
 <html lang="es">
 <head>
