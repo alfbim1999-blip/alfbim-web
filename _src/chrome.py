@@ -15,6 +15,7 @@ ICON_WA = ('<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><pat
            ' 2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3Z"/></svg>')
 
 HEAD = ('<!--ALF:head-->\n'
+        '<meta name="google-site-verification" content="xyJBcvh2KhMTBdAdndwb06GbhG4dUHP7SLkSCZGmBuo">\n'
         '<link rel="preload" href="assets/fonts/archivo-var.woff" as="font" type="font/woff" crossorigin>\n'
         '<link rel="stylesheet" href="assets/alf.css">\n'
         '<script src="assets/alf.js" defer></script>\n'
