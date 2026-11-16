@@ -18,7 +18,7 @@
  },
  "tipo_cambio": 3.44,
  "descargas_base": "descargas/",
- "pagos": "Mercado Pago, Izipay o PayPal",
+ "pagos": "Yape o transferencia al BCP",
  "lineas": [
   {
    "id": "estructuras",
