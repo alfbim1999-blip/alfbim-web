@@ -562,3 +562,11 @@ a.ccard:hover{border-color:var(--ink)}
 .plan ul a{color:inherit}
 h1,h2,h3,h4{overflow-wrap:break-word}
 .plans .plan ul{align-content:start}
+.tplgrid{grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
+.tplcard ul{list-style:none;display:grid;gap:.45rem;font-size:.92rem;color:var(--ink)}
+.tplcard li{position:relative;padding-left:1.3rem}
+.tplcard li::before{content:"";position:absolute;left:0;top:.4em;width:.8rem;height:.6rem;background:var(--accent);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 9'%3E%3Cpath d='M1 4.5 4.5 8 11 1' fill='none' stroke='%23000' stroke-width='2'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 9'%3E%3Cpath d='M1 4.5 4.5 8 11 1' fill='none' stroke='%23000' stroke-width='2'/%3E%3C/svg%3E") center/contain no-repeat}
+.tplcard .tpl-para{font-size:.88rem}
+.tplcard .cmeta{align-items:center}
+.tplcard .cmeta .btn{min-height:40px;padding:.45rem 1rem;font-size:.92rem}
+.tplcard .ph svg{width:30px;height:30px}

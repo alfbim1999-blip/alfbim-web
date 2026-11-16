@@ -199,9 +199,27 @@ def construir(g):
 </section>
 """
 
-    # ---------- plantilla gratis (contenido de la portada anterior)
-    m = re.search(r'<section class="block" id="plantilla".*?</section>', base, re.S)
-    plantilla = re.sub(r'\s*style="padding-top:0"', "", m.group(0)) if m else ""
+    # ---------- plantillas de Revit gratis (config.json → plantillas_revit)
+    PR = CFG["plantillas_revit"]
+    tcards = "".join(
+        '<article class="ccard tplcard"><div class="ccard-top"><span class="ph">%s</span><div><span class="ctag free">Gratis</span><h4>%s</h4></div></div>'
+        '<p>%s</p><ul>%s</ul><p class="tpl-para">Para %s.</p>'
+        '<div class="cmeta"><span>ZIP · %s · %s</span><a class="btn btn-primary" href="descargas/%s" download>Descargar</a></div></article>' % (
+            MOTIVOS[t["id"]], E(t["nombre"]).replace("_", "_<wbr>"), E(t["desc"]), "".join("<li>%s</li>" % E(x) for x in t["incluye"]),
+            E(t["para"]), g["mb"](t["bytes"]), E(PR["revit"]), t["archivo"])
+        for t in PR["lista"])
+    plantilla = f"""<section class="block" id="plantilla" aria-labelledby="t-tpl">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Descarga gratuita</p>
+      <h2 id="t-tpl">Plantillas de Revit ALF_BIM</h2>
+      <p class="lede">Las plantillas con las que trabajamos, limpias y en Times New Roman, con el rótulo ALF_BIM de A0 a A3. Funcionan con o sin nuestros programas.</p>
+    </div>
+    <div class="cgrid tplgrid">{tcards}</div>
+    <p class="fine">Descomprime el ZIP y abre el archivo .rte desde Revit (Nuevo → Proyecto → Examinar). Para usarla siempre, agrégala en Revit → Opciones → Ubicaciones de archivos.</p>
+  </div>
+</section>
+"""
 
     confianza = """<section class="block" aria-labelledby="t-conf">
   <div class="wrap">

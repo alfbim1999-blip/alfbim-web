@@ -699,5 +699,56 @@
     "anual": 79
    }
   }
+ },
+ "plantillas_revit": {
+  "revit": "Revit 2027 o superior",
+  "version": "etapa 2A (4-nov-2026), plantillas limpias en Times New Roman con el rótulo ALF_BIM A0–A3",
+  "lista": [
+   {
+    "id": "estructuras",
+    "nombre": "ALF_BIM_ESTRUCTURAS",
+    "archivo": "ALF_BIM_ESTRUCTURAS_Revit2027.zip",
+    "bytes": 6591899,
+    "sha": "AAADF7CC2659A503065582770E8C35FA822B4838C3E4B17AF9320F8BB6076DCE",
+    "para": "AceroALF, MetradosALF, CadRevitALF y EtabsRevitALF",
+    "desc": "La plantilla estructural con la que trabajamos, lista para un proyecto de concreto armado.",
+    "incluye": [
+     "15 diámetros de barra, de 4.7 mm a 2 1/4\", con ganchos y doblados",
+     "Recubrimientos de 75 mm en cimentaciones; 50, 40 y 20 mm en el resto",
+     "Filtros por diámetro, cada uno con su color",
+     "Tabla «ALF Planilla de acero» y lámina E-00 de especificaciones"
+    ]
+   },
+   {
+    "id": "sanitarias",
+    "nombre": "ALF_BIM_INSTALACIONES_SANITARIAS",
+    "archivo": "ALF_BIM_INSTALACIONES_SANITARIAS_Revit2027.zip",
+    "bytes": 10131608,
+    "sha": "72378ADEAB59CEA9BD4A054E2B768DCE3B5C6AC87E383E55EBCA4544444AA133",
+    "para": "SanitariasALF y CadRevitALF",
+    "desc": "Agua fría, agua caliente, desagüe y ventilación con los materiales y las pendientes de la IS.010.",
+    "incluye": [
+     "7 sistemas con su abreviatura y color: AF, AC, DS, VE, DP, ANP y ACI",
+     "Tuberías PVC-U C-10, CPVC y PVC SAL con los diámetros comerciales",
+     "Pendientes de 0.5 a 5 % y unidades en m.c.a. y L/s",
+     "7 filtros por red y 5 tablas, con la verificación IS.010"
+    ]
+   },
+   {
+    "id": "electricas",
+    "nombre": "ALF_BIM_INSTALACIONES_ELÉCTRICAS",
+    "archivo": "ALF_BIM_INSTALACIONES_ELECTRICAS_Revit2027.zip",
+    "bytes": 7419792,
+    "sha": "18C589E67C6AEF9ADB9BF4800AB574469FE3DCB3EEDA9B107E7C7B955E25C7E4",
+    "para": "ElectricasALF y CadRevitALF",
+    "desc": "Instalaciones eléctricas interiores con las tensiones y los sistemas que se usan en el Perú.",
+    "incluye": [
+     "Tensiones de 220 V y 380 V",
+     "Sistemas trifásicos de 220 V (3 hilos) y 380/220 V (4 hilos)",
+     "Familias con la carga en VA, listas para el cuadro de cargas",
+     "Estilos y tablas «ALF IIEE» y tipo de vista para esquemas"
+    ]
+   }
+  ]
  }
 }

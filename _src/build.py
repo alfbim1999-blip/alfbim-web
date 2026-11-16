@@ -415,6 +415,14 @@ def actualizar_existente(fname, pid):
     s = re.sub(r'Descargar instalador \([0-9.]+ [KM]B\)', "Descargar instalador (%s)" % mb(ins["bytes"]), s)
     s = re.sub(r'(<span class="tag tag-live"[^>]*>Versión )[0-9.]+(</span>)', lambda m: m.group(1) + ins["version"] + m.group(2), s)
     s = re.sub(r'(<span class="ver">)[^<]*(</span>)', lambda m: m.group(1) + ins["version"] + m.group(2), s)
+    # plantilla de Revit (AceroALF): ZIP de descargas/ según config.json → plantillas_revit
+    tpl = next((t for t in CFG.get("plantillas_revit", {}).get("lista", []) if t["id"] == "estructuras"), None)
+    if tpl and 'id="tplBtn"' in s:
+        s = re.sub(r'(<a class="btn btn-primary" id="tplBtn" href=")[^"]*("[^>]*>)', lambda m: m.group(1) + "descargas/" + tpl["archivo"] + '" download>', s)
+        s = re.sub(r'(<div class="tpl-file"><span>ZIP · )[^<]*(</span>)', lambda m: m.group(1) + mb(tpl["bytes"]) + m.group(2), s)
+        s = re.sub(r'const PLANTILLA_URL = "[^"]*";', 'const PLANTILLA_URL = ""; // la plantilla está en descargas/ (config.json → plantillas_revit)', s)
+        if "instalaciones sanitarias y eléctricas</a>" not in s:
+            s = s.replace('<span>Archivo .rte</span></div>', '<span>Archivo .rte</span></div>\n          <p class="trial">También hay plantillas de <a href="index.html#plantilla">instalaciones sanitarias y eléctricas</a>.</p>', 1)
     # 3) el instalador ya no se toma de INSTALADOR_URL (lo resuelve config.json)
     s = re.sub(r'const INSTALADOR_URL = "";.*', 'const INSTALADOR_URL = ""; // el enlace lo pone _src/build.py desde _src/config.json', s)
     # 4) manual vigente (config.json)
