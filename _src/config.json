@@ -140,7 +140,34 @@
     "en_release": true
    },
    "manual": "tutoriales/Manual_CadRevitALF_1.0.pdf",
-   "grupo_precio": "revit"
+   "grupo_precio": "revit",
+   "galeria": {
+    "lede": "Desde los planos DWG de una vivienda unifamiliar de prueba de 7.50 × 16.00 m, CadRevitALF creó los modelos de Revit de estructuras, instalaciones sanitarias e instalaciones eléctricas.",
+    "items": [
+     [
+      "img/v16/est_3d.jpg",
+      1500,
+      1148,
+      "Vista 3D del modelo estructural de la vivienda de prueba creado con CadRevitALF desde el plano DWG de estructuras: columnas, vigas y losas.",
+      "Estructuras creadas desde el DWG"
+     ],
+     [
+      "img/v16/iiss_3d.jpg",
+      1500,
+      1180,
+      "Vista 3D de las instalaciones sanitarias de la vivienda de prueba: aparatos, tuberías de agua y desagüe y montantes creados desde los planos de agua y desagüe.",
+      "Sanitarias: aparatos y tuberías"
+     ],
+     [
+      "img/v16/iiee_3d.jpg",
+      1500,
+      878,
+      "Vista 3D de las instalaciones eléctricas de la vivienda de prueba: salidas, tableros y tubos de los circuitos creados desde el plano de instalaciones eléctricas.",
+      "Eléctricas: salidas y tubos",
+      "wide"
+     ]
+    ]
+   }
   },
   "etabsrevitalf": {
    "nombre": "EtabsRevitALF",
@@ -172,7 +199,20 @@
     "sha": "9B261CC7BAEDDA07CBFCE0A12A8A1C947622101BD224E222E3E83C69C95A3852",
     "en_release": true
    },
-   "grupo_precio": "revit"
+   "grupo_precio": "revit",
+   "galeria": {
+    "lede": "En la prueba final, EtabsRevitALF llevó a ETABS el modelo estructural de una vivienda unifamiliar de prueba de 7.50 × 16.00 m, y MemoriaEstructuralALF verificó la E.030 con ese modelo.",
+    "items": [
+     [
+      "img/v16/est_3d.jpg",
+      1500,
+      1148,
+      "Vista 3D del modelo estructural de Revit de la vivienda de prueba que EtabsRevitALF exportó a ETABS en la prueba final.",
+      "El modelo de Revit que se llevó a ETABS",
+      "wide"
+     ]
+    ]
+   }
   },
   "memoriaestructuralalf": {
    "nombre": "MemoriaEstructuralALF",
@@ -225,7 +265,20 @@
     "sha": "82CBC0D6AB02C14BE1670E4009B87D6D5568685E43E376585A715B7B8876492C",
     "en_release": true
    },
-   "grupo_precio": "revit"
+   "grupo_precio": "revit",
+   "galeria": {
+    "lede": "En la prueba final, CheckerALF revisó los cuatro modelos de una vivienda unifamiliar de prueba de 7.50 × 16.00 m con las guías del MEF, en Revit y en IFC.",
+    "items": [
+     [
+      "img/v16/checker_reporte.jpg",
+      1500,
+      1061,
+      "Primera página del reporte PDF de CheckerALF para el modelo estructural de la vivienda de prueba: 1241 elementos revisados con las guías del MEF v1.3 y puntaje general de 97.5 %, aprobado.",
+      "Reporte del modelo estructural: 97.5 %, aprobado",
+      "wide"
+     ]
+    ]
+   }
   },
   "planosalf": {
    "nombre": "PlanosALF",
@@ -255,7 +308,26 @@
     "bytes": 1040381,
     "sha": "066A5894FB24C2EE908ABB13D5EDBA2DE064F87835C93A1572C0DB11335685D4"
    },
-   "precio": null
+   "precio": null,
+   "galeria": {
+    "lede": "En la prueba final, PlanosALF armó y exportó a PDF y DWG las láminas de arquitectura, estructuras e instalaciones de una vivienda unifamiliar de prueba de 7.50 × 16.00 m, con el rótulo ALF_BIM.",
+    "items": [
+     [
+      "img/v16/lamina_E-01.jpg",
+      1600,
+      1130,
+      "Lámina E-01 de estructuras de la vivienda de prueba exportada a PDF con PlanosALF, con el rótulo ALF_BIM.",
+      "Lámina E-01 (estructuras)"
+     ],
+     [
+      "img/v16/lamina_IS-01.jpg",
+      1600,
+      1130,
+      "Lámina IS-01 de instalaciones sanitarias de la vivienda de prueba exportada a PDF con PlanosALF, con el rótulo ALF_BIM.",
+      "Lámina IS-01 (sanitarias)"
+     ]
+    ]
+   }
   },
   "plantilla-excel-estructuras": {
    "nombre": "Plantilla Excel Estructuras",
@@ -312,7 +384,20 @@
     "en_release": true
    },
    "manual": "tutoriales/Manual_SanitariasALF_1.0.pdf",
-   "grupo_precio": "revit"
+   "grupo_precio": "revit",
+   "galeria": {
+    "lede": "En la prueba final, SanitariasALF sacó los metrados por salidas y la verificación IS.010 del modelo de instalaciones sanitarias de una vivienda unifamiliar de prueba de 7.50 × 16.00 m.",
+    "items": [
+     [
+      "img/v16/iiss_3d.jpg",
+      1500,
+      1180,
+      "Vista 3D del modelo de instalaciones sanitarias de la vivienda de prueba sobre el que SanitariasALF sacó los metrados y la verificación IS.010.",
+      "Modelo de instalaciones sanitarias de la prueba",
+      "wide"
+     ]
+    ]
+   }
   },
   "redesinterioresalf": {
    "nombre": "RedesInterioresALF",
@@ -424,7 +509,20 @@
     "en_release": true
    },
    "manual": "tutoriales/Manual_ElectricasALF_1.0.pdf",
-   "grupo_precio": "revit"
+   "grupo_precio": "revit",
+   "galeria": {
+    "lede": "En la prueba final, ElectricasALF armó el cuadro de cargas y los metrados del modelo de instalaciones eléctricas de una vivienda unifamiliar de prueba de 7.50 × 16.00 m.",
+    "items": [
+     [
+      "img/v16/iiee_3d.jpg",
+      1500,
+      878,
+      "Vista 3D del modelo de instalaciones eléctricas de la vivienda de prueba sobre el que ElectricasALF armó el cuadro de cargas y los metrados.",
+      "Modelo de instalaciones eléctricas de la prueba",
+      "wide"
+     ]
+    ]
+   }
   },
   "maximademandaalf": {
    "nombre": "MaximaDemandaALF",
@@ -445,7 +543,20 @@
     "anual": 79
    },
    "grupo_precio": "calculadora",
-   "manual": "tutoriales/Manual_MaximaDemandaALF_1.0.pdf"
+   "manual": "tutoriales/Manual_MaximaDemandaALF_1.0.pdf",
+   "galeria": {
+    "lede": "En la prueba final, MaximaDemandaALF calculó la máxima demanda de una vivienda unifamiliar de prueba de 7.50 × 16.00 m y exportó su memoria, el cuadro de cargas y los diagramas unifilares.",
+    "items": [
+     [
+      "img/v16/unifilar_td1.jpg",
+      1500,
+      828,
+      "Diagrama unifilar del tablero TD-1 de la vivienda de prueba exportado por MaximaDemandaALF, con el interruptor, el conductor y la tubería de cada circuito.",
+      "Unifilar del tablero TD-1",
+      "wide"
+     ]
+    ]
+   }
   },
   "plantilla-excel-iiee": {
    "nombre": "Plantilla Excel IIEE",
@@ -649,7 +760,34 @@
     "sha": "C0046C4B9646BACAAB352244FDBACF9E431C2F2834A0B5263DEB51D772D73CEA",
     "en_release": true
    },
-   "grupo_precio": "revit"
+   "grupo_precio": "revit",
+   "galeria": {
+    "lede": "En la prueba final, Simulacion4DALF unió el cronograma de CronogramaALF (113 días) con los modelos de una vivienda unifamiliar de prueba de 7.50 × 16.00 m y sacó las imágenes de la obra por fechas.",
+    "items": [
+     [
+      "img/v16/4d_2026-12-15.jpg",
+      1500,
+      844,
+      "Simulación 4D al 15 de diciembre de 2026, día 30 de 113: avance programado de 9.8 %, con 1,321 elementos por construir, 49 en preparación y 22 terminados.",
+      "Día 30: cimentación (9.8 %)"
+     ],
+     [
+      "img/v16/4d_2027-02-03.jpg",
+      1500,
+      844,
+      "Simulación 4D al 3 de febrero de 2027, día 80 de 113: avance programado de 51.4 %, con elementos en ejecución, en acabados y terminados en colores.",
+      "Día 80: casco y acabados (51.4 %)"
+     ],
+     [
+      "img/v16/4d_2027-03-08.jpg",
+      1500,
+      844,
+      "Simulación 4D al 8 de marzo de 2027, día 113 de 113: avance programado de 100 %, con 1,350 elementos terminados y 42 en acabados.",
+      "Día 113: obra terminada (100 %)",
+      "wide"
+     ]
+    ]
+   }
   }
  },
  "packs": {

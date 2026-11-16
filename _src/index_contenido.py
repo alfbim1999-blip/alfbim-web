@@ -1,6 +1,6 @@
 """Portada de www.alfbim.com (diseño de oct-2026, inspirado en autodesk.com; lanzamiento del 15-nov-2026).
 
-Portada negra con AceroALF y su visor 3D, «Explora por especialidad», producto destacado y catálogo completo por especialidad,
+Portada negra con los programas por especialidad (íconos), catálogo completo por especialidad,
 precios de lanzamiento y packs, descargas gratis, plantilla de Revit gratis, confianza y contacto. Los datos salen de _src/config.json.
 """
 import re, html
@@ -59,11 +59,24 @@ def construir(g):
             return "<b>Gratis</b>"
         return "Desde <b>%s</b> al mes" % soles(p["precio"]["mensual"])
 
-    # ---------- portada
+    # ---------- portada: título y los programas por especialidad
+    CORTO = {"aceroalf": "Acero", "metradosalf": "Metrados", "cadrevitalf": "CAD a Revit", "etabsrevitalf": "Revit a ETABS",
+             "memoriaestructuralalf": "Memoria E.030", "checkeralf": "Revisión BIM", "planosalf": "Planos",
+             "plantilla-excel-estructuras": "Excel Estructuras", "sanitariasalf": "IISS en Revit", "redesinterioresalf": "Redes interiores",
+             "dotacionalf": "Dotación", "saneamientoruralalf": "Saneamiento rural", "electricasalf": "IIEE en Revit",
+             "maximademandaalf": "Máxima demanda", "plantilla-excel-iiee": "Excel IIEE", "presupuestoalf": "Presupuesto",
+             "cronogramaalf": "Cronograma", "valorizacionesalf": "Valorizaciones", "plazosalf": "Plazos",
+             "informemensualalf": "Informe mensual", "simulacion4dalf": "Simulación 4D"}
+    filas = []
+    for ln in CFG["lineas"]:
+        ids = [k for k, p in P.items() if p["linea"] == ln["id"]]
+        apps = "".join('<a class="app" href="%s.html" title="%s">%s<span>%s</span></a>' % (k, E(P[k]["nombre"]), icono(k, 40), E(CORTO.get(k, P[k]["nombre"]))) for k in ids)
+        filas.append('<div class="apps-row"><a class="apps-head" href="#linea-%s">%s<b>%s</b><small>%d</small></a><div class="apps">%s</div></div>' % (
+            ln["id"], MOTIVOS[ln["id"]], E(ln["nombre"]), len(ids), apps))
     hero = f"""<section class="home-hero">
   <div class="wrap home-grid">
     <div>
-      <h1>Software para la ingeniería civil peruana</h1>
+      <h1>Software para la ingeniería civil</h1>
       <p class="lede">{total} programas para Revit, el expediente técnico y la obra, hechos con la norma peruana: estructuras, instalaciones sanitarias y eléctricas, costos y gestión de obra.</p>
       <p class="price-line">Desde <b>{soles(min(P[k]['precio']['mensual'] for k in pagos))}</b> al mes. Pruébalos gratis antes de pagar.</p>
       <div class="cta">
@@ -71,48 +84,10 @@ def construir(g):
         <a class="btn btn-ghost" href="#precios">Precios y packs</a>
       </div>
     </div>
-    <figure class="feature-card" style="margin:0">
-      <div class="stage"><canvas id="rebar3d" role="img" aria-label="Vista 3D del acero de una zapata, una columna y dos vigas modelados con AceroALF."></canvas><span class="hint">Arrastra para girar</span></div>
-      <div class="fc-body">
-        <div class="fc-name"><img src="img/iconos/aceroalf.png" alt="" width="40" height="40"><div><b>AceroALF</b><small>Acero de refuerzo en Revit, desde {soles(acero['precio']['mensual'])} al mes</small></div></div>
-        <a class="btn btn-primary" href="aceroalf.html#descargar">Probar 14 días gratis</a>
-      </div>
-    </figure>
+    <nav class="apps-card" aria-label="Programas por especialidad">{''.join(filas)}</nav>
   </div>
 </section>
 """
-
-    # ---------- explora por especialidad
-    tarjetas = []
-    for ln in CFG["lineas"]:
-        ids = [k for k, p in P.items() if p["linea"] == ln["id"]]
-        sub = "%d programas · %s" % (len(ids), ln["corto"])
-        tarjetas.append('<a class="line-card" href="#linea-%s" data-ir="%s">%s<span><b>%s</b><small>%s</small></span></a>' % (
-            ln["id"], ln["id"], MOTIVOS[ln["id"]], E(ln["nombre"]), E(sub)))
-    lineas = """<section class="lines" aria-labelledby="t-esp">
-  <div class="wrap">
-    <h2 id="t-esp">Explora por especialidad</h2>
-    <div class="lines-grid">%s</div>
-  </div>
-</section>
-""" % "".join(tarjetas)
-
-    # ---------- producto destacado
-    destacado = f"""<article class="featured">
-        <div class="f-media">
-          <img src="img/salidas/grupos.jpg" width="800" height="360" alt="Modelo 3D de Revit con el acero de zapatas, columnas, vigas, placas y escalera colocado por AceroALF.">
-          <img src="img/salidas/laminas.jpg" width="760" height="470" alt="Sección de una columna en T generada por AceroALF: 8 barras de 3/4 de pulgada y 2 de 5/8, con sus cotas." loading="lazy">
-          <img src="img/salidas/cuadro.jpg" width="800" height="360" alt="Cuadro de columnas por nivel generado por AceroALF a partir del acero modelado." loading="lazy">
-        </div>
-        <div class="f-body">
-          <p class="badge"><img src="img/iconos/aceroalf.png" alt="" width="36" height="36">AceroALF</p>
-          <h3>El acero de tu modelo de Revit, listo para el plano</h3>
-          <p>Seleccionas el elemento, revisas el armado en su ventana y aplicas. Las barras quedan como armadura nativa de Revit, con sus vistas, la lámina y la planilla de metrados.</p>
-          <ul><li>Zapatas y columnas</li><li>Vigas continuas</li><li>Placas y muros</li><li>Escaleras</li><li>Losas en una y dos direcciones</li><li>Planilla y láminas</li></ul>
-          <p class="price-line">Desde <b>{soles(acero['precio']['mensual'])}</b> al mes. Prueba gratis de 14 días.</p>
-          <div class="cta"><a class="btn btn-primary" href="aceroalf.html#descargar">Probar 14 días gratis</a><a class="btn btn-ghost" href="aceroalf.html">Ver AceroALF</a></div>
-        </div>
-      </article>"""
 
     # ---------- catálogo completo por especialidad
     tabs = ['<button type="button" data-f="todos" aria-pressed="true">Todos <small>%d</small></button>' % total]
@@ -179,10 +154,9 @@ def construir(g):
   <div class="wrap">
     <div class="sec-head">
       <h2>Productos</h2>
-      <p class="lede">Cada programa resuelve una parte del expediente o de la obra. Los complementos de Revit traen 14 días de prueba; los programas de escritorio, una versión gratuita con marca de agua.</p>
+      <p class="lede">Cada programa resuelve una parte del expediente o de la obra. Los complementos de Revit traen 14 días de prueba; los programas de escritorio, una versión gratuita con marca de agua. Entra a cada uno para ver sus capturas y sus resultados.</p>
     </div>
-    {destacado}
-    <div class="cat-tabs" role="group" aria-label="Filtrar por especialidad" style="margin-top:clamp(2.5rem,5vw,4rem)">{''.join(tabs)}</div>
+    <div class="cat-tabs" role="group" aria-label="Filtrar por especialidad">{''.join(tabs)}</div>
     {''.join(grupos)}
   </div>
 </section>
@@ -262,7 +236,7 @@ def construir(g):
 })();
 </script>"""
 
-    desc = ("ALF_BIM: software para la ingeniería civil peruana. Programas para Revit, el expediente técnico y la obra: acero, metrados, ETABS, "
+    desc = ("ALF_BIM: software para la ingeniería civil. Programas para Revit, el expediente técnico y la obra: acero, metrados, ETABS, "
             "memoria E.030, instalaciones sanitarias y eléctricas, presupuesto 5D, cronograma, valorizaciones y plazos. Desde S/ 25 al mes.")
     return f"""<!doctype html>
 <html lang="es">
@@ -273,7 +247,7 @@ def construir(g):
 <meta name="theme-color" content="#000000">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="ALF_BIM">
-<meta property="og:title" content="ALF_BIM · Software para la ingeniería civil peruana">
+<meta property="og:title" content="ALF_BIM · Software para la ingeniería civil">
 <meta property="og:description" content="{E(desc)}">
 <meta property="og:url" content="https://www.alfbim.com/">
 <meta property="og:image" content="https://www.alfbim.com/og.jpg">
@@ -282,7 +256,7 @@ def construir(g):
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://www.alfbim.com/">
 {favicon}
-<title>ALF_BIM · Software para la ingeniería civil peruana</title>
+<title>ALF_BIM · Software para la ingeniería civil</title>
 {CH.HEAD}
 </head>
 <body>
@@ -290,14 +264,12 @@ def construir(g):
 {CH.header(CFG, "")}
 <main id="inicio">
 {hero}
-{lineas}
 {productos}
 {plantilla}
 {confianza}
 {contacto}
 </main>
 {CH.footer(CFG, g['social_html']())}
-<script src="assets/rebar3d.js" defer></script>
 {script}
 </body>
 </html>

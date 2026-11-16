@@ -370,8 +370,15 @@ def tiles(items):
 
 def construir_pagina(pg):
     pid = pg["id"]
+    if P[pid].get("galeria") and pg.get("nav") and ("#proyecto-real", "Proyecto real") not in pg["nav"]:
+        i = next((k for k, n in enumerate(pg["nav"]) if n[0] == "#precios"), len(pg["nav"]))
+        pg["nav"] = pg["nav"][:i] + [("#proyecto-real", "Proyecto real")] + pg["nav"][i:]
     partes = [hero(pg), tiles(pg["tiles"])]
     partes += pg["secciones"]
+    gal = P[pid].get("galeria")
+    if gal:
+        partes.append(section(sec_head("En un proyecto real", "Probado en un proyecto completo", gal["lede"])
+                              + shots([tuple(x) for x in gal["items"]]), "proyecto-real"))
     if P[pid].get("precio"):
         partes.append(precios_html(pid))
     partes.append(section(sec_head("Preguntas frecuentes", "Antes de instalar") + faq(pg["faq"]), "preguntas"))

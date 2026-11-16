@@ -53,7 +53,7 @@ def footer(cfg, social_html):
     return ('<!--ALF:gf-->\n<footer class="gf"><div class="wrap">'
             '<div class="gf-top">'
             '<div class="gf-about"><a class="brand" href="index.html"><img src="assets/logo-d.png" alt="" width="34" height="29"><b>ALF<span>_</span>BIM</b></a>'
-            '<p>Software para la ingeniería civil peruana: Revit, expediente técnico y obra. Hecho por ingenieros en Chota, Cajamarca.</p>%s</div>'
+            '<p>Software para la ingeniería civil: Revit, expediente técnico y obra, con la norma peruana. Hecho por ingenieros en Chota, Cajamarca.</p>%s</div>'
             '<div><h4>Productos</h4><ul><li><a href="index.html#productos">Todos los programas</a></li><li><a href="index.html#precios">Precios y packs</a></li>'
             '<li><a href="index.html#gratis">Descargas gratis</a></li><li><a href="index.html#plantilla">Plantilla de Revit gratis</a></li></ul></div>'
             '<div><h4>Soporte</h4><ul><li><a href="aceroalf.html#tutoriales">Videos de AceroALF</a></li><li><a href="instalacion.html">Guía de instalación</a></li>'
