@@ -509,6 +509,25 @@ def actualizar_terminos():
     s = re.sub(r"(<strong>Programas de escritorio</strong> \()[^)]*(\))", lambda m: m.group(1) + es + m.group(2), s, count=1)
     f.write_text(s, encoding="utf-8")
 
+def escribir_sitemap():
+    """sitemap.xml y robots.txt para Google (URLs sin .html, como los canonical)."""
+    import subprocess, datetime
+    base = "https://www.alfbim.com/"
+    paginas = [("", "1.0")] + [(pid, "0.9") for pid in P if (RAIZ / (pid + ".html")).exists()] + \
+              [(n, "0.4") for n in ["instalacion", "terminos", "privacidad", "reembolsos", "reclamaciones"]]
+    hoy = datetime.date.today().isoformat()
+    filas = []
+    for slug, prio in paginas:
+        f = RAIZ / ((slug or "index") + ".html")
+        try:
+            fecha = subprocess.run(["git", "log", "-1", "--format=%cs", "--", f.name], cwd=RAIZ, capture_output=True, text=True).stdout.strip() or hoy
+        except Exception:
+            fecha = hoy
+        filas.append("  <url><loc>%s%s</loc><lastmod>%s</lastmod><priority>%s</priority></url>" % (base, slug, fecha, prio))
+    (RAIZ / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+                                      + "\n".join(filas) + "\n</urlset>\n", encoding="utf-8")
+    (RAIZ / "robots.txt").write_text("User-agent: *\nAllow: /\nDisallow: /reclamo-enviado\n\nSitemap: %ssitemap.xml\n" % base, encoding="utf-8")
+
 HECHAS_A_MANO = ["aceroalf", "presupuestoalf", "cronogramaalf", "informemensualalf", "saneamientoruralalf"]
 PAUSADAS = SRC / "pausadas"
 
@@ -549,6 +568,7 @@ def main():
         s = f.read_text(encoding="utf-8")
         if "<!--ALF:gh-->" in s:
             f.write_text(CHROME.aplicar(s, CFG, social_html(), activos.get(f.name, "")), encoding="utf-8")
+    escribir_sitemap()
     print("Completas:", ", ".join(hechas) or "-")
     print("Próximamente:", ", ".join(pausa) or "-")
 

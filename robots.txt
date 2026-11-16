@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /reclamo-enviado
+
+Sitemap: https://www.alfbim.com/sitemap.xml
