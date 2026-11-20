@@ -14,6 +14,7 @@ RAIZ = pathlib.Path(__file__).resolve().parent.parent
 SRC = RAIZ / "_src"
 CFG = json.loads((SRC / "config.json").read_text(encoding="utf-8"))
 P = CFG["productos"]
+OTROS = {k: v for k, v in CFG.get("otros_productos", {}).items() if not k.startswith("_")}
 E = html.escape
 
 # ---------------------------------------------------------------- utilidades
@@ -269,15 +270,16 @@ def shell(pg, main_html):
     url = "https://www.alfbim.com/" + pid
     sub = ""
     if pg.get("nav"):
-        p = P[pid]
+        p = pg.get("prod") or P[pid]
         icon = ('<img src="img/iconos/%s.png" alt="" width="30" height="30">' % pid) if (RAIZ / "img" / "iconos" / (pid + ".png")).exists() else ""
-        pend = ""
-        if p.get("precio"):
+        pend = pg.get("pend", "")
+        if not pend and (p.get("precio") or {}).get("mensual"):
             pend = ('<span class="pprice">Desde <b>%s</b> al mes</span><a class="btn btn-ghost" href="#precios">Ver precios</a>'
                     % soles(p["precio"]["mensual"]))
-        sub = ('<div class="pbar" id="pbar"><div class="wrap"><a class="pname" href="#inicio">%s%s</a><nav aria-label="Secciones de %s">%s</nav>'
+        sub = ('<div class="pbar%s" id="pbar"><div class="wrap"><a class="pname" href="#inicio">%s%s</a><nav aria-label="Secciones de %s">%s</nav>'
                '<div class="pend">%s<a class="btn btn-primary" href="#descargar">Descargar</a></div></div></div>\n') % (
-            icon, E(p["nombre"]), E(p["nombre"]), "".join('<a href="%s">%s</a>' % n for n in pg["nav"]), pend)
+            (" " + pg["pbar_cls"]) if pg.get("pbar_cls") else "", icon, E(p["nombre"]), E(p["nombre"]),
+            "".join('<a href="%s">%s</a>' % n for n in pg["nav"]), pend)
     return f"""<!doctype html>
 <html lang="es">
 <head>
@@ -514,6 +516,7 @@ def escribir_sitemap():
     import subprocess, datetime
     base = "https://www.alfbim.com/"
     paginas = [("", "1.0")] + [(pid, "0.9") for pid in P if (RAIZ / (pid + ".html")).exists()] + \
+              [(pid, "0.8") for pid in OTROS if (RAIZ / (pid + ".html")).exists()] + \
               [(n, "0.4") for n in ["instalacion", "terminos", "privacidad", "reembolsos", "reclamaciones"]]
     hoy = datetime.date.today().isoformat()
     filas = []
@@ -558,6 +561,16 @@ def main():
                 raiz.write_text(guardada.read_text(encoding="utf-8"), encoding="utf-8")
                 guardada.unlink()
             actualizar_existente(pid + ".html", pid)
+            hechas.append(pid)
+    # programas fuera de la línea de ingeniería (AulaCNEB): página propia en _src/<id>.py
+    for pid in OTROS:
+        f = SRC / (pid + ".py")
+        if f.exists():
+            spec = importlib.util.spec_from_file_location(pid, f)
+            mod = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(mod)
+            pg = mod.pagina(globals())
+            (RAIZ / (pid + ".html")).write_text(shell(pg, pg["main"]), encoding="utf-8")
             hechas.append(pid)
     actualizar_instalacion()
     actualizar_terminos()

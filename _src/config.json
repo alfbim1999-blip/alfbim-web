@@ -888,5 +888,48 @@
     ]
    }
   ]
+ },
+ "otros_productos": {
+  "_leeme": "Programas fuera de la línea de ingeniería: tienen su propia página y no entran en el catálogo, los packs ni la tabla de instalación. Solo un enlace discreto en el pie.",
+  "aulacneb": {
+   "nombre": "AulaCNEB",
+   "estado": "disponible",
+   "tipo": "escritorio",
+   "corto": "Planificación curricular CNEB para docentes",
+   "resumen": "Planificación anual, unidades, sesiones, instrumentos de evaluación y registro auxiliar según el CNEB, en Word editable y PDF.",
+   "precio": {
+    "gratis_sesiones_mes": 3,
+    "anual": 99,
+    "institucion": 790,
+    "institucion_docentes": 10
+   },
+   "instalador": {
+    "archivo": "AulaCNEB_1.0.0_Setup.exe",
+    "version": "1.0.0",
+    "bytes": 51703950,
+    "sha": "6D099D801E7AAD2D78AEEAB726627D1408349FEE524D04D96E7CB92C001654E8",
+    "en_release": false,
+    "_nota": "Servido desde descargas/ del repositorio: desde la sesión de Claude no se pueden subir archivos a la release. Para pasarlo a la release «descargas»: subir el .exe allí, poner en_release = true y volver a ejecutar build.py."
+   },
+   "manual": "tutoriales/Manual_AulaCNEB_1.0.pdf",
+   "guia": "tutoriales/Guia_primera_sesion_AulaCNEB.pdf",
+   "muestras": [
+    [
+     "tutoriales/Muestra_Sesion_multigrado_AulaCNEB.pdf",
+     "Sesión multigrado",
+     "Primaria 3.° y 4.°, Matemática"
+    ],
+    [
+     "tutoriales/Muestra_Unidad_AulaCNEB.pdf",
+     "Unidad de aprendizaje",
+     "Secundaria 2.°, Matemática y Comunicación"
+    ],
+    [
+     "tutoriales/Muestra_Registro_auxiliar_AulaCNEB.pdf",
+     "Registro auxiliar",
+     "Inicial 5 años, primer bimestre"
+    ]
+   ]
+  }
  }
 }

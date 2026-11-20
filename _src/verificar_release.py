@@ -26,7 +26,8 @@ def main():
     cfg = json.loads(CFG_F.read_text(encoding="utf-8"))
     rel = assets()
     pendientes, ok = [], []
-    for pid, p in cfg["productos"].items():
+    otros = {k: v for k, v in cfg.get("otros_productos", {}).items() if not k.startswith("_")}
+    for pid, p in list(cfg["productos"].items()) + list(otros.items()):
         ins = p.get("instalador") or {}
         if not ins.get("archivo", "").endswith(".exe"):
             continue
