@@ -908,8 +908,7 @@
     "version": "1.0.0",
     "bytes": 51703950,
     "sha": "6D099D801E7AAD2D78AEEAB726627D1408349FEE524D04D96E7CB92C001654E8",
-    "en_release": false,
-    "_nota": "Servido desde descargas/ del repositorio: desde la sesión de Claude no se pueden subir archivos a la release. Para pasarlo a la release «descargas»: subir el .exe allí, poner en_release = true y volver a ejecutar build.py."
+    "en_release": true
    },
    "manual": "tutoriales/Manual_AulaCNEB_1.0.pdf",
    "guia": "tutoriales/Guia_primera_sesion_AulaCNEB.pdf",

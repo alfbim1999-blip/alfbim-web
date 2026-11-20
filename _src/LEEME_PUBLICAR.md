@@ -30,9 +30,7 @@ Todo está en un solo archivo: `_src/config.json`. Después se ejecuta `python3 
 - No entra en el catálogo de `index.html`, los packs ni la tabla de `instalacion.html`: solo la enlaza el pie («AulaCNEB (para docentes)»).
 - Imágenes en `img/aulacneb/` (capturas del programa y primeras páginas de los documentos de ejemplo); PDF en `tutoriales/`.
 - Lanzada el 20-nov-2026. La «IA incluida» figura como «próximamente»: el servidor de licencias v10 no está publicado.
-- Instalador: `descargas/AulaCNEB_1.0.0_Setup.exe` dentro del repositorio (desde la sesión de Claude no se pueden subir archivos a la release).
-  Para pasarlo a la release «descargas»: subirlo allí, poner `en_release: true` en `otros_productos → aulacneb → instalador`,
-  ejecutar `build.py` y mover el .exe de `descargas/` fuera del repositorio.
+- Instalador `AulaCNEB_1.0.0_Setup.exe` en la release «descargas» (subido el 20-nov-2026 desde el navegador; SHA-256 6D099D80…54E8).
 
 ## Publicar una versión nueva de un instalador
 

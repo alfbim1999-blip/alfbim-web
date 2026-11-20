@@ -429,7 +429,7 @@ def actualizar_existente(fname, pid):
     if tpl and 'id="tplBtn"' in s:
         s = re.sub(r'(<a class="btn btn-primary" id="tplBtn" href=")[^"]*("[^>]*>)', lambda m: m.group(1) + "descargas/" + tpl["archivo"] + '" download>', s)
         s = re.sub(r'(<div class="tpl-file"><span>ZIP · )[^<]*(</span>)', lambda m: m.group(1) + mb(tpl["bytes"]) + m.group(2), s)
-        s = re.sub(r'const PLANTILLA_URL = "[^"]*";', 'const PLANTILLA_URL = ""; // la plantilla está en descargas/ (config.json → plantillas_revit)', s)
+        s = re.sub(r'const PLANTILLA_URL = "[^"]*";[^\n]*', lambda m: 'const PLANTILLA_URL = ""; // la plantilla está en descargas/ (config.json → plantillas_revit)', s)
         if "instalaciones sanitarias y eléctricas</a>" not in s:
             s = s.replace('<span>Archivo .rte</span></div>', '<span>Archivo .rte</span></div>\n          <p class="trial">También hay plantillas de <a href="index.html#plantilla">instalaciones sanitarias y eléctricas</a>.</p>', 1)
     # 3) el instalador ya no se toma de INSTALADOR_URL (lo resuelve config.json)
