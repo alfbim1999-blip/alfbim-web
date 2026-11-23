@@ -12,7 +12,7 @@ def pagina(g):
 
     funciones = section(
         sec_head("Qué hace", "La planilla de metrados del expediente, sacada del modelo",
-                 "Dos botones en la pestaña MetradosALF de Revit: Estructuras y Arquitectura. Cada partida sale con su sustento fila por fila "
+                 "Dos botones en el grupo MetradosALF de la pestaña ALF_BIM de Revit: Estructuras y Arquitectura. Cada partida sale con su sustento fila por fila "
                  "(veces × largo × ancho × alto), por nivel y por ejes, con la regla de la Norma Técnica de Metrados (R.D. 073-2010-VIVIENDA) que aplica.")
         + outs([
             ("OE.2.1", "Movimiento de tierras", "Desde la cimentación del modelo y la cota del terreno natural.",
@@ -135,7 +135,7 @@ def pagina(g):
         "secciones": [funciones, norma, excel, pasos],
         "faq": faq_items,
         "dl_titulo": "Descarga MetradosALF y pruébalo 14 días",
-        "dl_texto": "Instalador para Revit 2023–2027 en Windows 10 y 11, con el manual. Al terminar, abre Revit y busca la pestaña MetradosALF.",
+        "dl_texto": "Instalador para Revit 2023–2027 en Windows 10 y 11, con el manual. Al terminar, abre Revit y busca el grupo MetradosALF en la pestaña ALF_BIM.",
         "plataforma": "Revit 2023–2027",
         "tm": "Autodesk y Revit son marcas registradas de Autodesk, Inc. Excel es marca de Microsoft. S10 es marca de S10 Software. "
               "MetradosALF es un desarrollo independiente de ALF_BIM y no está afiliado a ellas.",

@@ -69,10 +69,10 @@
     "anual": 199
    },
    "instalador": {
-    "archivo": "AceroALF_1.0.4_Setup.exe",
-    "version": "1.0.4",
-    "bytes": 3828255,
-    "sha": "8DFEE0D97DB314F00EFBD64ECA377D13AE277E4A8CC638889A245786F2F4578A",
+    "archivo": "AceroALF_1.0.5_Setup.exe",
+    "version": "1.0.5",
+    "bytes": 3827505,
+    "sha": "43543D32EDB5AE9054DE462EB5BD470D6366A5353D391294C60A34570540C5C7",
     "en_release": true
    },
    "manual": "tutoriales/Guia_de_Instalacion_AceroALF.pdf",
@@ -101,10 +101,10 @@
     "anual": 199
    },
    "instalador": {
-    "archivo": "MetradosALF_1.0.4_Setup.exe",
-    "version": "1.0.4",
-    "bytes": 3700698,
-    "sha": "F3369EC7E874CFD5260CF9056E9045A64BE6F214150BC5559A3470C190710454",
+    "archivo": "MetradosALF_1.0.5_Setup.exe",
+    "version": "1.0.5",
+    "bytes": 3706705,
+    "sha": "A3E97F6CF11C560C8D27B311C26BD82C84BF4EDE6D0E3FFCD862A9DA0BD42FAD",
     "en_release": true
    },
    "manual": "tutoriales/Manual_MetradosALF_1.0.pdf",
@@ -133,10 +133,10 @@
     "anual": 199
    },
    "instalador": {
-    "archivo": "CadRevitALF_1.0.11_Setup.exe",
-    "version": "1.0.11",
-    "bytes": 6092446,
-    "sha": "0172BF2D6282C984D0B6129B5038BB236818C54FA5DA1ED4C8C6A1BC37DD719C",
+    "archivo": "CadRevitALF_1.0.12_Setup.exe",
+    "version": "1.0.12",
+    "bytes": 6093326,
+    "sha": "164348B15EAB6307BB5B94CA7607F4805F4C1534C443935FB66BEE0018939FF9",
     "en_release": true
    },
    "manual": "tutoriales/Manual_CadRevitALF_1.0.pdf",
@@ -193,10 +193,10 @@
    },
    "manual": "tutoriales/Manual_EtabsRevitALF_1.2.pdf",
    "instalador": {
-    "archivo": "EtabsRevitALF_1.2.3_Setup.exe",
-    "version": "1.2.3",
-    "bytes": 34825065,
-    "sha": "9B261CC7BAEDDA07CBFCE0A12A8A1C947622101BD224E222E3E83C69C95A3852",
+    "archivo": "EtabsRevitALF_1.2.4_Setup.exe",
+    "version": "1.2.4",
+    "bytes": 34827042,
+    "sha": "D0E9926DF521C15C248E82028DEB77E94609A4E7065AF0745A69CA89EAECBC21",
     "en_release": true
    },
    "grupo_precio": "revit",
@@ -259,10 +259,10 @@
    },
    "manual": "tutoriales/Manual_CheckerALF_1.0.pdf",
    "instalador": {
-    "archivo": "CheckerALF_1.0.5_Setup.exe",
-    "version": "1.0.5",
-    "bytes": 106470969,
-    "sha": "82CBC0D6AB02C14BE1670E4009B87D6D5568685E43E376585A715B7B8876492C",
+    "archivo": "CheckerALF_1.0.6_Setup.exe",
+    "version": "1.0.6",
+    "bytes": 106468804,
+    "sha": "474C289B3044E73474F47C70B502EFD8FDD21F723330EE8BAF4B053DCC1B0B81",
     "en_release": true
    },
    "grupo_precio": "revit",
@@ -296,17 +296,17 @@
    ],
    "meta": "Revit 2023–2027 · pyRevit · gratis",
    "instalador": {
-    "archivo": "PlanosALF_1.3.1_Setup.exe",
-    "version": "1.3.1",
-    "bytes": 3030395,
-    "sha": "0B7D3E95FA31C6F61C118E7CB35640E1A64C0B1E237ADDEFB563CB1614DB1663",
+    "archivo": "PlanosALF_1.3.2_Setup.exe",
+    "version": "1.3.2",
+    "bytes": 3031610,
+    "sha": "BD65A6CF0401E552E560A6E8335C9FB33F276E71525EDB3A01D336BB7E526191",
     "en_release": true
    },
    "manual": "tutoriales/Manual_PlanosALF_1.0.pdf",
    "instalador_manual": {
-    "archivo": "PlanosALF_1.3.1_instalacion_manual.zip",
-    "bytes": 1040381,
-    "sha": "066A5894FB24C2EE908ABB13D5EDBA2DE064F87835C93A1572C0DB11335685D4"
+    "archivo": "PlanosALF_1.3.2_instalacion_manual.zip",
+    "bytes": 1085735,
+    "sha": "A8EF1837BCBF4F0336164EFEA52261F035C820683DC8ACD48A0AEFED54116BF8"
    },
    "precio": null,
    "galeria": {
@@ -377,10 +377,10 @@
     "anual": 199
    },
    "instalador": {
-    "archivo": "SanitariasALF_1.0.5_Setup.exe",
-    "version": "1.0.5",
-    "bytes": 12667576,
-    "sha": "05C858F649FC4F0AC2E27C4AC732BA3DF479EC6B4BBFEA27F282D9F3FD2BBD82",
+    "archivo": "SanitariasALF_1.0.6_Setup.exe",
+    "version": "1.0.6",
+    "bytes": 12666749,
+    "sha": "F653B08C51FBD423CB01F2039CA169C8BA370684D24F472CF0258554E14B52F8",
     "en_release": true
    },
    "manual": "tutoriales/Manual_SanitariasALF_1.0.pdf",
@@ -502,10 +502,10 @@
     "anual": 199
    },
    "instalador": {
-    "archivo": "ElectricasALF_1.0.6_Setup.exe",
-    "version": "1.0.6",
-    "bytes": 2976650,
-    "sha": "4C273DC95DA1AFCE89B63CF1B303F5DED25EEEB7CCF0DA080F82CF74330CF77F",
+    "archivo": "ElectricasALF_1.0.7_Setup.exe",
+    "version": "1.0.7",
+    "bytes": 2981156,
+    "sha": "70FECE070D900356B3A4D3F6054861B89A1E1DCF60A91BEF7737DEA74036C03E",
     "en_release": true
    },
    "manual": "tutoriales/Manual_ElectricasALF_1.0.pdf",
@@ -603,10 +603,10 @@
     "anual": 179
    },
    "instalador": {
-    "archivo": "PresupuestoALF_1.1.2_Setup.exe",
-    "version": "1.1.2",
-    "bytes": 58629176,
-    "sha": "A3D1A93DE1C30181C69F311E8D123459032B76CC5F6503FB76481B7CAAFAF0CD",
+    "archivo": "PresupuestoALF_1.1.3_Setup.exe",
+    "version": "1.1.3",
+    "bytes": 58624945,
+    "sha": "E27665A3B5D649D0E62C64C49015972C72B63B01B64AA65C11DEB48D48D63B94",
     "en_release": true
    },
    "manual": "tutoriales/Manual_PresupuestoALF_1.1.pdf",
@@ -754,10 +754,10 @@
    },
    "manual": "tutoriales/Manual_Simulacion4DALF_1.1.pdf",
    "instalador": {
-    "archivo": "Simulacion4DALF_1.1.1_Setup.exe",
-    "version": "1.1.1",
-    "bytes": 37966472,
-    "sha": "C0046C4B9646BACAAB352244FDBACF9E431C2F2834A0B5263DEB51D772D73CEA",
+    "archivo": "Simulacion4DALF_1.1.2_Setup.exe",
+    "version": "1.1.2",
+    "bytes": 37969564,
+    "sha": "F67FAE35692D0ADE0DAF08C05A65996AF3F1863AAE61BCF20B632D74D53D7D0F",
     "en_release": true
    },
    "grupo_precio": "revit",

@@ -10,7 +10,7 @@ def pagina(g):
 
     funciones = section(
         sec_head("Qué hace", "Del plano CAD al modelo de Revit, con tus plantillas",
-                 "Cuatro botones en la pestaña CadRevitALF de Revit: Arquitectura, Estructuras, Sanitarias y Eléctricas. Cada uno lee el DWG "
+                 "Cuatro botones en el grupo CadRevitALF de la pestaña ALF_BIM de Revit: Arquitectura, Estructuras, Sanitarias y Eléctricas. Cada uno lee el DWG "
                  "vinculado, te muestra lo reconocido en colores y crea el modelo nativo con los tipos, familias y sistemas de tu plantilla ALF_BIM.")
         + outs([
             ("ARQUITECTURA", "Muros, vanos y habitaciones", "Muros por pares de líneas (rectos, diagonales y curvos) con su tipo por espesor.",
@@ -117,7 +117,7 @@ def pagina(g):
         "secciones": [funciones, lectura, pasos],
         "faq": faq_items,
         "dl_titulo": "Descarga CadRevitALF y pruébalo 14 días",
-        "dl_texto": "Instalador para Revit 2023–2027 en Windows 10 y 11, con el manual. Al terminar, abre Revit y busca la pestaña CadRevitALF.",
+        "dl_texto": "Instalador para Revit 2023–2027 en Windows 10 y 11, con el manual. Al terminar, abre Revit y busca el grupo CadRevitALF en la pestaña ALF_BIM.",
         "plataforma": "Revit 2023–2027",
         "tm": "Autodesk, AutoCAD y Revit son marcas registradas de Autodesk, Inc. Excel es marca de Microsoft. "
               "CadRevitALF es un desarrollo independiente de ALF_BIM y no está afiliado a ellas. Lector de DWG: ACadSharp (MIT).",

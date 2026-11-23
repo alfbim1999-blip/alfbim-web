@@ -146,7 +146,7 @@ def pagina(g):
         "faq": faq_items,
         "dl_titulo": "Descarga SanitariasALF y pruébalo 14 días",
         "dl_texto": "Instalador para Revit 2023–2027 en Windows 10 y 11. Trae la plantilla ALF_BIM_INSTALACIONES_SANITARIAS y el manual. "
-                    "Al terminar, abre Revit y busca la pestaña SanitariasALF.",
+                    "Al terminar, abre Revit y busca el grupo SanitariasALF en la pestaña ALF_BIM.",
         "plataforma": "Revit 2023–2027",
         "tm": "Autodesk y Revit son marcas registradas de Autodesk, Inc. Excel es marca de Microsoft. S10 es marca de S10 Software. "
               "SanitariasALF es un desarrollo independiente de ALF_BIM y no está afiliado a ellas.",

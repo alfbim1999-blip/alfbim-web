@@ -57,7 +57,7 @@ def pagina(g):
     pasos = section(
         sec_head("Cómo funciona", "Tres pasos")
         + steps([
-            ("Abre el modelo", "En Revit, la pestaña CheckerALF; sin Revit, CheckerALF IFC con el archivo .ifc."),
+            ("Abre el modelo", "En Revit, el grupo CheckerALF de la pestaña ALF_BIM; sin Revit, CheckerALF IFC con el archivo .ifc."),
             ("Elige las reglas y el perfil", "Las guías del MEF de fábrica y, si la Entidad te dio uno, su EIR."),
             ("Revisa y corrige", "Puntaje, observaciones con su fuente, reportes y BCF; vuelve a revisar y compara."),
         ]),
@@ -115,7 +115,7 @@ def pagina(g):
         "secciones": [funciones, lectura, pasos],
         "faq": faq_items,
         "dl_titulo": "Descarga CheckerALF y pruébalo 14 días",
-        "dl_texto": "Un instalador para Windows 10 y 11: el complemento para Revit 2023–2027 y CheckerALF IFC, con el manual. Al terminar, abre Revit y busca la pestaña CheckerALF, o abre CheckerALF IFC desde el menú Inicio.",
+        "dl_texto": "Un instalador para Windows 10 y 11: el complemento para Revit 2023–2027 y CheckerALF IFC, con el manual. Al terminar, abre Revit y busca el grupo CheckerALF en la pestaña ALF_BIM, o abre CheckerALF IFC desde el menú Inicio.",
         "plataforma": "Revit 2023–2027 · IFC",
         "tm": "Autodesk y Revit son marcas registradas de Autodesk, Inc. IFC y BCF son estándares de buildingSMART International. Excel es marca de Microsoft. "
               "CheckerALF es un desarrollo independiente de ALF_BIM y no está afiliado a ellas ni al Ministerio de Economía y Finanzas.",

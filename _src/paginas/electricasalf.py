@@ -10,7 +10,7 @@ def pagina(g):
 
     funciones = section(
         sec_head("Qué hace", "El expediente de IIEE, sacado del modelo de Revit",
-                 "Cuatro botones en la pestaña ElectricasALF de Revit. Trabaja con lo que ya modelas en Revit MEP —tableros, circuitos, "
+                 "Cuatro botones en el grupo ElectricasALF de la pestaña ALF_BIM de Revit. Trabaja con lo que ya modelas en Revit MEP —tableros, circuitos, "
                  "luminarias, tomacorrientes, interruptores, salidas de fuerza y tuberías— y lo convierte en lo que pide un expediente peruano.")
         + outs([
             ("C-1 · C-2", "Circuitos", "Nombra los circuitos al estilo peruano en el orden de cada tablero (TG, TD-01…).",
@@ -118,7 +118,7 @@ def pagina(g):
             "cta2": ("#norma", "Ver cómo calcula"),
             "trial": 'Prueba gratis 14 días con todas las funciones · <a href="%s" target="_blank" rel="noopener">Manual (PDF)</a>' % P["electricasalf"]["manual"],
             "meta": ["Revit 2023–2027", "CNE-Utilización", "Excel, DWG y S10"],
-            "img": {"cap": "La pestaña ElectricasALF · 4 botones", "panel": '<ul class="hpanel">'
+            "img": {"cap": "Pestaña ALF_BIM · grupo ElectricasALF", "panel": '<ul class="hpanel">'
                     '<li><span class="hc">BOTÓN 1</span><b>Circuitos</b><span class="hu">C-1, C-2…</span><small>Códigos por tablero, tipo de circuito y salidas contadas.</small></li>'
                     '<li><span class="hc">BOTÓN 2</span><b>Cuadro de cargas</b><span class="hu">CNE-U</span><small>Máxima demanda, ITM, diferencial, conductor, tubería y caída de tensión.</small></li>'
                     '<li><span class="hc">BOTÓN 3</span><b>Unifilar</b><span class="hu">Revit y DWG</span><small>Unifilar por tablero y esquema general de alimentadores.</small></li>'
@@ -134,7 +134,7 @@ def pagina(g):
         "secciones": [funciones, norma, entrega, pasos],
         "faq": faq_items,
         "dl_titulo": "Descarga ElectricasALF y pruébalo 14 días",
-        "dl_texto": "Instalador para Revit 2023–2027 en Windows 10 y 11, con el manual. Al terminar, abre Revit y busca la pestaña ElectricasALF.",
+        "dl_texto": "Instalador para Revit 2023–2027 en Windows 10 y 11, con el manual. Al terminar, abre Revit y busca el grupo ElectricasALF en la pestaña ALF_BIM.",
         "plataforma": "Revit 2023–2027",
         "tm": "Autodesk y Revit son marcas registradas de Autodesk, Inc. AutoCAD es marca de Autodesk, Inc. Excel es marca de Microsoft. S10 es marca de S10 Software. "
               "ElectricasALF es un desarrollo independiente de ALF_BIM y no está afiliado a ellas.",

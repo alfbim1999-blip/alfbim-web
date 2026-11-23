@@ -133,7 +133,7 @@ def pagina(g):
         "secciones": [funciones, ejemplo, como, requisitos],
         "faq": [
             ("¿Es gratis de verdad?", "Sí. PlanosALF es gratuito para uso personal, académico y comercial. No tiene licencia, servidor ni registro."),
-            ("No aparece la pestaña PlanosALF", "Verifica que pyRevit cargue (pestaña «pyRevit») y pulsa pyRevit → Recargar. La extensión debe estar en %APPDATA%\\pyRevit\\Extensions\\PlanosALF.extension."),
+            ("No aparece el grupo PlanosALF en la pestaña ALF_BIM", "Verifica que pyRevit cargue (pestaña «pyRevit») y pulsa pyRevit → Recargar. La extensión debe estar en %APPDATA%\\pyRevit\\Extensions\\PlanosALF.extension."),
             ("¿Funciona con el rótulo de mi Entidad?", "Sí. Cargas tu rótulo en el modelo y cada columna verde del Excel se escribe en el parámetro del mismo nombre. Si el dato es un parámetro de tipo en la familia del rótulo, cámbialo a parámetro de ejemplar."),
             ("¿Puedo deshacer lo que hizo?", "Sí. Cada comando es un solo paso de Deshacer (Ctrl+Z). Si cancelas «Crear desde Excel» antes de terminar, el modelo no cambia. La exportación no modifica el modelo."),
             ("¿Coloca cuadros de carga y tablas?", "Sí. Las tablas de planificación, los cuadros de carga de tableros eléctricos y las leyendas se colocan igual que las vistas y pueden repetirse en varias láminas."),

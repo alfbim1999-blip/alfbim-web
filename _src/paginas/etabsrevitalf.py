@@ -10,7 +10,7 @@ def pagina(g):
 
     funciones = section(
         sec_head("Qué hace", "Del modelo de Revit al ETABS listo para analizar",
-                 "Dos botones en la pestaña EtabsRevitALF de Revit: Exportar a ETABS, que crea el modelo de análisis con la norma peruana, "
+                 "Dos botones en el grupo EtabsRevitALF de la pestaña ALF_BIM de Revit: Exportar a ETABS, que crea el modelo de análisis con la norma peruana, "
                  "y Traer cambios de ETABS, que devuelve a Revit las secciones que cambiaste después del análisis.")
         + outs([
             ("GEOMETRÍA", "Pisos, nudos y secciones", "Del modelo estructural de Revit (a mano o creado con CadRevitALF).",
@@ -116,7 +116,7 @@ def pagina(g):
         "secciones": [funciones, lectura, pasos],
         "faq": faq_items,
         "dl_titulo": "Descarga EtabsRevitALF y pruébalo 14 días",
-        "dl_texto": "Instalador para Revit 2023–2027 en Windows 10 y 11, con el manual. Necesitas ETABS 21 o superior. Al terminar, abre Revit y busca la pestaña EtabsRevitALF.",
+        "dl_texto": "Instalador para Revit 2023–2027 en Windows 10 y 11, con el manual. Necesitas ETABS 21 o superior. Al terminar, abre Revit y busca el grupo EtabsRevitALF en la pestaña ALF_BIM.",
         "plataforma": "Revit 2023–2027 · ETABS 21+",
         "tm": "Autodesk y Revit son marcas registradas de Autodesk, Inc. ETABS es marca registrada de Computers and Structures, Inc. Excel es marca de Microsoft. "
               "EtabsRevitALF es un desarrollo independiente de ALF_BIM y no está afiliado a ellas.",

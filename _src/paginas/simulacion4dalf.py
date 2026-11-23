@@ -98,7 +98,7 @@ def pagina(g):
         "secciones": [funciones, pasos],
         "faq": faq_items,
         "dl_titulo": "Descarga Simulacion4DALF y pruébalo 14 días",
-        "dl_texto": "Instalador para Revit 2023–2027 en Windows 10 y 11, con el manual. Al terminar, abre Revit y busca la pestaña Simulacion4DALF.",
+        "dl_texto": "Instalador para Revit 2023–2027 en Windows 10 y 11, con el manual. Al terminar, abre Revit y busca el grupo Simulacion4DALF en la pestaña ALF_BIM.",
         "plataforma": "Revit 2023–2027",
         "tm": "Autodesk y Revit son marcas registradas de Autodesk, Inc. Microsoft Project y Excel son marcas de Microsoft. "
               "Simulacion4DALF es un desarrollo independiente de ALF_BIM y no está afiliado a ellas.",
