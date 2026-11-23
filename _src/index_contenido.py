@@ -8,6 +8,8 @@ import re, html
 E = html.escape
 
 MOTIVOS = {
+    # planta de arquitectura: muros, puerta con su giro y ventana
+    "arquitectura": '<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="8" y="10" width="48" height="44" rx="1"/><path d="M8 32h20M36 32h20M30 10v12"/><path d="M28 32a8 8 0 0 1 8-8"/><path d="M28 32v-8"/><path d="M40 7v6M50 7v6M40 10h10"/></svg>',
     # columna con su acero: sección, barras y estribo
     "estructuras": '<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="10" y="10" width="44" height="44" rx="1"/><rect x="17" y="17" width="30" height="30" rx="3"/><circle cx="21" cy="21" r="2.4" fill="currentColor"/><circle cx="43" cy="21" r="2.4" fill="currentColor"/><circle cx="21" cy="43" r="2.4" fill="currentColor"/><circle cx="43" cy="43" r="2.4" fill="currentColor"/><circle cx="32" cy="21" r="2.4" fill="currentColor"/><circle cx="32" cy="43" r="2.4" fill="currentColor"/><path d="M17 23l5-6"/></svg>',
     # tubería con codo, tee y gota
